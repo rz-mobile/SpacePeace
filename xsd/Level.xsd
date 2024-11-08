@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:le="http://www.univ-grenoble-alpes.fr/Level"
+           targetNamespace="http://www.univ-grenoble-alpes.fr/Level"
+           elementFormDefault="qualified">
+    
+    <xs:element name="Level" type="le:Level"/>
+    
+    <!-- Type Complèxe -->
+    
+    <xs:complexType name="Level">
+        <xs:sequence>
+            <xs:element name="Nom" type="le:Nom"/>
+            <xs:element name="Id" type="le:Id"/>
+            <xs:element name="CheminBackground" type="le:CheminBackground"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="Nom">
+        <xs:attribute name="Nom" type="le:NomPropre"/>
+    </xs:complexType>
+    
+    <!-- Type Simple -->
+    
+    <xs:simpleType name="CheminBackground">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="^(\/|[a-zA-Z]:\\)([a-zA-Z0-9_\-]+[\/\\])*[a-zA-Z0-9_\-]+(\.[a-zA-Z0-9]+)?$"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="Id">
+        <xs:restriction base="xs:int">
+            <xs:pattern value="[0-9]{3}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    
+    <xs:simpleType name="NomPropre">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z][a-z]*"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

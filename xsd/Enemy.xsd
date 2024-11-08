@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:en="http://www.univ-grenoble-alpes.fr/Enemy"
+           targetNamespace="http://www.univ-grenoble-alpes.fr/Enemy"
+           elementFormDefault="qualified">
+
+    <xs:element name="Enemy" type="en:Enemy"/>
+    
+    <!-- Type Complèxe -->
+    <xs:complexType name="Enemy">
+        <xs:sequence>
+            <xs:element name="Id" type="en:Int"/>
+            <xs:element name="Pv" type="en:Int"/>
+            <xs:element name="Degats" type="en:Degats"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- Type Simple -->
+    <xs:simpleType name="Degats">
+        <xs:restriction base="xs:int">
+            <xs:pattern value="[0-9]{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="Int">
+        <xs:restriction base="xs:int">
+            <xs:pattern value="[0-9]{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
