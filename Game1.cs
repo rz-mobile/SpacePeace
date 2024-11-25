@@ -12,11 +12,13 @@ public class Game1 : Game
     private level lv;
     private Player _player;
     private Tile testTile;
+    private Camera _camera;
 
     public Game1() {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
+        //_camera = new(Vector2.Zero);
     }
 
     protected override void Initialize() {
@@ -28,7 +30,7 @@ public class Game1 : Game
         Texture2D shipTexture = Content.Load<Texture2D>("ship2");
         Texture2D ship2Texture = Content.Load<Texture2D>("ship1");
         Texture2D TileTest = Content.Load<Texture2D>("map");
-        _player = new Player(ship2Texture, new Hitbox());
+        _player = new Player(ship2Texture,new Vector2(100,100), 20);
         _ship = new Sprite(shipTexture, new Vector2(300, 150),100);
         //testTile = new Tile(300, 150, "17",TileTest);
         Texture2D mapTexture = Content.Load<Texture2D>("map");
@@ -42,6 +44,8 @@ public class Game1 : Game
         _player.Update(gameTime);
         lv.Update(gameTime);
         //testTile.Update(gameTime);
+        //_camera.Follow(_player._Rect , new Vector2(_graphics.PreferredBackBufferWidth,_graphics.PreferredBackBufferHeight));
+        
         base.Update(gameTime);
     }
 
