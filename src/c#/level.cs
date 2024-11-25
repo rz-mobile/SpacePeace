@@ -22,8 +22,14 @@ public class level
     private String[][] map;
 
     private List<Tile> tiles;
-    public level(String path)
+    public level(String path,Texture2D texture)
     {
+        map = new string[10][];
+        for (int i = 0; i < 10; i++)
+        {
+            map[i] = new String[10];
+        }
+        tiles = new List<Tile>();
         this.texture = texture;
         
         doc = new XmlDocument();
@@ -44,15 +50,26 @@ public class level
         {
             for (int j = 0; j < map[i].Length; j++)
             {
-                if (Int32.Parse(map[i][j]) != 0)
+                if (map[i][j] != "0" && map[i][j] != "")
                 {
-                    tiles.Add(new Tile(i,j,Int32.Parse(map[i][j]),texture));
+                    tiles.Add(new Tile(i*16,j*16,map[i][j],texture));
                 }
             }
         }
     }
 
+    public void Update(GameTime gameTime)
+    {
+        foreach (Tile tile in tiles)
+        {
+            tile.Update(gameTime);
+        }
+    }
     public void Draw(SpriteBatch spriteBatch)
     {
+        foreach (Tile tile in tiles)
+        {
+            tile.Draw(spriteBatch);
+        }
     }
 }
