@@ -1,27 +1,55 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace SpacePeace;
 
-public class GameObject
+public abstract class GameObject : Sprite
 {
-    protected Sprite sprite;
-    protected Hitbox hitbox;
-    protected Vector2 position;
+    private Rectangle Hitbox;
+    private List<GameObject> allobj;
 
-    public GameObject(Texture2D sprite, Hitbox hitbox)
+    public GameObject(Texture2D texture, Vector2 position, int size) : base(texture, position, size)
     {
-        position = new Vector2(0, 0);
-        this.sprite = new Sprite(sprite,position,1);
-        this.hitbox = hitbox;
+        Hitbox = new Rectangle((int)position.X, (int)position.Y, size, size);
     }
-    
-    public void Initialize(){}
-    
-    public void Update(GameTime gameTime){}
 
-    public void Draw(SpriteBatch spriteBatch)
+    protected Rectangle GetHitbox()
     {
-        sprite.Draw(spriteBatch);
+        return Hitbox;
     }
+
+    protected void SetHitbox(Rectangle hitbox)
+    {
+        Hitbox = hitbox;
+    }
+
+    protected void addObj(GameObject obj)
+    {
+        allobj.Add(obj);
+    }
+    public void Initialize()
+    {
+        allobj = new List<GameObject>();
+    }
+
+    public void Update(GameTime gameTime){
+        List<GameObject> killList = new List<GameObject>();
+        foreach (GameObject s in allobj)
+        {
+            s.Update(gameTime);
+            foreach (GameObject s2 in allobj)
+                if (s.Hitbox.Intersects(s2.Hitbox))
+                {
+                    killList.Add(s);
+                } ;
+           
+        }
+        foreach (GameObject s in killList)
+        {
+            allobj.Remove(s);
+        }
+    }
+
+    protected abstract void Draw(SpriteBatch spriteBatch);
 }

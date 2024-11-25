@@ -8,7 +8,7 @@ namespace SpacePeace;
 public class Tile
 {
     private Sprite[] sprites;
-    private Hitbox hitbox;
+    private GameObject hitbox;
     public Vector2 position
     {
         get => position;

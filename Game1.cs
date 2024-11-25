@@ -25,7 +25,7 @@ public class Game1 : Game
     protected override void LoadContent() {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         Texture2D shipTexture = Content.Load<Texture2D>("ship2");
-        _player = new Player(shipTexture, new Hitbox());
+        _player = new Player(shipTexture , new Vector2(100,100), 200);
         //Texture2D mapTexture = Content.Load<Texture2D>("map");
         //lv = new level("/home/r/Documents/travail/XML/SpacePeace/src/xml/map.xml", mapTexture);
     }
