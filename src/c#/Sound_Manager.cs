@@ -9,7 +9,7 @@ namespace SpacePeace;
 
 
 public class Sound_Manager
-{
+{/*
     private Song _song;
 
     protected override void LoadContent()
@@ -23,5 +23,5 @@ public class Sound_Manager
         {
             MediaPlayer.Play(_song);
         }
-    }
+    }*/
 }
