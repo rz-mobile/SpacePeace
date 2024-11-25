@@ -18,10 +18,13 @@ public class level
     private XmlNamespaceManager nsmgr;
     
     private Texture2D texture;
-    public level(String path,Texture2D texture)
+
+    private String[][] map;
+
+    private List<Tile> tiles;
+    public level(String path)
     {
         this.texture = texture;
-        Dictionary<Vector2, int> map = new Dictionary<Vector2, int>();
         
         doc = new XmlDocument();
         doc.Load(path);
@@ -31,52 +34,25 @@ public class level
         XmlElement rootElt = (XmlElement)root;
         XmlNodeList refNL = rootElt.GetElementsByTagName("//layer/data");
         String currentLevel = "0,202,202,0,0,0,229,229,0,0,\n0,202,0,202,202,202,229,229,0,0,\n0,202,0,202,202,229,229,0,0,229,\n0,202,202,0,0,229,229,0,229,0,\n0,202,202,229,229,229,229,229,0,0,\n0,202,229,229,229,202,229,0,0,0,\n0,202,229,0,0,202,229,0,0,202,\n0,202,229,0,0,202,229,0,202,0,\n0,202,202,229,229,229,229,229,0,0,\n0,202,0,202,202,229,229,229,0,0";
-        
-        StringReader sr = new StringReader(currentLevel);
-        int y = 0;
-        String line;
-        while ((line = sr.ReadLine()) != null)
+        String[] tmpMap = currentLevel.Split('\n');
+        for (int i = 0; i < tmpMap.Length; i++)
         {
-            String[] items = line.Split(',');
-
-            for (int x = 0; x < items.Length; x++)
-            {
-                if(int.TryParse(items[x], out int value))
-                {
-                    if (value > 0)
-                    {
-                        map[new Vector2(x, y)] = value;
-                    }
-                    
-                }
-            }
-            y++;
+            map[i] = tmpMap[i].Split(',');
         }
 
-        tilemap = map;
-
-        textureStore = new List<Rectangle>()
+        for (int i = 0; i < map.Length; i++)
         {
-            new Rectangle(0, 0, 16, 16),
-            new Rectangle(0, 16, 16, 16)
-        };
+            for (int j = 0; j < map[i].Length; j++)
+            {
+                if (Int32.Parse(map[i][j]) != 0)
+                {
+                    tiles.Add(new Tile(i,j,Int32.Parse(map[i][j]),texture));
+                }
+            }
+        }
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        foreach (var tile in tilemap)
-        {
-            Rectangle des = new Rectangle(
-                (int)tile.Key.X * 64,
-                (int)tile.Key.Y * 64,
-                64,
-                64
-            );
-            
-            Rectangle src = textureStore[tile.Value];
-            
-            spriteBatch.Draw(texture, des, src, Color.White);
-
-        }
     }
 }

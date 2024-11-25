@@ -9,7 +9,7 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     private Sprite _ship;
-    //private level lv;
+    private level lv;
     private Player _player;
 
     public Game1() {
@@ -26,8 +26,9 @@ public class Game1 : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         Texture2D shipTexture = Content.Load<Texture2D>("ship2");
         _player = new Player(shipTexture, new Hitbox());
-        //Texture2D mapTexture = Content.Load<Texture2D>("map");
-        //lv = new level("/home/r/Documents/travail/XML/SpacePeace/src/xml/map.xml", mapTexture);
+        _ship = new Sprite(shipTexture, new Vector2(100, 100),10);
+        Texture2D mapTexture = Content.Load<Texture2D>("map");
+        lv = new level("/home/r/Documents/travail/XML/SpacePeace/src/xml/map.xml", mapTexture);
     }
 
     protected override void Update(GameTime gameTime) {
@@ -41,7 +42,8 @@ public class Game1 : Game
     protected override void Draw(GameTime gameTime) {
         GraphicsDevice.Clear(Color.CornflowerBlue);
         _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-        //lv.Draw(_spriteBatch);
+        lv.Draw(_spriteBatch);
+        _ship.Draw(_spriteBatch);
         _player.Draw(_spriteBatch);
         _spriteBatch.End();
         base.Draw(gameTime);
