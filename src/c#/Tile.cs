@@ -7,6 +7,8 @@ namespace SpacePeace;
 [XmlRoot("Tile", Namespace ="http://www.univ-grenoble-alpes.fr/Tile" )]
 public class Tile
 {
+    private Sprite[] sprites;
+    private Hitbox hitbox;
     public Vector2 position
     {
         get => position;
@@ -14,15 +16,9 @@ public class Tile
         
     }
 
-    public Sprite _sprite
+    public Tile(int x, int y, Sprite[] sprites)
     {
-        get => _sprite;
-        private set => _sprite = value;
-    }
-
-    public Tile(Sprite sprite)
-    {
-        _sprite = sprite;
+        
     }
     public void Initialize() {
         
