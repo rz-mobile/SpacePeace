@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -12,7 +13,12 @@ public class Game1 : Game
     private level lv;
     private Player _player;
     private Tile testTile;
-    private Camera _camera;
+    private Texture2D tileTest;
+
+    private int wTest = 500;
+
+    private int hTest = 500;
+    //private Camera _camera;
 
     public Game1() {
         _graphics = new GraphicsDeviceManager(this);
@@ -29,10 +35,10 @@ public class Game1 : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         Texture2D shipTexture = Content.Load<Texture2D>("ship2");
         Texture2D ship2Texture = Content.Load<Texture2D>("ship1");
-        Texture2D TileTest = Content.Load<Texture2D>("map");
-        _player = new Player(ship2Texture,new Vector2(100,100), 20);
-        _ship = new Sprite(shipTexture, new Vector2(300, 150),100);
-        //testTile = new Tile(300, 150, "17",TileTest);
+        tileTest = Content.Load<Texture2D>("map");
+        //_player = new Player(ship2Texture,new Vector2(100,100), 20);
+        _ship = new Sprite(tileTest, new Vector2(300, 150),100);
+        //testTile = new Tile(300, 150, "17",tileTest);
         Texture2D mapTexture = Content.Load<Texture2D>("map");
         lv = new level("/home/r/Documents/travail/XML/SpacePeace/src/xml/map.xml",mapTexture);
     }
@@ -41,9 +47,27 @@ public class Game1 : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
-        _player.Update(gameTime);
+        //_player.Update(gameTime);
         lv.Update(gameTime);
-        //testTile.Update(gameTime);
+        /*if (Keyboard.GetState().IsKeyDown(Keys.Right))
+        {
+            _ship.setPosition(new Vector2(_ship._position.X + 10, _ship._position.Y));
+            wTest+= 10;
+        }else if (Keyboard.GetState().IsKeyDown(Keys.Left))
+        {
+            _ship.setPosition(new Vector2(_ship._position.X - 10, _ship._position.Y));
+            wTest -= 10;
+        }
+        if (Keyboard.GetState().IsKeyDown(Keys.Down))
+        {
+            _ship.setPosition(new Vector2(_ship._position.X, _ship._position.Y + 10));
+            hTest += 10;
+        }else if (Keyboard.GetState().IsKeyDown(Keys.Up))
+        {
+            _ship.setPosition(new Vector2(_ship._position.X, _ship._position.Y - 10));
+            hTest -= 10;
+        }
+        testTile.Update(gameTime);*/
         //_camera.Follow(_player._Rect , new Vector2(_graphics.PreferredBackBufferWidth,_graphics.PreferredBackBufferHeight));
         
         base.Update(gameTime);
@@ -53,7 +77,6 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.CornflowerBlue);
         _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
         lv.Draw(_spriteBatch);
-        _ship.Draw(_spriteBatch);
         //_player.Draw(_spriteBatch);
         //testTile.Draw(_spriteBatch);
         _spriteBatch.End();

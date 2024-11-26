@@ -13,20 +13,23 @@ public class Tile
 {
     public Vector2 _position;
     public Rectangle bounds;
-    private Sprite _texture;
+    private Sprite _sprite;
 
-    public Tile(int x, int y, String value,Texture2D texture)
+    public Tile(int x, int y, String value,Texture2D texture,int size)
     {
         int id =  Int32.Parse(value);
         //Console.WriteLine(id);
-        _position = new Vector2((int)(x*3.5), (int)(y*8.375));
+        _position = new Vector2(x, y);
+        //_position = new Vector2((int)(x), (int)(y));
         bounds = new Rectangle(); 
         bounds.X = (id % 16)*16 -16;
         bounds.Y = id;
+        //bounds.Width = 16;
+        //bounds.Height = 10;
         bounds.Width = 16;
         bounds.Height = 10;
-        _texture = new Sprite(texture,_position,100);
-        Console.WriteLine(_position + " : " + value);
+        _sprite = new Sprite(texture,_position,size);
+        //Console.WriteLine(_position + " : " + value);
         
     }
     public void Initialize() {
@@ -36,8 +39,8 @@ public class Tile
     public void Update(GameTime gameTime)
     {
         //Console.WriteLine(_position +" " + gameTime.ElapsedGameTime.Milliseconds);
-        _texture.setPosition(_position);
-        if (Keyboard.GetState().IsKeyDown(Keys.Right))
+        _sprite.setPosition(_position);
+        /*if (Keyboard.GetState().IsKeyDown(Keys.Right))
         {
             _position.X += 10;
         }else if (Keyboard.GetState().IsKeyDown(Keys.Left))
@@ -50,11 +53,12 @@ public class Tile
         }else if (Keyboard.GetState().IsKeyDown(Keys.Up))
         {
             _position.Y -= 10;
-        }
+        }*/
+        //Console.WriteLine(_sprite._position);
     }
     public void Draw(SpriteBatch spriteBatch)
     {
-        _texture.Draw(spriteBatch,bounds);
+        _sprite.Draw(spriteBatch,bounds);
     }
     /*
     [XmlAttribute("Identifiant")] public Identifiant _identifiant { init; get; }
