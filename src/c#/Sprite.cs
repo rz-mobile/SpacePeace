@@ -6,7 +6,7 @@ namespace SpacePeace;
 
 public class Sprite {
     private Texture2D _texture;
-    protected Vector2 _position;
+    protected static Vector2 _position;
     private int _size = 100;
     private static readonly int _sizeMin = 10;
     private static readonly int _sizeMax = 5000;
