@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -10,7 +11,11 @@ public class Player : GameObject
     Vector2 position = _position ;
     private float gravity;
     private bool isJumping;
-
+    protected double ptVie;
+    private int w;
+    private int h;
+    private int windowWidth;
+    private int windowHeight;
     public void setGravity(float gravity)
     {
         // rajouter les contraintes de map
@@ -20,14 +25,18 @@ public class Player : GameObject
     public Player(Texture2D texture, Vector2 position, int size) : base(texture, position, size)
     {
     }
-    public void Initialize(){}
+    public void Initialize(){ 
+        setGravity(1.0f);
+        w = windowWidth;
+        h = windowHeight;
+        ptVie = 5;
+    }
     
     public new void Update(GameTime gameTime)
     {
 
         position = new Vector2(position.X + speed.X, position.Y + speed.Y);
-        speed.X = 0.0f;
-        speed.Y = 0.0f;
+        speed.Y = gravity;
         gravity = 10;
         if (Keyboard.GetState().IsKeyDown(Keys.Right))
         {
@@ -84,6 +93,19 @@ public class Player : GameObject
     {
         throw new System.NotImplementedException();
     }
+
+    private void estMort()
+    {
+        if (_position.X > w && _position.X < 0 && _position.Y > h && _position.Y < 0)
+        {
+            ptVie = 0;
+            Console.WriteLine("Le joeur est mort");
+            //Texture=null ; détruire l'intence du playeur 
+        }
+        
+    }
+
+
     /**
     public void Draw(SpriteBatch spriteBatch)
     {

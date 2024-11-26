@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -47,6 +48,17 @@ public class Game1 : Game
         //_camera.Follow(_player._Rect , new Vector2(_graphics.PreferredBackBufferWidth,_graphics.PreferredBackBufferHeight));
         
         base.Update(gameTime);
+
+        //if (_player != null)
+        //{
+            //_player.Update(gameTime);
+            //if (_player.ptVie <= 0)
+            //{
+              //  _player = null;
+            //    Console.WriteLine("Le joueur à été supprimé ");
+          //  }
+        //}
+        
     }
 
     protected override void Draw(GameTime gameTime) {
