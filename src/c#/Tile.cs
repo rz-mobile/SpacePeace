@@ -21,10 +21,10 @@ public class Tile
         //Console.WriteLine(id);
         _position = new Vector2((int)(x*3.5), (int)(y*8.375));
         bounds = new Rectangle(); 
-        bounds.X = (id % 16)*16;
-        bounds.Y = id - bounds.X;
+        bounds.X = (id % 16)*16 -16;
+        bounds.Y = id;
         bounds.Width = 16;
-        bounds.Height = 16;
+        bounds.Height = 10;
         _texture = new Sprite(texture,_position,100);
         Console.WriteLine(_position + " : " + value);
         
