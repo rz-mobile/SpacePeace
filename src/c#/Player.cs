@@ -7,7 +7,7 @@ namespace SpacePeace;
 public class Player : GameObject
 {
     Vector2 speed = new Vector2(0.0f, 0.0f);
-    //Vector2 position = _position ;
+    Vector2 position = _position ;
     private float gravity;
     private bool isJumping;
 
@@ -17,7 +17,7 @@ public class Player : GameObject
         //todo
         this.gravity = gravity;
     }
-    public Player(Texture2D texture, Vector2 _position, int size) : base(texture, _position, size)
+    public Player(Texture2D texture, Vector2 position, int size) : base(texture, position, size)
     {
     }
     public void Initialize(){}
@@ -25,7 +25,7 @@ public class Player : GameObject
     public new void Update(GameTime gameTime)
     {
 
-        _position = new Vector2(_position.X + speed.X, _position.Y + speed.Y);
+        position = new Vector2(position.X + speed.X, position.Y + speed.Y);
         speed.X = 0.0f;
         speed.Y = 0.0f;
         gravity = 10;
@@ -48,9 +48,8 @@ public class Player : GameObject
             speed.X += 1.0f;
         }
 
-        //_position.X += speed.X;
-        //_position.Y += speed.Y;
-        _position = new Vector2(_position.X, _position.Y);
+        _position.X += speed.X;
+        _position.Y += speed.Y;
 
         
     }
@@ -63,15 +62,13 @@ public class Player : GameObject
             if (speed.Y > 0)
             {
                 
-                //_position.Y += speed.Y;
-                //_position.X -= speed.X;
-                _position = new Vector2(_position.X - speed.X, _position.Y + speed.Y);
+                _position.Y += speed.Y;
+                _position.X -= speed.X;
             }
             else
             {
-                //_position.Y -= speed.Y;
-                //_position.X += speed.X;
-                _position = new Vector2(_position.X + speed.X, _position.Y - speed.Y);
+                _position.Y -= speed.Y;
+                _position.X += speed.X;
                 
             }
 
