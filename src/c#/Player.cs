@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace SpacePeace;
 
-public class Player : GameObject
+/*public class Player : GameObject
 {
     Vector2 speed = new Vector2(0.0f, 0.0f);
     Vector2 position = _position ;
@@ -83,10 +83,11 @@ public class Player : GameObject
     protected override void Draw(SpriteBatch spriteBatch)
     {
         throw new System.NotImplementedException();
-    }
+    }*/
     /**
     public void Draw(SpriteBatch spriteBatch)
     {
         base.Draw(spriteBatch);
     }**/
-}
+    
+//}

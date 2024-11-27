@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace SpacePeace;
-
+/*
 [Serializable]
 [XmlRoot("Enemy", Namespace ="http://www.univ-grenoble-alpes.fr/Enemy" )]
 
@@ -45,7 +45,7 @@ public class Enemy : GameObject
     {
         throw new NotImplementedException();
     }
-
+*/
     /**
     public void draw(SpriteBatch spriteBatch)
     {
@@ -55,7 +55,7 @@ public class Enemy : GameObject
 
 
 
-
+/*
 
     [XmlAttribute("Pv")] public Int _Pv { init; get; }
     [XmlAttribute("Id")] public Int _Id { init; get; }
@@ -67,4 +67,4 @@ public class Enemy : GameObject
     }
     
     
-}
+}*/

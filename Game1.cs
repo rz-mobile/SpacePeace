@@ -11,7 +11,7 @@ public class Game1 : Game
     private SpriteBatch _spriteBatch;
     private Sprite _ship;
     private level lv;
-    private Player _player;
+    //private Player _player;
     private Tile testTile;
     private Texture2D tileTest;
 
