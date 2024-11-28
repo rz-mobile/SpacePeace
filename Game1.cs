@@ -36,19 +36,19 @@ public class Game1 : Game
         Texture2D shipTexture = Content.Load<Texture2D>("ship2");
         Texture2D ship2Texture = Content.Load<Texture2D>("ship1");
         tileTest = Content.Load<Texture2D>("map");
-        _player = new Player(ship2Texture,new Vector2(100,100), 20);
+        //_player = new Player(ship2Texture,new Vector2(100,100), 20);
         _ship = new Sprite(tileTest, new Vector2(300, 150),100);
         //testTile = new Tile(300, 150, "17",tileTest);
-        //Texture2D mapTexture = Content.Load<Texture2D>("map");
-        //lv = new level("../../src/xml/map.xml",mapTexture);
+        Texture2D mapTexture = Content.Load<Texture2D>("map");
+        lv = new level("../../src/xml/map.xml",mapTexture,shipTexture,_graphics.GraphicsDevice);
     }
 
     protected override void Update(GameTime gameTime) {
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
-        _player.Update(gameTime);
-        //lv.Update(gameTime);
+        //_player.Update(gameTime);
+        lv.Update(gameTime);
         /*if (Keyboard.GetState().IsKeyDown(Keys.Right))
         {
             _ship.setPosition(new Vector2(_ship._position.X + 10, _ship._position.Y));
@@ -87,8 +87,8 @@ public class Game1 : Game
     protected override void Draw(GameTime gameTime) {
         GraphicsDevice.Clear(Color.CornflowerBlue);
         _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-        //lv.Draw(_spriteBatch);
-        _player.Draw(_spriteBatch);
+        lv.Draw(_spriteBatch);
+        //_player.Draw(_spriteBatch);
         //testTile.Draw(_spriteBatch);
         _spriteBatch.End();
         base.Draw(gameTime);

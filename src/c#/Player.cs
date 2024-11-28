@@ -11,25 +11,32 @@ public class Player : GameObject
     private float gravity;
     private bool isJumping = false;
     private float jumpForce;
-
-    public void setGravity(float gravity)
-    {
-        // rajouter les contraintes de map
-        //todo
-        this.gravity = gravity;
-    }
+    public Rectangle bottomHitbox;
+    public Rectangle rightHitbox;
+    public Rectangle leftHitbox;
+    public Rectangle topHitbox;
+    
     public Player(Texture2D texture, Vector2 _position, int size) : base(texture, _position, size)
     {
         speed = new Vector2(0.0f, 0.0f);
         jumpForce = 5.0f;
         gravity = 0.1f;
+        rightHitbox = new Rectangle((int)_position.X + size, (int)_position.Y, 1, size);
+        leftHitbox = new Rectangle((int)_position.X - size, (int)_position.Y, 1, size);
+        topHitbox = new Rectangle((int)_position.X, (int)_position.Y - size, size, 1);
+        bottomHitbox = new Rectangle((int)_position.X , (int)_position.Y + size, size, 1);
+    }
+
+    public void groundReaction()
+    {
+        speed = new Vector2(0.0f, speed.Y-speed.Y);
     }
     public void Initialize(){}
     
     public new void Update(GameTime gameTime)
     {
         speed = new Vector2(0.0f, speed.Y+gravity);
-        Console.WriteLine(_position);
+        //Console.WriteLine(_position);
         if (Keyboard.GetState().IsKeyDown(Keys.Right))
         {
             speed.X = 10.0f;
