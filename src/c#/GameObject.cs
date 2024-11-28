@@ -51,5 +51,5 @@ public abstract class GameObject : Sprite
         }
     }
 
-    protected abstract void Draw(SpriteBatch spriteBatch);
+    //protected abstract void Draw(SpriteBatch spriteBatch);
 }

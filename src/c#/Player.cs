@@ -1,15 +1,16 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace SpacePeace;
 
-/*public class Player : GameObject
+public class Player : GameObject
 {
-    Vector2 speed = new Vector2(0.0f, 0.0f);
-    Vector2 position = _position ;
+    private Vector2 speed;
     private float gravity;
-    private bool isJumping;
+    private bool isJumping = false;
+    private float jumpForce;
 
     public void setGravity(float gravity)
     {
@@ -17,18 +18,18 @@ namespace SpacePeace;
         //todo
         this.gravity = gravity;
     }
-    public Player(Texture2D texture, Vector2 position, int size) : base(texture, position, size)
+    public Player(Texture2D texture, Vector2 _position, int size) : base(texture, _position, size)
     {
+        speed = new Vector2(0.0f, 0.0f);
+        jumpForce = 5.0f;
+        gravity = 0.1f;
     }
     public void Initialize(){}
     
     public new void Update(GameTime gameTime)
     {
-
-        position = new Vector2(position.X + speed.X, position.Y + speed.Y);
-        speed.X = 0.0f;
-        speed.Y = 0.0f;
-        gravity = 10;
+        speed = new Vector2(0.0f, speed.Y+gravity);
+        Console.WriteLine(_position);
         if (Keyboard.GetState().IsKeyDown(Keys.Right))
         {
             speed.X = 10.0f;
@@ -38,56 +39,53 @@ namespace SpacePeace;
         }
         if (Keyboard.GetState().IsKeyDown(Keys.Down))
         {
-            speed.Y = 10.0f+gravity/2.0f;
+            //speed.Y = 10.0f+gravity/2.0f;
             
         }
         else if (Keyboard.GetState().IsKeyDown(Keys.Up))
         {
             Jump();
-            speed.Y -= 1.0f;
-            speed.X += 1.0f;
+            /*speed.Y -= 1.0f;
+            speed.X += 1.0f;*/
         }
 
-        _position.X += speed.X;
-        _position.Y += speed.Y;
+        _position = new Vector2(_position.X + speed.X, _position.Y + speed.Y);
 
         
     }
 
     public void Jump()
     {
-        if (isJumping)
+        if (!isJumping)
         {
-
+            isJumping = true;
+            /*
             if (speed.Y > 0)
             {
-                
-                _position.Y += speed.Y;
-                _position.X -= speed.X;
+                _position = new Vector2(_position.X-speed.X, _position.Y + speed.Y);
+
             }
             else
             {
-                _position.Y -= speed.Y;
-                _position.X += speed.X;
+                _position = new Vector2(_position.X + speed.X, _position.Y - speed.Y);
                 
             }
 
-            speed.Y += 0.1f;
+            speed.Y += 0.1f;*/
+            speed.Y = -jumpForce;
+
         }
-        else
+        /*else
         {
             speed.X = 0.0f;
             speed.Y = 0.0f;
-        }        
+        }  */      
     }
-    protected override void Draw(SpriteBatch spriteBatch)
-    {
-        throw new System.NotImplementedException();
-    }*/
-    /**
-    public void Draw(SpriteBatch spriteBatch)
+
+    
+    /*public override void Draw(SpriteBatch spriteBatch)
     {
         base.Draw(spriteBatch);
-    }**/
+    }*/
     
-//}
+}
