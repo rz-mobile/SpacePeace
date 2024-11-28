@@ -24,7 +24,7 @@ public class level
     private List<string[]> map;
 
     private List<Tile> tiles;
-    public level(String path,Texture2D texture,Texture2D playerTexture,GraphicsDevice graphicsDevice)
+    public level(String path ,Texture2D texture,Texture2D playerTexture,GraphicsDevice graphicsDevice)
     {
         
         /*map = new string[10][];
@@ -43,9 +43,10 @@ public class level
         
         XmlElement rootElt = (XmlElement)root;
         XmlNodeList refNL = rootElt.GetElementsByTagName("//layer/data");*/
-        String currentLevel =
-            "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\n0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\n0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\n0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\n0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\n0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\n178,178,178,178,178,178,0,0,0,178,178,178,178,178,178,178,178,178,178,178,178,0,178,178,178,178,178,0,0,0";
-            tileMapTest = new Tilemap(texture,currentLevel);
+        String currentLevel = xmlMap(path);
+        Console.WriteLine(currentLevel);
+        //String currentLevel = "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\n0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\n0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\n0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\n0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\n0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\n178,178,178,178,178,178,0,0,0,178,178,178,178,178,178,178,178,178,178,178,178,0,178,178,178,178,178,0,0,0\n";  
+        tileMapTest = new Tilemap(texture,currentLevel);
         collisionMapTest = new CollisionMap(currentLevel,texture,graphicsDevice);
         if (collisionMapTest.done)
         {
@@ -78,5 +79,24 @@ public class level
         _player.Draw(spriteBatch);
         collisionMapTest.Draw(spriteBatch);
         
+    }
+
+    
+    public String xmlMap(String xmlPath)
+    {
+        String map = "";
+        XmlDocument xmlDoc = new XmlDocument();
+        doc.Load(xmlPath);
+        XmlNode node = xmlDoc.SelectSingleNode("//data");
+       if (node != null)
+       {
+           map += node.InnerText;
+           Console.WriteLine(map);
+       }
+       else
+       {
+           Console.WriteLine("échec de la création du level on ne trouve pas 'data'.");
+       }
+       return map;
     }
 }
