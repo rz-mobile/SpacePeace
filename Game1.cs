@@ -44,6 +44,7 @@ public class Game1 : Game
     }
 
     protected override void Update(GameTime gameTime) {
+        //Console.WriteLine("Game Time: " + gameTime.ElapsedGameTime.TotalMilliseconds);
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();

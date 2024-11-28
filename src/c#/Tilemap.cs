@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -32,9 +33,10 @@ public class Tilemap
             {
                 if (map[i][j] != "0" && map[i][j] != "")
                 {
-                    int size = 30;
+                    int size = 60;
                     tiles.Add(new Tile(j*size,i*size,map[i][j],texture,size));
                     //tiles.Add(new Tile(j,i,map[i][j],texture));
+                    //Console.WriteLine(i +":" +j);
                 }
             }
         }

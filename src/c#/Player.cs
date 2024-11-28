@@ -7,6 +7,7 @@ namespace SpacePeace;
 
 public class Player : GameObject
 {
+    public bool surSol = false;
     private Vector2 speed;
     private float gravity;
     private bool isJumping = false;
@@ -29,23 +30,38 @@ public class Player : GameObject
         speed = new Vector2(0.0f, 0.0f);
         jumpForce = 5.0f;
         gravity = 0.1f;
+        ptVie = 10;
         rightHitbox = new Rectangle((int)_position.X + size, (int)_position.Y, 1, size);
-        leftHitbox = new Rectangle((int)_position.X - size, (int)_position.Y, 1, size);
-        topHitbox = new Rectangle((int)_position.X, (int)_position.Y - size, size, 1);
+        leftHitbox = new Rectangle((int)_position.X - 1, (int)_position.Y, 1, size);
+        topHitbox = new Rectangle((int)_position.X, (int)_position.Y - 1, size, 1);
         bottomHitbox = new Rectangle((int)_position.X , (int)_position.Y + size, size, 1);
     }
 
     public void groundReaction()
     {
-        speed = new Vector2(0.0f, speed.Y-speed.Y);
-        ptVie = 10;
+        //Console.WriteLine("touché");
+        surSol = true;
+        speed = new Vector2(speed.X, 0.0f);
     }
     public void Initialize(){}
     
     public new void Update(GameTime gameTime)
     {
-        speed = new Vector2(0.0f, speed.Y+gravity);
-        Console.WriteLine(_position);
+        rightHitbox.X = (int)_position.X;
+        rightHitbox.Y = (int)_position.Y;
+        leftHitbox.X = (int)_position.X;
+        leftHitbox.Y = (int)_position.Y;
+        topHitbox.X = (int)_position.X;
+        topHitbox.Y = (int)_position.Y;
+        bottomHitbox.X = (int)_position.X;
+        bottomHitbox.Y = (int)_position.Y;
+        if (!surSol)
+        {
+            speed = new Vector2(speed.X, speed.Y+gravity);
+        }
+
+        speed.X = 0;
+        Console.WriteLine(_position +":" +speed);
         if (Keyboard.GetState().IsKeyDown(Keys.Right))
         {
             speed.X = 10.0f;
@@ -72,9 +88,9 @@ public class Player : GameObject
 
     public void Jump()
     {
-        if (!isJumping)
+        if (surSol)
         {
-            isJumping = true;
+            //surSol = false;
             /*
             if (speed.Y > 0)
             {
