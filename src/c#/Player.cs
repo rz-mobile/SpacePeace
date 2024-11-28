@@ -16,6 +16,14 @@ public class Player : GameObject
     public Rectangle leftHitbox;
     public Rectangle topHitbox;
     
+    private int ptVie;
+
+    public void setGravity(float gravity)
+    {
+        // rajouter les contraintes de map
+        //todo
+        this.gravity = gravity;
+    }
     public Player(Texture2D texture, Vector2 _position, int size) : base(texture, _position, size)
     {
         speed = new Vector2(0.0f, 0.0f);
@@ -30,13 +38,14 @@ public class Player : GameObject
     public void groundReaction()
     {
         speed = new Vector2(0.0f, speed.Y-speed.Y);
+        ptVie = 10;
     }
     public void Initialize(){}
     
     public new void Update(GameTime gameTime)
     {
         speed = new Vector2(0.0f, speed.Y+gravity);
-        //Console.WriteLine(_position);
+        Console.WriteLine(_position);
         if (Keyboard.GetState().IsKeyDown(Keys.Right))
         {
             speed.X = 10.0f;
