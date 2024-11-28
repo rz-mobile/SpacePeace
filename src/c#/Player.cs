@@ -11,6 +11,7 @@ public class Player : GameObject
     private float gravity;
     private bool isJumping = false;
     private float jumpForce;
+    private int ptVie;
 
     public void setGravity(float gravity)
     {
@@ -23,6 +24,7 @@ public class Player : GameObject
         speed = new Vector2(0.0f, 0.0f);
         jumpForce = 5.0f;
         gravity = 0.1f;
+        ptVie = 10;
     }
     public void Initialize(){}
     
@@ -87,5 +89,6 @@ public class Player : GameObject
     {
         base.Draw(spriteBatch);
     }*/
+    
     
 }

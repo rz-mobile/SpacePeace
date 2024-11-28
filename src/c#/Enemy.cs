@@ -4,48 +4,36 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace SpacePeace;
-/*
+
 [Serializable]
 [XmlRoot("Enemy", Namespace ="http://www.univ-grenoble-alpes.fr/Enemy" )]
 
 public class Enemy : GameObject
 {
-    Vector2 speed = new Vector2(0.0f, 0.0f);
-    Vector2 position = _position ;
+    private Vector2 speed;
     private float gravity;
-    private bool isJumping;
-    protected double ptVie;
+    private int ptVie;
 
 
     public Enemy(Texture2D texture, Vector2 position, int size) : base(texture, position, size)
     {
+        speed = new Vector2(0.0f, 0.0f);
+        gravity = 0.1f;
+        ptVie = 1;
         
     }
-    public void setGravity(float gravity)
-    {
-        this.gravity = gravity;
-    }
-
-    public void Initilize()
-    {
-        setGravity(1.0f);
-        ptVie = 1;
-    }
+    public void Initilize(){}
 
     public new void Update(GameTime gameTime)
     {
-        position = new Vector2(position.X+speed.X, position.Y + speed.Y);
-        speed = new Vector2(5.0f, 0.0f);
-        
-        // mettre les conditions de mort
-        
-    }
+        speed.X = -0.1f;
 
-    protected override void Draw(SpriteBatch spriteBatch)
-    {
-        throw new NotImplementedException();
+        //speed = new Vector2(0.1f, speed.Y+gravity);
+        // mettre les conditions de mort
+        _position = new Vector2(_position.X + speed.X, _position.Y + speed.Y);
+
     }
-*/
+    
     /**
     public void draw(SpriteBatch spriteBatch)
     {
@@ -55,7 +43,7 @@ public class Enemy : GameObject
 
 
 
-/*
+
 
     [XmlAttribute("Pv")] public Int _Pv { init; get; }
     [XmlAttribute("Id")] public Int _Id { init; get; }
@@ -67,4 +55,4 @@ public class Enemy : GameObject
     }
     
     
-}*/
+}
