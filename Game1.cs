@@ -40,7 +40,7 @@ public class Game1 : Game
         _ship = new Sprite(tileTest, new Vector2(300, 150),100);
         //testTile = new Tile(300, 150, "17",tileTest);
         Texture2D mapTexture = Content.Load<Texture2D>("map");
-        lv = new level("../../src/xml/map.xml",mapTexture,shipTexture,_graphics.GraphicsDevice);
+        lv = new level("../../../src/xml/map.xml",mapTexture,shipTexture,_graphics.GraphicsDevice);
     }
 
     protected override void Update(GameTime gameTime) {
