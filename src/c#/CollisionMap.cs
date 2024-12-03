@@ -9,6 +9,7 @@ namespace SpacePeace;
 
 public class CollisionMap
 {
+    public Vector2 _offset;
     private Texture2D _rectangleTexture;
     private List<string[]> map;
     public bool done = false;
@@ -42,6 +43,18 @@ public class CollisionMap
         }
         Console.WriteLine("done");
         done = true;
+    }
+    public void setOffset(Vector2 offset)
+    {
+        for (int i = 0; i < rectangles.Count;i++)
+        {
+            rectangles[i] = new Rectangle(rectangles[i].X + (int)offset.X, rectangles[i].Y + (int)offset.Y, rectangles[i].Width, rectangles[i].Height);
+        }
+    }
+
+    public void Update(GameTime gameTime)
+    {
+        
     }
     
 

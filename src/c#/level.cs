@@ -20,12 +20,14 @@ public class level
     private XmlNamespaceManager nsmgr;
     
     private Texture2D texture;
+    public Camera _camera;
     
     private List<string[]> map;
 
     private List<Tile> tiles;
     public level(String path ,Texture2D texture,Texture2D playerTexture,GraphicsDevice graphicsDevice)
     {
+        _camera = new Camera(new Vector2(0.0f, 0.0f));
         
         /*map = new string[10][];
         for (int i = 0; i < 10; i++)
@@ -47,10 +49,7 @@ public class level
         //Console.WriteLine(currentLevel);
         tileMapTest = new Tilemap(texture,currentLevel);
         collisionMapTest = new CollisionMap(currentLevel,texture,graphicsDevice);
-        if (collisionMapTest.done)
-        {
-            _player = new Player(playerTexture,new Vector2(100,100), 50);
-        }
+        _player = new Player(playerTexture,new Vector2(300,150), 50);
         
 
 
@@ -58,6 +57,12 @@ public class level
 
     public void Update(GameTime gameTime)
     {
+        Vector2 offset = _camera.moveCamera(_player.speed);
+        if (offset != Vector2.Zero)
+        {
+            tileMapTest.setOffset(offset);
+            collisionMapTest.setOffset(offset);
+        }
         if (collisionMapTest.CheckCollision(_player.bottomHitbox))
         {
             //Console.WriteLine("Collision Detected");

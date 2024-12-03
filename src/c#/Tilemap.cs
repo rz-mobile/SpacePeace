@@ -31,7 +31,7 @@ public class Tilemap
         {
             for (int j = 0; j < map[i].Length; j++)
             {
-                if (map[i][j] != "0" && map[i][j] != "")
+                if (map[i][j] != "0" && map[i][j] != ""  && map[i][j] != "\t"  && map[i][j] != "\n")
                 {
                     int size = 60;
                     tiles.Add(new Tile(j*size,i*size,map[i][j],texture,size));
@@ -39,6 +39,14 @@ public class Tilemap
                     //Console.WriteLine(i +":" +j);
                 }
             }
+        }
+    }
+
+    public void setOffset(Vector2 offset)
+    {
+        foreach (Tile tile in tiles)
+        {
+            tile.setOffset(offset);
         }
     }
     public void Update(GameTime gameTime)

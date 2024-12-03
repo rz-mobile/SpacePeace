@@ -4,13 +4,15 @@ using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Vector2 = System.Numerics.Vector2;
+
 
 namespace SpacePeace;
 [Serializable]
 [XmlRoot("Tile", Namespace ="http://www.univ-grenoble-alpes.fr/Tile" )]
 public class Tile
 {
+    
+    public Vector2 _offset;
     public Vector2 _position;
     public Rectangle bounds;
     private Sprite _sprite;
@@ -36,8 +38,14 @@ public class Tile
         
     }
 
+    public void setOffset(Vector2 offset)
+    {
+        _position = _position + offset;
+    }
+
     public void Update(GameTime gameTime)
     {
+        
         //Console.WriteLine(_position +" " + gameTime.ElapsedGameTime.Milliseconds);
         _sprite.setPosition(_position);
         /*if (Keyboard.GetState().IsKeyDown(Keys.Right))

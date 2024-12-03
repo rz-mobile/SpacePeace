@@ -8,7 +8,7 @@ namespace SpacePeace;
 public class Player : GameObject
 {
     public bool surSol = false;
-    private Vector2 speed;
+    public Vector2 speed;
     private float gravity;
     private bool isJumping = false;
     private float jumpForce;
@@ -81,7 +81,7 @@ public class Player : GameObject
             speed.X += 1.0f;*/
         }
 
-        _position = new Vector2(_position.X + speed.X, _position.Y + speed.Y);
+        _position = new Vector2(_position.X, _position.Y + speed.Y);
 
         
     }
