@@ -43,9 +43,8 @@ public class level
         
         XmlElement rootElt = (XmlElement)root;
         XmlNodeList refNL = rootElt.GetElementsByTagName("//layer/data");*/
-        //String currentLevel = xmlMap(path);
+        String currentLevel = xmlMap(path);
         //Console.WriteLine(currentLevel);
-        String currentLevel = "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\n0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\n0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\n0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\n0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\n0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\n178,178,178,178,178,178,0,0,0,178,178,178,178,178,178,178,178,178,178,178,178,0,178,178,178,178,178,0,0,0\n";  
         tileMapTest = new Tilemap(texture,currentLevel);
         collisionMapTest = new CollisionMap(currentLevel,texture,graphicsDevice);
         if (collisionMapTest.done)
