@@ -15,7 +15,7 @@ public class Enemy : GameObject
     private int ptVie;
 
 
-    public Enemy(Texture2D texture, Vector2 position, int size) : base(texture, position, size)
+    public Enemy(string texture, Vector2 position, int size) : base(texture, position, size)
     {
         speed = new Vector2(0.0f, 0.0f);
         gravity = 0.1f;

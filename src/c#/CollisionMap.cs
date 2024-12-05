@@ -41,7 +41,7 @@ public class CollisionMap
                 }
             }
         }
-        Console.WriteLine("done");
+        //Console.WriteLine("done");
         done = true;
     }
     public void setOffset(Vector2 offset)

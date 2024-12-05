@@ -17,8 +17,9 @@ public class Sprite {
     
     public Rectangle _Rect { get => new Rectangle((int) _position.X - _size/2, (int) _position.Y - _size/2, _size, _size); }
 
-    public Sprite(Texture2D texture, Vector2 position, int size) {
-        _Texture = texture;
+    public Sprite(String texture, Vector2 position, int size) {
+        //_Texture = texture;
+        _Texture = Utils._content.Load<Texture2D>(texture);
         _position = position; 
         _size = size;
     }

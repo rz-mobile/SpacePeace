@@ -37,6 +37,13 @@
 /processorParam:TextureFormat=Color
 /build:Astronaut-Sheet.png;player.png
 
+#begin File.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:File.spritefont;MyMenuFont.spritefont
+
 #begin player32.png
 /importer:TextureImporter
 /processor:TextureProcessor

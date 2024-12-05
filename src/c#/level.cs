@@ -25,7 +25,7 @@ public class level
     private List<string[]> map;
 
     private List<Tile> tiles;
-    public level(String path ,Texture2D texture,Texture2D playerTexture,GraphicsDevice graphicsDevice)
+    public level(String path ,GraphicsDevice graphicsDevice)
     {
         _camera = new Camera(new Vector2(0.0f, 0.0f));
         
@@ -36,7 +36,7 @@ public class level
         }*/
         map = new List<string[]>();
         tiles = new List<Tile>();
-        this.texture = texture;
+        //this.texture = texture;
         
         doc = new XmlDocument();
         /*doc.Load(path);
@@ -47,9 +47,9 @@ public class level
         XmlNodeList refNL = rootElt.GetElementsByTagName("//layer/data");*/
         String currentLevel = xmlMap(path);
         //Console.WriteLine(currentLevel);
-        tileMapTest = new Tilemap(texture,currentLevel);
+        tileMapTest = new Tilemap(currentLevel);
         collisionMapTest = new CollisionMap(currentLevel,texture,graphicsDevice);
-        _player = new Player(playerTexture,new Vector2(300,150), 50);
+        _player = new Player("ship2",new Vector2(300,150), 50);
         
 
 
@@ -98,7 +98,7 @@ public class level
     {
         tileMapTest.Draw(spriteBatch);
         _player.Draw(spriteBatch);
-        collisionMapTest.Draw(spriteBatch);
+        //collisionMapTest.Draw(spriteBatch);
         
     }
 
@@ -111,7 +111,7 @@ public class level
        if (node != null)
        {
            map += node.InnerText;
-           Console.WriteLine(map);
+           //Console.WriteLine(map);
        }
        else
        {

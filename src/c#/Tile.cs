@@ -17,7 +17,7 @@ public class Tile
     public Rectangle bounds;
     private Sprite _sprite;
 
-    public Tile(int x, int y, String value,Texture2D texture,int size)
+    public Tile(int x, int y, String value,int size)
     {
         int id =  Int32.Parse(value);
         //Console.WriteLine(id);
@@ -30,7 +30,7 @@ public class Tile
         //bounds.Height = 10;
         bounds.Width = 16;
         bounds.Height = 10;
-        _sprite = new Sprite(texture,_position,size);
+        _sprite = new Sprite("map",_position,size);
         //Console.WriteLine(_position + " : " + value);
         
     }

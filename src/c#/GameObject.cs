@@ -9,7 +9,7 @@ public abstract class GameObject : Sprite
     private Rectangle Hitbox;
     private List<GameObject> allobj;
 
-    public GameObject(Texture2D texture, Vector2 position, int size) : base(texture, position, size)
+    public GameObject(string texture, Vector2 position, int size) : base(texture, position, size)
     {
         Hitbox = new Rectangle((int)position.X, (int)position.Y, size, size);
     }

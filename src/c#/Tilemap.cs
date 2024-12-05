@@ -17,7 +17,7 @@ public class Tilemap
 
     private List<Tile> tiles;
 
-    public Tilemap(Texture2D texture, string _map)
+    public Tilemap( string _map)
     {
         tiles = new List<Tile>();
         map = new List<string[]>();
@@ -34,7 +34,7 @@ public class Tilemap
                 if (map[i][j] != "0" && map[i][j] != ""  && map[i][j] != "\t"  && map[i][j] != "\n")
                 {
                     int size = 60;
-                    tiles.Add(new Tile(j*size,i*size,map[i][j],texture,size));
+                    tiles.Add(new Tile(j*size,i*size,map[i][j],size));
                     //tiles.Add(new Tile(j,i,map[i][j],texture));
                     //Console.WriteLine(i +":" +j);
                 }

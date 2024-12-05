@@ -28,7 +28,7 @@ public class Player : GameObject
         //todo
         this.gravity = gravity;
     }
-    public Player(Texture2D texture, Vector2 _position, int size) : base(texture, _position, size)
+    public Player(string texture, Vector2 _position, int size) : base(texture, _position, size)
     {
         speed = new Vector2(0.0f, 0.0f);
         jumpForce = 5.0f;
@@ -59,7 +59,7 @@ public class Player : GameObject
 
 
         speed.X = 0;
-        Console.WriteLine(_position +":" +speed);
+        //Console.WriteLine(_position +":" +speed);
         /*if (rWall || lWall)
         {
             speed.X -= 2 * speed.X;
