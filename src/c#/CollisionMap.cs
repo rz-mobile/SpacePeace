@@ -36,7 +36,7 @@ public class CollisionMap
                 if (map[i][j] != "0" && map[i][j] != "")
                 {
                     int size = 60;
-                    rectangles.Add(new Rectangle((j*size),(i*size)-size,size,size));
+                    rectangles.Add(new Rectangle((j*size)-(size/2),(i*size)-(size/2),size,size));
                     //Console.WriteLine(i*size +":" +j*size);
                 }
             }
@@ -48,7 +48,7 @@ public class CollisionMap
     {
         for (int i = 0; i < rectangles.Count;i++)
         {
-            rectangles[i] = new Rectangle(rectangles[i].X + (int)offset.X, rectangles[i].Y + (int)offset.Y, rectangles[i].Width, rectangles[i].Height);
+            rectangles[i] = new Rectangle(rectangles[i].X  + (int)offset.X, rectangles[i].Y + (int)offset.Y, rectangles[i].Width, rectangles[i].Height);
         }
     }
 
@@ -79,7 +79,9 @@ public class CollisionMap
     {
         foreach (Rectangle r in rectangles)
         {
-            //DrawRectHollow(spriteBatch, r, 15,_graphics);
+            Texture2D rect = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
+            rect.SetData(new Color[] { Color.White });
+            spriteBatch.Draw(rect, r, Color.White);
         }
     }
     

@@ -63,6 +63,23 @@ public class level
             tileMapTest.setOffset(offset);
             collisionMapTest.setOffset(offset);
         }
+        if (collisionMapTest.CheckCollision(_player.rightHitbox))
+        {
+            //Console.WriteLine("Collision Detected");
+            _player.rWall = true;
+        }
+        else
+        {
+            _player.rWall = false;
+        }
+        if (collisionMapTest.CheckCollision(_player.leftHitbox))
+        {
+            _player.lWall = true;
+        }
+        else
+        {
+            _player.lWall = false;
+        }
         if (collisionMapTest.CheckCollision(_player.bottomHitbox))
         {
             //Console.WriteLine("Collision Detected");

@@ -7,16 +7,19 @@ namespace SpacePeace;
 
 public class Player : GameObject
 {
+    int i = 0;
     public bool surSol = false;
     public Vector2 speed;
     private float gravity;
     private bool isJumping = false;
     private float jumpForce;
-    public Rectangle bottomHitbox;
-    public Rectangle rightHitbox;
-    public Rectangle leftHitbox;
-    public Rectangle topHitbox;
-    
+    public Rectangle bottomHitbox {get => new Rectangle((int)_position.X-(_size/2)+6, (int)_position.Y+(_size/2), _size-12, 4);}
+    public Rectangle rightHitbox{get => new Rectangle((int)_position.X+(_size/2), (int)_position.Y-(_size/2)+3, 4, _size-6);}
+    public Rectangle leftHitbox{get => new Rectangle((int)_position.X - (_size/2), (int)_position.Y-(_size/2)+3, 4, _size-6);}
+    public Rectangle topHitbox{get => new Rectangle((int)_position.X-(_size/2)+6, (int)_position.Y-(_size/2), _size-12, 4);}
+    public bool rWall = false;
+    public bool lWall = false;
+    private int _size;
     private int ptVie;
 
     public void setGravity(float gravity)
@@ -31,10 +34,8 @@ public class Player : GameObject
         jumpForce = 5.0f;
         gravity = 0.1f;
         ptVie = 10;
-        rightHitbox = new Rectangle((int)_position.X + size, (int)_position.Y, 1, size);
-        leftHitbox = new Rectangle((int)_position.X - 1, (int)_position.Y, 1, size);
-        topHitbox = new Rectangle((int)_position.X, (int)_position.Y - 1, size, 1);
-        bottomHitbox = new Rectangle((int)_position.X , (int)_position.Y + size, size, 1);
+        _size = size;
+
     }
 
     public void groundReaction()
@@ -43,29 +44,30 @@ public class Player : GameObject
         surSol = true;
         speed = new Vector2(speed.X, 0.0f);
     }
+    
+    
     public void Initialize(){}
     
     public new void Update(GameTime gameTime)
     {
-        rightHitbox.X = (int)_position.X;
-        rightHitbox.Y = (int)_position.Y;
-        leftHitbox.X = (int)_position.X;
-        leftHitbox.Y = (int)_position.Y;
-        topHitbox.X = (int)_position.X;
-        topHitbox.Y = (int)_position.Y;
-        bottomHitbox.X = (int)_position.X;
-        bottomHitbox.Y = (int)_position.Y;
+
+        i++;
         if (!surSol)
         {
             speed = new Vector2(speed.X, speed.Y+gravity);
         }
 
+
         speed.X = 0;
         Console.WriteLine(_position +":" +speed);
-        if (Keyboard.GetState().IsKeyDown(Keys.Right))
+        /*if (rWall || lWall)
+        {
+            speed.X -= 2 * speed.X;
+        }*/
+        if (Keyboard.GetState().IsKeyDown(Keys.Right) && !rWall)
         {
             speed.X = 10.0f;
-        }else if (Keyboard.GetState().IsKeyDown(Keys.Left))
+        }else if (Keyboard.GetState().IsKeyDown(Keys.Left) && !lWall)
         {
             speed.X = -10.0f;
         }
@@ -84,6 +86,18 @@ public class Player : GameObject
         _position = new Vector2(_position.X, _position.Y + speed.Y);
 
         
+    }
+
+    public void Draw(SpriteBatch spriteBatch)
+    {
+        base.Draw(spriteBatch);
+        Texture2D rect = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
+        rect.SetData(new Color[] { Color.White });
+        //spriteBatch.Draw(rect,_Rect, Color.Black);
+        spriteBatch.Draw(rect,leftHitbox, Color.White);
+        spriteBatch.Draw(rect,rightHitbox, Color.Blue);
+        spriteBatch.Draw(rect,bottomHitbox, Color.Red);
+        spriteBatch.Draw(rect,topHitbox, Color.Green);
     }
 
     public void Jump()
