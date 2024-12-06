@@ -5,7 +5,7 @@ namespace SpacePeace;
 
 [Serializable]
 [XmlRoot("Item", Namespace ="http://www.univ-grenoble-alpes.fr/Item" )]
-public class item
+public class Item
 {
     [XmlAttribute("Id")] public Id _id { init; get; }
 

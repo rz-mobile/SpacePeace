@@ -18,7 +18,6 @@ public class Sprite {
     public Rectangle _Rect { get => new Rectangle((int) _position.X - _size/2, (int) _position.Y - _size/2, _size, _size); }
 
     public Sprite(String texture, Vector2 position, int size) {
-        //_Texture = texture;
         _Texture = Utils._content.Load<Texture2D>(texture);
         _position = position; 
         _size = size;
@@ -31,35 +30,7 @@ public class Sprite {
     
     public void Update(GameTime gameTime) {
         
-        if (Keyboard.GetState().IsKeyDown(Keys.Up)) {/*...*/ }
-        // ...
     }
-    
-    /*public void Draw(SpriteBatch spriteBatch) {
-        Console.WriteLine(_position);
-        var origin = new Vector2(_Rect.Width / 2f,_Rect.Height / 2f);
-        spriteBatch.Draw(   _texture, // Texture2D,
-            _Rect, // Rectangle destinationRectangle,
-            null, // Nullable<Rectangle> sourceRectangle,
-            _color, //  Color,
-            0.0f, //  float rotation,
-            origin,  // Vector2 origin,
-            SpriteEffects.None, // SpriteEffects effects,
-            0f ); // float layerDepth
-    }
-
-    public void Draw(SpriteBatch spriteBatch, Rectangle src)
-    {
-        var origin = new Vector2(_Rect.Width / 2f, _Rect.Height / 2f);
-        spriteBatch.Draw(   _texture, // Texture2D,
-            _Rect, // Rectangle destinationRectangle,
-            src, // Nullable<Rectangle> sourceRectangle,
-            _color, //  Color,
-            0.0f, //  float rotation,
-            origin,  // Vector2 origin,
-            SpriteEffects.None, // SpriteEffects effects,
-            0f ); // float layerDepth
-    }*/
     public void Draw(SpriteBatch spriteBatch) {
         spriteBatch.Draw(   _texture, // Texture2D,
             _Rect, // Rectangle destinationRectangle,

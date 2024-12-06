@@ -7,35 +7,31 @@ namespace SpacePeace;
 
 public class Tilemap
 {
-    private Texture2D texture;
+    private Texture2D _texture;
+    
+    private List<string[]> _map;
 
-    //private String[][] map;
-    private List<string[]> map;
+    private List<Tile> _tiles;
 
-    //private string map;
-    //private ArrayList<ArrayList<String>> map;
-
-    private List<Tile> tiles;
-
-    public Tilemap( string _map)
+    public Tilemap( string map)
     {
-        tiles = new List<Tile>();
-        map = new List<string[]>();
-        string[] tmpMap = _map.Split('\n');
+        _tiles = new List<Tile>();
+        _map = new List<string[]>();
+        string[] tmpMap = map.Split('\n');
         for (int i = 0; i < tmpMap.Length; i++)
         {
-            map.Add(tmpMap[i].Split(','));
+            _map.Add(tmpMap[i].Split(','));
         }
 
-        for (int i = 0; i < map.Count; i++)
+        for (int i = 0; i < _map.Count; i++)
         {
-            for (int j = 0; j < map[i].Length; j++)
+            for (int j = 0; j < _map[i].Length; j++)
             {
-                if (map[i][j] != "0" && map[i][j] != ""  && map[i][j] != "\t"  && map[i][j] != "\n")
+                if (_map[i][j] != "0" && _map[i][j] != ""  && _map[i][j] != "\t"  && _map[i][j] != "\n")
                 {
                     int size = 60;
-                    tiles.Add(new Tile(j*size,i*size,map[i][j],size));
-                    //tiles.Add(new Tile(j,i,map[i][j],texture));
+                    _tiles.Add(new Tile(j*size,i*size,_map[i][j],size));
+                    //_tiles.Add(new Tile(j,i,_map[i][j],_texture));
                     //Console.WriteLine(i +":" +j);
                 }
             }
@@ -44,21 +40,21 @@ public class Tilemap
 
     public void setOffset(Vector2 offset)
     {
-        foreach (Tile tile in tiles)
+        foreach (Tile tile in _tiles)
         {
             tile.setOffset(offset);
         }
     }
     public void Update(GameTime gameTime)
     {
-        foreach (Tile tile in tiles)
+        foreach (Tile tile in _tiles)
         {
             tile.Update(gameTime);
         }
     }
     public void Draw(SpriteBatch spriteBatch)
     {
-        foreach (Tile tile in tiles)
+        foreach (Tile tile in _tiles)
         {
             tile.Draw(spriteBatch);
         }

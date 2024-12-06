@@ -6,39 +6,37 @@ namespace SpacePeace;
 
 public class UI
 {
-    SpriteFont font;
-    private Vector2 fontPos;
-    Button quitButton;
-    Button resumeButton;
+    SpriteFont _font;
+    private Vector2 _fontPos;
+    Button _quitButton;
+    Button _resumeButton;
 
     public UI()
     {
-        font = Utils._content.Load<SpriteFont>("MyMenuFont");
-        quitButton = new Button("ship1",new Vector2(200,200),200);
-        resumeButton = new Button("ship2",new Vector2(600,200),200);
+        _font = Utils._content.Load<SpriteFont>("MyMenuFont");
+        _quitButton = new Button("ship1",new Vector2(200,200),200);
+        _resumeButton = new Button("ship2",new Vector2(600,200),200);
     }
 
     public void Update(GameTime gameTime)
     {
-        if (quitButton.Clicked())
+        if (_quitButton.Clicked())
         {
             Utils._currentGame.Exit();
-            //Console.WriteLine("Quit");
         }
 
-        if (resumeButton.Clicked())
+        if (_resumeButton.Clicked())
         {
-            Utils.paused = !Utils.paused;
+            Utils._paused = !Utils._paused;
         }
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
         string output = "Paused";
-        //Vector2 FontOrigin = font.MeasureString(output) / 2;
         
-        spriteBatch.DrawString(font, output, fontPos, Color.White);
-        quitButton.Draw(spriteBatch);
-        resumeButton.Draw(spriteBatch);
+        spriteBatch.DrawString(_font, output, _fontPos, Color.White);
+        _quitButton.Draw(spriteBatch);
+        _resumeButton.Draw(spriteBatch);
     }
 }

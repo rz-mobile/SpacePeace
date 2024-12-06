@@ -10,36 +10,28 @@ namespace SpacePeace;
 
 public class Enemy : GameObject
 {
-    private Vector2 speed;
-    private float gravity;
-    private int ptVie;
+    private Vector2 _speed;
+    private float _gravity;
+    private int _ptVie;
 
 
     public Enemy(string texture, Vector2 position, int size) : base(texture, position, size)
     {
-        speed = new Vector2(0.0f, 0.0f);
-        gravity = 0.1f;
-        ptVie = 1;
+        _speed = new Vector2(0.0f, 0.0f);
+        _gravity = 0.1f;
+        _ptVie = 1;
         
     }
     public void Initilize(){}
 
     public new void Update(GameTime gameTime)
     {
-        speed.X = -0.1f;
-
-        //speed = new Vector2(0.1f, speed.Y+gravity);
-        // mettre les conditions de mort
-        _position = new Vector2(_position.X + speed.X, _position.Y + speed.Y);
+        _speed.X = -0.1f;
+        
+        _position = new Vector2(_position.X + _speed.X, _position.Y + _speed.Y);
 
     }
     
-    /**
-    public void draw(SpriteBatch spriteBatch)
-    {
-        
-    }
-    **/
 
 
 

@@ -8,41 +8,40 @@ namespace SpacePeace;
 public class Player : GameObject
 {
     int i = 0;
-    public bool surSol = false;
-    public Vector2 speed;
-    private float gravity;
-    private bool isJumping = false;
-    private float jumpForce;
-    public Rectangle bottomHitbox {get => new Rectangle((int)_position.X-(_size/2)+6, (int)_position.Y+(_size/2), _size-12, 4);}
-    public Rectangle rightHitbox{get => new Rectangle((int)_position.X+(_size/2), (int)_position.Y-(_size/2)+3, 4, _size-6);}
-    public Rectangle leftHitbox{get => new Rectangle((int)_position.X - (_size/2), (int)_position.Y-(_size/2)+3, 4, _size-6);}
-    public Rectangle topHitbox{get => new Rectangle((int)_position.X-(_size/2)+6, (int)_position.Y-(_size/2), _size-12, 4);}
-    public bool rWall = false;
-    public bool lWall = false;
+    public bool _surSol = false;
+    public Vector2 _speed;
+    private float _gravity;
+    private bool _isJumping = false;
+    private float _jumpForce;
+    public Rectangle _bottomHitbox {get => new Rectangle((int)_position.X-(_size/2)+6, (int)_position.Y+(_size/2), _size-12, 4);}
+    public Rectangle _rightHitbox{get => new Rectangle((int)_position.X+(_size/2), (int)_position.Y-(_size/2)+3, 4, _size-6);}
+    public Rectangle _leftHitbox{get => new Rectangle((int)_position.X - (_size/2), (int)_position.Y-(_size/2)+3, 4, _size-6);}
+    public Rectangle _topHitbox{get => new Rectangle((int)_position.X-(_size/2)+6, (int)_position.Y-(_size/2), _size-12, 4);}
+    public bool _rWall = false;
+    public bool _lWall = false;
     private int _size;
-    private int ptVie;
+    private int _ptVie;
 
-    public void setGravity(float gravity)
+    public void setGravity(float _gravity)
     {
         // rajouter les contraintes de map
         //todo
-        this.gravity = gravity;
+        this._gravity = _gravity;
     }
     public Player(string texture, Vector2 _position, int size) : base(texture, _position, size)
     {
-        speed = new Vector2(0.0f, 0.0f);
-        jumpForce = 5.0f;
-        gravity = 0.1f;
-        ptVie = 10;
+        _speed = new Vector2(0.0f, 0.0f);
+        _jumpForce = 5.0f;
+        _gravity = 0.1f;
+        _ptVie = 10;
         _size = size;
 
     }
 
     public void groundReaction()
     {
-        //Console.WriteLine("touché");
-        surSol = true;
-        speed = new Vector2(speed.X, 0.0f);
+        _surSol = true;
+        _speed = new Vector2(_speed.X, 0.0f);
     }
     
     
@@ -52,38 +51,31 @@ public class Player : GameObject
     {
 
         i++;
-        if (!surSol)
+        if (!_surSol)
         {
-            speed = new Vector2(speed.X, speed.Y+gravity);
+            _speed = new Vector2(_speed.X, _speed.Y+_gravity);
         }
 
 
-        speed.X = 0;
-        //Console.WriteLine(_position +":" +speed);
-        /*if (rWall || lWall)
+        _speed.X = 0;
+        if (Keyboard.GetState().IsKeyDown(Keys.Right) && !_rWall)
         {
-            speed.X -= 2 * speed.X;
-        }*/
-        if (Keyboard.GetState().IsKeyDown(Keys.Right) && !rWall)
+            _speed.X = 10.0f;
+        }else if (Keyboard.GetState().IsKeyDown(Keys.Left) && !_lWall)
         {
-            speed.X = 10.0f;
-        }else if (Keyboard.GetState().IsKeyDown(Keys.Left) && !lWall)
-        {
-            speed.X = -10.0f;
+            _speed.X = -10.0f;
         }
         if (Keyboard.GetState().IsKeyDown(Keys.Down))
         {
-            //speed.Y = 10.0f+gravity/2.0f;
+            //_speed.Y = 10.0f+_gravity/2.0f;
             
         }
         else if (Keyboard.GetState().IsKeyDown(Keys.Up))
         {
             Jump();
-            /*speed.Y -= 1.0f;
-            speed.X += 1.0f;*/
         }
 
-        _position = new Vector2(_position.X, _position.Y + speed.Y);
+        _position = new Vector2(_position.X, _position.Y + _speed.Y);
 
         
     }
@@ -93,45 +85,19 @@ public class Player : GameObject
         base.Draw(spriteBatch);
         Texture2D rect = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
         rect.SetData(new Color[] { Color.White });
-        //spriteBatch.Draw(rect,_Rect, Color.Black);
-        spriteBatch.Draw(rect,leftHitbox, Color.White);
-        spriteBatch.Draw(rect,rightHitbox, Color.Blue);
-        spriteBatch.Draw(rect,bottomHitbox, Color.Red);
-        spriteBatch.Draw(rect,topHitbox, Color.Green);
+        spriteBatch.Draw(rect,_leftHitbox, Color.White);
+        spriteBatch.Draw(rect,_rightHitbox, Color.Blue);
+        spriteBatch.Draw(rect,_bottomHitbox, Color.Red);
+        spriteBatch.Draw(rect,_topHitbox, Color.Green);
     }
 
     public void Jump()
     {
-        if (surSol)
+        if (_surSol)
         {
-            //surSol = false;
-            /*
-            if (speed.Y > 0)
-            {
-                _position = new Vector2(_position.X-speed.X, _position.Y + speed.Y);
-
-            }
-            else
-            {
-                _position = new Vector2(_position.X + speed.X, _position.Y - speed.Y);
-                
-            }
-
-            speed.Y += 0.1f;*/
-            speed.Y = -jumpForce;
+            _speed.Y = -_jumpForce;
 
         }
-        /*else
-        {
-            speed.X = 0.0f;
-            speed.Y = 0.0f;
-        }  */      
     }
-
-    
-    /*public override void Draw(SpriteBatch spriteBatch)
-    {
-        base.Draw(spriteBatch);
-    }*/
     
 }

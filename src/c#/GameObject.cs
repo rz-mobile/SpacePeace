@@ -6,22 +6,22 @@ namespace SpacePeace;
 
 public abstract class GameObject : Sprite
 {
-    private Rectangle Hitbox;
+    private Rectangle _hitbox;
     private List<GameObject> allobj;
 
     public GameObject(string texture, Vector2 position, int size) : base(texture, position, size)
     {
-        Hitbox = new Rectangle((int)position.X, (int)position.Y, size, size);
+        _hitbox = new Rectangle((int)position.X, (int)position.Y, size, size);
     }
 
     protected Rectangle GetHitbox()
     {
-        return Hitbox;
+        return _hitbox;
     }
 
     protected void SetHitbox(Rectangle hitbox)
     {
-        Hitbox = hitbox;
+        _hitbox = hitbox;
     }
 
     protected void addObj(GameObject obj)
@@ -39,7 +39,7 @@ public abstract class GameObject : Sprite
         {
             s.Update(gameTime);
             foreach (GameObject s2 in allobj)
-                if (s.Hitbox.Intersects(s2.Hitbox))
+                if (s._hitbox.Intersects(s2._hitbox))
                 {
                     killList.Add(s);
                 } ;
@@ -50,6 +50,5 @@ public abstract class GameObject : Sprite
             allobj.Remove(s);
         }
     }
-
-    //protected abstract void Draw(SpriteBatch spriteBatch);
+    
 }

@@ -7,67 +7,64 @@ namespace SpacePeace;
 
 public class Gameplay
 {
-    private bool paused
+    private int _lvId = 0;
+    private bool _paused
     {
         get
         {
-            return Utils.paused;
+            return Utils._paused;
         } set
         {
-            Utils.paused = value;
+            Utils._paused = value;
         }
     }
 
-    private bool escapePressed = false;
-    level currentLevel;
-    private UI menu;
+    private bool _escapePressed = false;
+    Level _currentLevel;
+    private UI _menu;
 
     public Gameplay()
     {
-        menu = new UI();
-        currentLevel = new level("../../../src/xml/Level1.xml",Utils._graphics.GraphicsDevice);
+        _menu = new UI();
+        _currentLevel = new Level("../../../src/xml/Level" + (_lvId+1)+".xml",Utils._graphics.GraphicsDevice);
     }
 
     public void Update(GameTime gameTime)
     {
-        /*if (Keyboard.GetState().IsKeyDown(Keys.Add))
-        {
-            currentLevel = new level("../../../src/xml/map.xml",Utils._graphics.GraphicsDevice);
-        }*/
         
         
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
         {
-            if (!escapePressed)
+            if (!_escapePressed)
             {
-                currentLevel = new level("../../../src/xml/map.xml",Utils._graphics.GraphicsDevice);
-                paused = !paused;
+                _lvId = (_lvId + 1) % Utils.LEVEL_NUMBER;
+                _currentLevel = new Level("../../../src/xml/Level" + (_lvId+1)+".xml",Utils._graphics.GraphicsDevice);
+                _paused = !_paused;
             }
-            escapePressed = true;
+            _escapePressed = true;
         }
         else
         {
-            escapePressed = false;
+            _escapePressed = false;
         }
             
-        if (!paused)
+        if (!_paused)
         {
-            currentLevel.Update(gameTime);
+            _currentLevel.Update(gameTime);
         }
         else
         {
-            menu.Update(gameTime);
+            _menu.Update(gameTime);
         }
-        //Console.WriteLine(Mouse.GetState().X + " " + Mouse.GetState().Y);
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
 
-        currentLevel.Draw(spriteBatch);
-        if (paused)
+        _currentLevel.Draw(spriteBatch);
+        if (_paused)
         {
-            menu.Draw(spriteBatch);
+            _menu.Draw(spriteBatch);
         }
     }
 }

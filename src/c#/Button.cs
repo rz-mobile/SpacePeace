@@ -6,20 +6,20 @@ namespace SpacePeace;
 
 public class Button
 {
-    Sprite sprite;
+    Sprite _sprite;
 
     public Button(string texture, Vector2 position, int size)
     {
-        sprite = new Sprite(texture, position, size);
+        _sprite = new Sprite(texture, position, size);
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        sprite.Draw(spriteBatch);
+        _sprite.Draw(spriteBatch);
     }
 
     public bool Clicked()
     {
-        return sprite._Rect.Contains(Mouse.GetState().Position) && Mouse.GetState().LeftButton == ButtonState.Pressed;
+        return _sprite._Rect.Contains(Mouse.GetState().Position) && Mouse.GetState().LeftButton == ButtonState.Pressed;
     }
 }
