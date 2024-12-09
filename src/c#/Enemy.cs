@@ -15,7 +15,7 @@ public class Enemy : GameObject
     private int _ptVie;
     private bool _surSol = false;
     public bool _dead = false;
-    public Rectangle _topHitbox{get => new Rectangle((int)_position.X-(_size/2)+6, (int)_position.Y-(_size/2), _size-12, 4);}
+    public Rectangle _topHitbox{get => new Rectangle((int)_position.X-(_width/2)+6, (int)_position.Y-(_height/2), _width-12, 4);}
     [XmlAttribute("degats")] public int _degats { init; get; }
 
     public Enemy(string texture, Vector2 position, int size,int degats) : base(texture, position, size)

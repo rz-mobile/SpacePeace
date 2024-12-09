@@ -17,10 +17,10 @@ public class Player : GameObject
     private float _gravity;
     private bool _isJumping = false;
     [XmlElement("jumpForce")] public float _jumpForce{get;private set;}
-    public Rectangle _bottomHitbox {get => new Rectangle((int)_position.X-(_size/2)+6, (int)_position.Y+(_size/2), _size-12, 4);}
-    public Rectangle _rightHitbox{get => new Rectangle((int)_position.X+(_size/2), (int)_position.Y-(_size/2)+3, 4, _size-6);}
-    public Rectangle _leftHitbox{get => new Rectangle((int)_position.X - (_size/2), (int)_position.Y-(_size/2)+3, 4, _size-6);}
-    public Rectangle _topHitbox{get => new Rectangle((int)_position.X-(_size/2)+6, (int)_position.Y-(_size/2), _size-12, 4);}
+    public Rectangle _bottomHitbox {get => new Rectangle((int)_position.X-(_width/2)+6, (int)_position.Y+(_height/2), _width-12, 4);}
+    public Rectangle _rightHitbox{get => new Rectangle((int)_position.X+(_width/2), (int)_position.Y-(_height/2)+3, 4, _height-6);}
+    public Rectangle _leftHitbox{get => new Rectangle((int)_position.X - (_width/2), (int)_position.Y-(_height/2)+3, 4, _height-6);}
+    public Rectangle _topHitbox{get => new Rectangle((int)_position.X-(_width/2)+6, (int)_position.Y-(_height/2), _width-12, 4);}
     public bool _rWall = false;
     public bool _lWall = false;
     [XmlElement("ptVie")]public int _ptVie { get;private set; }

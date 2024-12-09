@@ -14,20 +14,31 @@ public class Sprite
     [XmlElement("texture")] public string _textureName;
     private Texture2D _texture;
     protected Vector2 _position;
-    [XmlElement("size")] public int _size;
+    [XmlElement("height")]public int _height;
+    [XmlElement("width")]public int _width;
     private Color _color = Color.White;
-    public Rectangle _rect { get => new Rectangle((int) _position.X - _size/2, (int) _position.Y - _size/2, _size, _size); }
+    public Rectangle _rect { get => new Rectangle((int) _position.X - _width/2, (int) _position.Y - _height/2,_width, _height); }
 
     public Sprite(string texture, Vector2 position, int size) {
         _textureName = texture;
         _texture = Utils._textures[_textureName];
         _position = position; 
-        _size = size;
+        _height = size;
+        _width = size;
+    }
+    
+    public Sprite(string texture, Vector2 position, int height , int width) {
+        _textureName = texture;
+        _texture = Utils._textures[_textureName];
+        _position = position; 
+        _height = height;
+        _width = width;
     }
 
     public Sprite()
     {
-        _size = 50;
+        _height = 50;
+        _width = 100;
         _position = new Vector2(300, 300);
         _texture = Utils._textures["ship2"];
     }

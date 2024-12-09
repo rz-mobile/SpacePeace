@@ -12,6 +12,11 @@ public class Button
     {
         _sprite = new Sprite(texture, position, size);
     }
+    
+    public Button(string texture, Vector2 position, int height, int width)
+    {
+        _sprite = new Sprite(texture, position, height, width);
+    }
 
     public void Draw(SpriteBatch spriteBatch)
     {

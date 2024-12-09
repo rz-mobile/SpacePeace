@@ -25,8 +25,8 @@ public class Mainmenu
         //_level1 = new Level("../../../src/xml/Level1.xml", Utils._graphics.GraphicsDevice);
         _graphicsDevice  = Utils._graphics.GraphicsDevice;
         _font =  Utils._content.Load<SpriteFont>("MyMenuFont");
-        _playButton = new Button("ship1", new Vector2(200, 300), 100);
-        _exitButton = new Button("ship2", new Vector2(500, 300), 100);
+        _playButton = new Button("ship1", new Vector2(200, 300), 100, 150);
+        _exitButton = new Button("ship2", new Vector2(500, 300), 100, 150);
         StartGame = false;
         ExitGame = false;
     }

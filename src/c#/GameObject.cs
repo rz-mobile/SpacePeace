@@ -10,7 +10,7 @@ namespace SpacePeace;
 [Serializable]
 public abstract class GameObject : Sprite
 {
-    private Rectangle _hitbox => new Rectangle((int)_position.X, (int)_position.Y, _size, _size);
+    private Rectangle _hitbox => new Rectangle((int)_position.X, (int)_position.Y, _width, _height);
 
     public GameObject(string texture, Vector2 position, int size):base(texture,position,size)
     {
