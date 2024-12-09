@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,6 +12,7 @@ public class Player : GameObject
 {
     int _timer = 0;
     public bool _surSol = false;
+    bool _tirPresse = false;
     public Vector2 _speed;
     private float _gravity;
     private bool _isJumping = false;
@@ -25,6 +27,9 @@ public class Player : GameObject
     private int _maxTimer = 200;
     private bool _unvulnerable = false;
     public int _vies;
+    private List<Shoot> tirList = new List<Shoot>();
+    private Shoot shooter;
+    private static System.Timers.Timer temps;
     
     public Player(string texture, Vector2 position, int size) : base(texture, position, size)
     {
@@ -45,13 +50,21 @@ public class Player : GameObject
         _surSol = true;
         _speed = new Vector2(_speed.X, 0.0f);
     }
-    
-    
+
+    public void shootOffset(Vector2 offset)
+    {
+        foreach (Shoot tir in tirList)
+        {
+            tir.setOffset(offset);
+        }
+    }
     public void Initialize(){}
     
     public new void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+        
+        
         if (_timer >= _maxTimer)
         {
             _unvulnerable = false;
@@ -74,15 +87,46 @@ public class Player : GameObject
         {
             _speed.X = -10.0f;
         }
-        if (Keyboard.GetState().IsKeyDown(Keys.Down))
+        
+        
+        if (Keyboard.GetState().IsKeyDown(Keys.Down) )
         {
-            //_speed.Y = 10.0f+_gravity/2.0f;
+            if (!_tirPresse)
+            {
+                tirList.Add(new Shoot("ship1", _position, 50));
+                tire();
+                _tirPresse = true;
+            }
+        }
+        else
+        {
+            _tirPresse = false;
             
         }
-        else if (Keyboard.GetState().IsKeyDown(Keys.Up))
+
+        foreach (Shoot tir in tirList)
+        {
+            tir.Update(gameTime);
+        }
+        
+        
+        if (Keyboard.GetState().IsKeyDown(Keys.Up))
         {
             Jump();
         }
+        
+        
+        if (tomber())
+        {
+            if (_ptVie >=0)
+            {
+                _ptVie -= 2;
+                _speed = new Vector2(0, 0);
+                _position = new Vector2(100, 100);
+            }
+
+        }
+
         _position = new Vector2(_position.X, _position.Y + _speed.Y);
 
         
@@ -100,10 +144,10 @@ public class Player : GameObject
         spriteBatch.Draw(rect,_rightHitbox, Color.Blue);
         spriteBatch.Draw(rect,_bottomHitbox, Color.Red);
         spriteBatch.Draw(rect,_topHitbox, Color.Green);
-        /*if (_unvulnerable)
+        foreach (var tir in tirList)
         {
-            spriteBatch.Draw(rect,_rect,Color.White);
-        }*/
+            tir.Draw(spriteBatch);
+        }
     }
 
     public void Jump()
@@ -125,6 +169,35 @@ public class Player : GameObject
             _ptVie -= degats;
             _unvulnerable = true;
         }
+    }
+    public bool tomber()
+    {
+        bool result = false;
+        if (_position.Y >1000)
+        {
+            result = true;
+        }
+        return result;
+    }
+
+    public void tire()
+    {
+        temps = new System.Timers.Timer(300);
+        temps.Elapsed += (sender, e) =>
+        {
+            // Action à exécuter après 300 ms
+            Texture2D shipTexture = Utils._content.Load<Texture2D>("ship1");
+            //float pos_X = _position.X;
+            //float pos_Y = _position.Y;
+
+            //tirList.Add(new Shoot("ship1", new Vector2(pos_X / 2, pos_Y / 2), 20));
+            temps.Stop();
+            temps.Dispose();
+        };
+
+        temps.AutoReset = false; 
+        temps.Enabled = true;
+
     }
     
 }

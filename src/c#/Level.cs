@@ -58,6 +58,7 @@ public class Level
     public void Update(GameTime gameTime)
     {
         Vector2 offset = _camera.moveCamera(_player._speed);
+        _player.shootOffset(offset);
         if (offset != Vector2.Zero)
         {
             _tileMapTest.setOffset(offset);

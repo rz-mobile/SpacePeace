@@ -20,6 +20,8 @@ public class Game1 : Game
 
     private int _hTest = 500;
     private Gameplay _gameplay;
+    private MainMenu _mainMenu;
+    bool _isPlaying {get => Utils._isPlaying;set => Utils._isPlaying = value;}
 
     public Game1() {
         _graphics = new GraphicsDeviceManager(this);
@@ -48,11 +50,24 @@ public class Game1 : Game
         Utils._textures.Add("ship1",Content.Load<Texture2D>("ship1"));
         Utils._textures.Add("ship2",Content.Load<Texture2D>("ship2"));
         _gameplay = new Gameplay();
+        _mainMenu = new MainMenu();
     }
 
     protected override void Update(GameTime gameTime) {
-        
-        _gameplay.Update(gameTime);
+        if (!_isPlaying)
+        {
+            _mainMenu.Update(gameTime);
+            if (_mainMenu.StartGame){
+                _isPlaying = true;
+            }
+            if (_mainMenu.ExitGame){
+                Exit();
+            }
+        }
+        else
+        {
+            _gameplay.Update(gameTime);
+        }
         
         
         base.Update(gameTime);
@@ -63,7 +78,14 @@ public class Game1 : Game
     protected override void Draw(GameTime gameTime) {
         GraphicsDevice.Clear(Color.CornflowerBlue);
         _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-        _gameplay.Draw(_spriteBatch);
+        if (!_isPlaying)
+        {
+            _mainMenu.Draw(_spriteBatch);
+        }
+        else
+        {
+            _gameplay.Draw(_spriteBatch);
+        }
         //_ship.Draw(_spriteBatch);
         _spriteBatch.End();
         base.Draw(gameTime);

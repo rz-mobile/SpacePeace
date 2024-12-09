@@ -46,5 +46,9 @@ public abstract class GameObject : Sprite
     {
         return _rect.Intersects(rect);
     }
+    public void setOffset(Vector2 offset)
+    {
+        _position = _position + offset;
+    }
     
 }

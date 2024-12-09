@@ -42,10 +42,10 @@ public class Enemy : GameObject
         _surSol = true;
         _speed = new Vector2(_speed.X, 0.0f);
     }
-    public void setOffset(Vector2 offset)
+    /*public void setOffset(Vector2 offset)
     {
         _position = _position + offset;
-    }
+    }*/
 
 
     public bool checkTopCollision(Rectangle rect)

@@ -14,5 +14,6 @@ public static class Utils
     public static bool _paused;
     public const int LEVEL_NUMBER = 3;
     public static Dictionary<string,Texture2D> _textures;
-    
+    public static bool _isPlaying;
+
 }
