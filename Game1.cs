@@ -20,7 +20,7 @@ public class Game1 : Game
 
     private int _hTest = 500;
     private Gameplay _gameplay;
-    private MainMenu _mainMenu;
+    private Mainmenu _mainmenu;
     bool _isPlaying {get => Utils._isPlaying;set => Utils._isPlaying = value;}
 
     public Game1() {
@@ -50,17 +50,17 @@ public class Game1 : Game
         Utils._textures.Add("ship1",Content.Load<Texture2D>("ship1"));
         Utils._textures.Add("ship2",Content.Load<Texture2D>("ship2"));
         _gameplay = new Gameplay();
-        _mainMenu = new MainMenu();
+        _mainmenu = new Mainmenu();
     }
 
     protected override void Update(GameTime gameTime) {
         if (!_isPlaying)
         {
-            _mainMenu.Update(gameTime);
-            if (_mainMenu.StartGame){
+            _mainmenu.Update(gameTime);
+            if (_mainmenu.StartGame){
                 _isPlaying = true;
             }
-            if (_mainMenu.ExitGame){
+            if (_mainmenu.ExitGame){
                 Exit();
             }
         }
@@ -80,7 +80,7 @@ public class Game1 : Game
         _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
         if (!_isPlaying)
         {
-            _mainMenu.Draw(_spriteBatch);
+            _mainmenu.Draw(_spriteBatch);
         }
         else
         {
