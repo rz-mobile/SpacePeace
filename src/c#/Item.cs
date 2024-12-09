@@ -1,18 +1,18 @@
 using System;
 using System.Xml.Serialization;
+using Microsoft.Xna.Framework;
 
 namespace SpacePeace;
 
 [Serializable]
-[XmlRoot("Item", Namespace ="http://www.univ-grenoble-alpes.fr/Item" )]
-public class Item
+[XmlRoot("Item", Namespace = "http://www.univ-grenoble-alpes.fr/Item")]
+public class Item:GameObject
 {
-    [XmlAttribute("Id")] public Id _id { init; get; }
+    public int _points;
 
-    public class Id
+    public Item(string texture, Vector2 position, int size,int points) : base(texture, position, size)
     {
-        [XmlAttribute("id")] public int _id { init; get; }
-
+        _points = points;
     }
     
 }

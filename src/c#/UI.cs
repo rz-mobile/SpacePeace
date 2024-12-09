@@ -18,25 +18,31 @@ public class UI
         _resumeButton = new Button("ship2",new Vector2(600,200),200);
     }
 
-    public void Update(GameTime gameTime)
+    public void Update(GameTime gameTime,bool paused)
     {
-        if (_quitButton.Clicked())
+        if (paused)
         {
-            Utils._currentGame.Exit();
-        }
+            if (_quitButton.Clicked())
+            {
+                Utils._currentGame.Exit();
+            }
 
-        if (_resumeButton.Clicked())
-        {
-            Utils._paused = !Utils._paused;
+            if (_resumeButton.Clicked())
+            {
+                Utils._paused = !Utils._paused;
+            }
         }
     }
 
-    public void Draw(SpriteBatch spriteBatch)
+    public void Draw(SpriteBatch spriteBatch,bool paused,Player p)
     {
-        string output = "Paused";
+        string output = "Health : " + p._ptVie;
         
         spriteBatch.DrawString(_font, output, _fontPos, Color.White);
-        _quitButton.Draw(spriteBatch);
-        _resumeButton.Draw(spriteBatch);
+        if (paused)
+        {
+            _quitButton.Draw(spriteBatch);
+            _resumeButton.Draw(spriteBatch);
+        }
     }
 }
