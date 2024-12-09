@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+           xmlns:as="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/animatedSprites"
+           targetNamespace="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/animatedSprites"
+           elementFormDefault="qualified">
+
+    <element name="AnimatedSprite" type="as:AnimatedSprite"/>
+    <element name="Sprite" type="as:Sprite"/>
+    
+    <complexType name="Sprite">
+        <sequence>
+            <element name="texture" type="string"/>
+            <element name="size" type="int"/>
+        </sequence>
+    </complexType>
+    
+    <complexType name="AnimatedSprite">
+        <complexContent>
+            <extension base="as:Sprite">
+                <sequence>
+                    <element name="animation" type="string"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    
+    
+
+</schema>

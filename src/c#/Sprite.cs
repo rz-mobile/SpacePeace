@@ -1,26 +1,35 @@
 using System;
+using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace SpacePeace;
+[XmlInclude(typeof(GameObject))]
+[XmlRoot("Sprite", Namespace = "http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/animatedSprites")]
+[Serializable]
 
-public class Sprite {
+public class Sprite
+{
+    [XmlElement("texture")] public string _textureName;
     private Texture2D _texture;
-    public Vector2 _position { get;protected set; }
-    private int _size = 100;
-    private static readonly int _sizeMin = 10;
-    private static readonly int _sizeMax = 5000;
+    protected Vector2 _position;
+    [XmlElement("size")] public int _size;
     private Color _color = Color.White;
-    public Texture2D _Texture { get => _texture; init => _texture = value; }
+    public Rectangle _rect { get => new Rectangle((int) _position.X - _size/2, (int) _position.Y - _size/2, _size, _size); }
 
-    
-    public Rectangle _Rect { get => new Rectangle((int) _position.X - _size/2, (int) _position.Y - _size/2, _size, _size); }
-
-    public Sprite(String texture, Vector2 position, int size) {
-        _Texture = Utils._content.Load<Texture2D>(texture);
+    public Sprite(string texture, Vector2 position, int size) {
+        _textureName = texture;
+        _texture = Utils._textures[_textureName];
         _position = position; 
         _size = size;
+    }
+
+    public Sprite()
+    {
+        _size = 50;
+        _position = new Vector2(300, 300);
+        _texture = Utils._textures["ship2"];
     }
 
     public void setPosition(Vector2 position)
@@ -33,7 +42,7 @@ public class Sprite {
     }
     public void Draw(SpriteBatch spriteBatch) {
         spriteBatch.Draw(   _texture, // Texture2D,
-            _Rect, // Rectangle destinationRectangle,
+            _rect, // Rectangle destinationRectangle,
             null, // Nullable<Rectangle> sourceRectangle,
             _color); // float layerDepth
     }
@@ -41,7 +50,7 @@ public class Sprite {
     public void Draw(SpriteBatch spriteBatch, Rectangle src)
     {
         spriteBatch.Draw(   _texture, // Texture2D,
-            _Rect, // Rectangle destinationRectangle,
+            _rect, // Rectangle destinationRectangle,
             src, // Nullable<Rectangle> sourceRectangle,
             _color ); // float layerDepth
     }

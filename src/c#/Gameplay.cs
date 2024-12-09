@@ -52,19 +52,13 @@ public class Gameplay
         {
             _currentLevel.Update(gameTime);
         }
-        else
-        {
-            _menu.Update(gameTime);
-        }
+        _menu.Update(gameTime,_paused);
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
 
         _currentLevel.Draw(spriteBatch);
-        if (_paused)
-        {
-            _menu.Draw(spriteBatch);
-        }
+        _menu.Draw(spriteBatch,_paused,_currentLevel._player);
     }
 }

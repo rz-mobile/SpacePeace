@@ -27,7 +27,7 @@ public class Tilemap
         {
             for (int j = 0; j < _map[i].Length; j++)
             {
-                if (_map[i][j] != "0" && _map[i][j] != ""  && _map[i][j] != "\t"  && _map[i][j] != "\n")
+                if (_map[i][j] != "0" && _map[i][j] != ""  && _map[i][j] != "\t"  && _map[i][j] != "\n" && _map[i][j] != "'" && _map[i][j] != null)
                 {
                     int size = 60;
                     _tiles.Add(new Tile(j*size,i*size,_map[i][j],size));

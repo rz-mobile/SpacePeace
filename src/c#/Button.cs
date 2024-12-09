@@ -20,6 +20,6 @@ public class Button
 
     public bool Clicked()
     {
-        return _sprite._Rect.Contains(Mouse.GetState().Position) && Mouse.GetState().LeftButton == ButtonState.Pressed;
+        return _sprite._rect.Contains(Mouse.GetState().Position) && Mouse.GetState().LeftButton == ButtonState.Pressed;
     }
 }

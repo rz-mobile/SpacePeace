@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -17,52 +20,40 @@ public class Game1 : Game
 
     private int _hTest = 500;
     private Gameplay _gameplay;
-    
-    private MainMenu _mainMenu;
-    bool _isPlaying;
 
     public Game1() {
         _graphics = new GraphicsDeviceManager(this);
         Utils._graphics = _graphics;
         Utils._content = Content;
         Utils._content.RootDirectory = "Content";
+        Utils._textures = new Dictionary<string, Texture2D>();
         IsMouseVisible = true;
     }
 
     protected override void Initialize() {
         base.Initialize();
+        Utils._currentGame = this;
+        _spriteBatch = new SpriteBatch(GraphicsDevice);
+        _tileTest = Utils._content.Load<Texture2D>("map");
+        ;/*
+        using (TextReader reader = new StreamReader("../../../src/xml/testSprite.xml"))
+        {
+            var xmlC = new XmlSerializer(typeof(Sprite));
+            _ship = (Sprite)xmlC.Deserialize(reader);
+        }*/
     }
 
     protected override void LoadContent() {
-        Utils._currentGame = this;
-        _spriteBatch = new SpriteBatch(GraphicsDevice);
-        Texture2D shipTexture = Utils._content.Load<Texture2D>("ship2");
-        Texture2D ship2Texture = Utils._content.Load<Texture2D>("ship1");
-        _tileTest = Utils._content.Load<Texture2D>("map");
-        Texture2D mapTexture = Utils._content.Load<Texture2D>("map");
-        
-        _mainMenu = new MainMenu();
-        
+        Utils._textures.Add("map",Content.Load<Texture2D>("map"));
+        Utils._textures.Add("ship1",Content.Load<Texture2D>("ship1"));
+        Utils._textures.Add("ship2",Content.Load<Texture2D>("ship2"));
         _gameplay = new Gameplay();
     }
 
     protected override void Update(GameTime gameTime) {
-
-        if (!_isPlaying)
-        {
-            _mainMenu.Update(gameTime);
-            if (_mainMenu.StartGame){
-                _isPlaying = true;
-            }
-
-            if (_mainMenu.ExitGame){
-                Exit();
-            }
-        }
-        else
-        {
-             _gameplay.Update(gameTime);
-        }
+        
+        _gameplay.Update(gameTime);
+        
         
         base.Update(gameTime);
         
@@ -72,12 +63,8 @@ public class Game1 : Game
     protected override void Draw(GameTime gameTime) {
         GraphicsDevice.Clear(Color.CornflowerBlue);
         _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-        if (!_isPlaying)
-        {
-            _mainMenu.Draw(_spriteBatch);
-        }
-        
         _gameplay.Draw(_spriteBatch);
+        //_ship.Draw(_spriteBatch);
         _spriteBatch.End();
         base.Draw(gameTime);
     }
