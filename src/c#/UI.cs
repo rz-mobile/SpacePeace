@@ -14,8 +14,8 @@ public class UI
     public UI()
     {
         _font = Utils._content.Load<SpriteFont>("MyMenuFont");
-        _quitButton = new Button("ship1",new Vector2(200,200),200);
-        _resumeButton = new Button("ship2",new Vector2(600,200),200);
+        _quitButton = new Button("Exit_BTN",new Vector2(550,300),50, 150);
+        _resumeButton = new Button("Start_BTN",new Vector2(240,300),50, 150);
     }
 
     public void Update(GameTime gameTime,bool paused)

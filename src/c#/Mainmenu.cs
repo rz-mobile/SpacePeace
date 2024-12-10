@@ -11,8 +11,9 @@ public class Mainmenu
     private Level _level1;
     private GraphicsDevice _graphicsDevice;
     SpriteFont _font;
-
-    //SpriteBatch _spriteBatch;
+    private Sprite _window;
+    private Sprite _fond; 
+    Sprite _title;
     
     public bool StartGame { get; private set; }
     public bool ExitGame { get; private set; }
@@ -22,13 +23,15 @@ public class Mainmenu
     
     public Mainmenu(){
         _main = new UI();
-        //_level1 = new Level("../../../src/xml/Level1.xml", Utils._graphics.GraphicsDevice);
         _graphicsDevice  = Utils._graphics.GraphicsDevice;
         _font =  Utils._content.Load<SpriteFont>("MyMenuFont");
-        _playButton = new Button("ship1", new Vector2(200, 300), 100, 150);
-        _exitButton = new Button("ship2", new Vector2(500, 300), 100, 150);
+        _playButton = new Button("Start_BTN", new Vector2(300, 300), 50, 150);
+        _exitButton = new Button("Exit_BTN", new Vector2(510, 300), 50, 150);
         StartGame = false;
         ExitGame = false;
+        _window = new Sprite("Window", new Vector2(400,250), 380, 450);
+        _fond = new Sprite("BG", new Vector2(400,400), 1000, 1000);
+        _title = new Sprite("titre1", new Vector2(400,170), 40, 230);
     }
 
     public void Update(GameTime gameTime){
@@ -37,27 +40,21 @@ public class Mainmenu
         {
             // le jeu commence
             StartGame = true;
-            
-            //_level1.Update(gameTime);
-            
         }
 
         if (_exitButton.Clicked())
         {
             ExitGame = true;
         }
-
     }
 
     public void Draw(SpriteBatch spriteBatch){
-        //_level1.Draw(spriteBatch);
-        
+        _fond.Draw(spriteBatch);
+        _window.Draw(spriteBatch);
+        _title.Draw(spriteBatch);
         _playButton.Draw(spriteBatch);
         _exitButton.Draw(spriteBatch);
-        spriteBatch.DrawString(_font, "MENU PRINCIPAL", new Vector2(300,20), Color.White);
-
-        spriteBatch.DrawString(_font,"Commencer",new Vector2(150, 300), Color.White );
-        spriteBatch.DrawString(_font,"Quitter",new Vector2(470, 300), Color.White );
+        //spriteBatch.DrawString(_font, "MENU PRINCIPAL", new Vector2(330,20), Color.White);
     }
     
     
