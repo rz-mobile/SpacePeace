@@ -37,13 +37,13 @@ public class Level
         String currentLevel = xmlMap(path);
         _tileMapTest = new Tilemap(currentLevel);
         _collisionMapTest = new CollisionMap(currentLevel,_texture,graphicsDevice);
-        /*
-        using (TextReader reader = new StreamReader("../../../src/xml/Player.xml"))
+        
+        /*using (TextReader reader = new StreamReader("../../../src/xml/Player.xml"))
         {
             var xmlC = new XmlSerializer(typeof(Player));
             _player = (Player)xmlC.Deserialize(reader);
-        }
-        */
+        }*/
+        
         _enemies = new List<Enemy>();
         Enemy _enemy = new Enemy("ship1", new Vector2(400, 150), 50,1);
         Enemy _enemy2 = new Enemy("ship1", new Vector2(550, 150), 100,1);

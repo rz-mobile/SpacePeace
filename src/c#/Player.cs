@@ -16,14 +16,14 @@ public class Player : GameObject
     public Vector2 _speed;
     private float _gravity;
     private bool _isJumping = false;
-    [XmlElement("jumpForce")] public float _jumpForce{get;private set;}
+    [XmlElement("jumpForce")] public float _jumpForce;
     public Rectangle _bottomHitbox {get => new Rectangle((int)_position.X-(_size/2)+6, (int)_position.Y+(_size/2), _size-12, 4);}
     public Rectangle _rightHitbox{get => new Rectangle((int)_position.X+(_size/2), (int)_position.Y-(_size/2)+3, 4, _size-6);}
     public Rectangle _leftHitbox{get => new Rectangle((int)_position.X - (_size/2), (int)_position.Y-(_size/2)+3, 4, _size-6);}
     public Rectangle _topHitbox{get => new Rectangle((int)_position.X-(_size/2)+6, (int)_position.Y-(_size/2), _size-12, 4);}
     public bool _rWall = false;
     public bool _lWall = false;
-    [XmlElement("ptVie")]public int _ptVie { get;private set; }
+    [XmlElement("ptVie")] public int _ptVie;
     private int _maxTimer = 200;
     private bool _unvulnerable = false;
     public int _vies;
@@ -63,7 +63,6 @@ public class Player : GameObject
     public new void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        
         
         if (_timer >= _maxTimer)
         {

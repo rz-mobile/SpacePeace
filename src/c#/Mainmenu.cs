@@ -7,7 +7,7 @@ namespace SpacePeace;
 public class Mainmenu
 {
     
-    private UI _main;
+    //private UI _main;
     private Level _level1;
     private GraphicsDevice _graphicsDevice;
     SpriteFont _font;
@@ -21,7 +21,7 @@ public class Mainmenu
     Button _exitButton;
     
     public Mainmenu(){
-        _main = new UI();
+        //_main = new UI();
         //_level1 = new Level("../../../src/xml/Level1.xml", Utils._graphics.GraphicsDevice);
         _graphicsDevice  = Utils._graphics.GraphicsDevice;
         _font =  Utils._content.Load<SpriteFont>("MyMenuFont");
@@ -37,9 +37,9 @@ public class Mainmenu
         {
             // le jeu commence
             StartGame = true;
-            
+        
             //_level1.Update(gameTime);
-            
+        
         }
 
         if (_exitButton.Clicked())

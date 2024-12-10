@@ -37,8 +37,8 @@ public class Gameplay
         {
             if (!_escapePressed)
             {
-                _lvId = (_lvId + 1) % Utils.LEVEL_NUMBER;
-                _currentLevel = new Level("../../../src/xml/Level" + (_lvId+1)+".xml",Utils._graphics.GraphicsDevice);
+                /*_lvId = (_lvId + 1) % Utils.LEVEL_NUMBER;
+                _currentLevel = new Level("../../../src/xml/Level" + (_lvId+1)+".xml",Utils._graphics.GraphicsDevice);*/
                 _paused = !_paused;
             }
             _escapePressed = true;

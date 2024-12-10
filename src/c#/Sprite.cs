@@ -20,7 +20,7 @@ public class Sprite
 
     public Sprite(string texture, Vector2 position, int size) {
         _textureName = texture;
-        _texture = Utils._textures[_textureName];
+        _texture = Utils._content.Load<Texture2D>(_textureName);
         _position = position; 
         _size = size;
     }
@@ -29,7 +29,7 @@ public class Sprite
     {
         _size = 50;
         _position = new Vector2(300, 300);
-        _texture = Utils._textures["ship2"];
+        _texture = Utils._content.Load<Texture2D>(_textureName);
     }
 
     public void setPosition(Vector2 position)
