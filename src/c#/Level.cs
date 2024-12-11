@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
@@ -12,8 +13,9 @@ namespace SpacePeace;
 public class Level
 {
     public Player _player { get; private set; }
-    private Tilemap _tileMapTest;
-    private CollisionMap _collisionMapTest;
+    private Tilemap _avantPlan;
+    private Tilemap _arrierePlan;
+    private CollisionMap _collisionMap;
     private List<Enemy> _enemies;
     
     private XmlDocument _doc;
@@ -34,9 +36,12 @@ public class Level
         _tiles = new List<Tile>();
         
         _doc = new XmlDocument();
-        String currentLevel = xmlMap(path);
-        _tileMapTest = new Tilemap(currentLevel);
-        _collisionMapTest = new CollisionMap(currentLevel,_texture,graphicsDevice);
+        string currentLevelForeGround = xmlMap(path,"AvantPlan");
+        _avantPlan = new Tilemap(currentLevelForeGround);
+        string currentLevelBackGround = xmlMap(path,"ArrierePlan");
+        _arrierePlan = new Tilemap(currentLevelBackGround);
+        string currentLevelCollisions = xmlMap(path,"Collision");
+        _collisionMap = new CollisionMap(currentLevelCollisions,_texture,graphicsDevice);
         
         /*using (TextReader reader = new StreamReader("../../../src/xml/Player.xml"))
         {
@@ -45,10 +50,13 @@ public class Level
         }*/
         
         _enemies = new List<Enemy>();
-        Enemy _enemy = new Enemy("ship1", new Vector2(400, 150), 50,1);
-        Enemy _enemy2 = new Enemy("ship1", new Vector2(550, 150), 100,1);
-        _enemies.Add(_enemy);
-        _enemies.Add(_enemy2);
+        List<Vector2> positionsEnnemis = positionEnnemis(path);
+        foreach (Vector2 position in positionsEnnemis)
+        {
+            Enemy _enemy = new Enemy("ship1", new Vector2(0, 0), 60,1);
+            _enemy.setPosition(position);
+            _enemies.Add(_enemy);
+        }
         _player = new Player("ship2",new Vector2(300,150), 50);
         
 
@@ -61,14 +69,15 @@ public class Level
         _player.shootOffset(offset);
         if (offset != Vector2.Zero)
         {
-            _tileMapTest.setOffset(offset);
-            _collisionMapTest.setOffset(offset);
+            _avantPlan.setOffset(offset);
+            _arrierePlan.setOffset(offset);
+            _collisionMap.setOffset(offset);
             foreach (Enemy e in _enemies)
             {
                 e.setOffset(offset);
             }
         }
-        if (_collisionMapTest.CheckCollision(_player._rightHitbox))
+        if (_collisionMap.CheckCollision(_player._rightHitbox))
         {
             _player._rWall = true;
         }
@@ -76,7 +85,7 @@ public class Level
         {
             _player._rWall = false;
         }
-        if (_collisionMapTest.CheckCollision(_player._leftHitbox))
+        if (_collisionMap.CheckCollision(_player._leftHitbox))
         {
             _player._lWall = true;
         }
@@ -84,7 +93,7 @@ public class Level
         {
             _player._lWall = false;
         }
-        if (_collisionMapTest.CheckCollision(_player._bottomHitbox))
+        if (_collisionMap.CheckCollision(_player._bottomHitbox))
         {
             _player.groundReaction();
         }
@@ -95,7 +104,7 @@ public class Level
 
         foreach (Enemy e in _enemies)
         {
-            if (_collisionMapTest.CheckCollision(e._rect))
+            if (_collisionMap.CheckCollision(e._rect))
             {
                 e.groundReaction();
             }
@@ -115,13 +124,14 @@ public class Level
         }
 
         _player.Update(gameTime);
-        _tileMapTest.Update(gameTime);
+        _avantPlan.Update(gameTime);
+        _arrierePlan.Update(gameTime);
 
         
     }
     public void Draw(SpriteBatch spriteBatch)
     {
-        _tileMapTest.Draw(spriteBatch);
+        _arrierePlan.Draw(spriteBatch);
         foreach (Enemy e in _enemies)
         {
             if (!e._dead)
@@ -132,15 +142,16 @@ public class Level
 
 
         _player.Draw(spriteBatch);
+        _avantPlan.Draw(spriteBatch);
         
     }
 
     
-    public String xmlMap(String xmlPath)
+    public String xmlMap(string xmlPath,string name)
     {
         String map = "";
         _doc.Load(xmlPath);
-        XmlNode node = _doc.SelectSingleNode("//data");
+        XmlNode node = _doc.SelectSingleNode("//data[../@name=\""+name+"\"]");
        if (node != null)
        {
            map += node.InnerText;
@@ -150,5 +161,18 @@ public class Level
            Console.WriteLine("échec de la création du level on ne trouve pas 'data'.");
        }
        return map;
+    }
+
+    public List<Vector2> positionEnnemis(string xmlPath)
+    {
+        _doc.Load(xmlPath);
+        XmlNodeList objets = _doc.DocumentElement.SelectNodes("//object[@name='Enemy']");
+        List<Vector2> positions = new List<Vector2>();
+        foreach (XmlNode objet in objets)
+        {
+            //positions.Add(new Vector2(float.Parse(objet.Attributes["x"].Value), float.Parse(objet.Attributes["y"].Value)));
+            positions.Add(new Vector2(float.Parse(objet.Attributes["x"].Value,CultureInfo.InvariantCulture), float.Parse(objet.Attributes["y"].Value,CultureInfo.InvariantCulture)));
+        }
+        return positions;
     }
 }
