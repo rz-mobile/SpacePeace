@@ -13,6 +13,11 @@
     <ItemGroup>
         <None Remove="Icon.ico"/>
         <None Remove="Icon.bmp"/>
+        <None Remove="Content\Left.png" />
+        <None Remove="Content\Right.png" />
+        <None Remove="Content\fond_level.png" />
+        <None Remove="Content\bin\DesktopGL\fond_level.xnb" />
+        <None Remove="Content\obj\DesktopGL\fond_level.mgcontent" />
     </ItemGroup>
     <ItemGroup>
         <EmbeddedResource Include="Icon.ico">

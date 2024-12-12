@@ -22,6 +22,17 @@ public class Level
     
     private Texture2D _texture;
     public Camera _camera;
+
+    private Sprite _fond;
+    private Sprite _elmtFond;
+    private Sprite _meteorFond1;
+    private Sprite _meteorFond2;
+    private Sprite _meteorFond3;
+    private Sprite _meteorFond4;
+    private Sprite _meteorFond5;
+    private Sprite _meteorFond6;
+    private Sprite _meteorFond7;
+    
     
     private List<string[]> _map;
 
@@ -44,6 +55,7 @@ public class Level
             _player = (Player)xmlC.Deserialize(reader);
         }
         */
+        
         _enemies = new List<Enemy>();
         Enemy _enemy = new Enemy("ship1", new Vector2(400, 150), 50,1);
         Enemy _enemy2 = new Enemy("ship1", new Vector2(550, 150), 100,1);
@@ -51,8 +63,17 @@ public class Level
         _enemies.Add(_enemy2);
         _player = new Player("ship2",new Vector2(300,150), 50);
         
-
-
+       _fond = new Sprite("fond", new Vector2(400,400), 1000, 1000);
+       _elmtFond = new Sprite("Bomb_1_Explosion_005", new Vector2(600,150), 80, 80);
+       _meteorFond1 = new Sprite("Meteor_01", new Vector2(300,200), 50, 70);
+       _meteorFond2 = new Sprite("Meteor_02", new Vector2(150,50), 40, 60);
+       _meteorFond3 = new Sprite("Meteor_03", new Vector2(400,60), 60, 70);
+       _meteorFond4 = new Sprite("Meteor_04", new Vector2(230,80), 20, 30);
+       _meteorFond5 = new Sprite("Meteor_04", new Vector2(680,250), 60, 70);
+       _meteorFond6 = new Sprite("Meteor_03", new Vector2(80,300), 40, 55);
+       _meteorFond7 = new Sprite("Meteor_02", new Vector2(700,40), 30, 50);
+       
+        
     }
 
     public void Update(GameTime gameTime)
@@ -121,6 +142,18 @@ public class Level
     }
     public void Draw(SpriteBatch spriteBatch)
     {
+        
+        _fond.Draw(spriteBatch);
+        _elmtFond.Draw(spriteBatch);
+        _meteorFond1.Draw(spriteBatch);
+        _meteorFond2.Draw(spriteBatch);
+        _meteorFond3.Draw(spriteBatch);
+        _meteorFond4.Draw(spriteBatch);
+        _meteorFond5.Draw(spriteBatch);
+        _meteorFond6.Draw(spriteBatch);
+        _meteorFond7.Draw(spriteBatch);
+        
+        
         _tileMapTest.Draw(spriteBatch);
         foreach (Enemy e in _enemies)
         {

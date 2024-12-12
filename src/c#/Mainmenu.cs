@@ -20,6 +20,7 @@ public class Mainmenu
     
     Button _playButton;
     Button _exitButton;
+    Button _tutoButton;
     
     public Mainmenu(){
         _main = new UI();
@@ -27,6 +28,7 @@ public class Mainmenu
         _font =  Utils._content.Load<SpriteFont>("MyMenuFont");
         _playButton = new Button("Start_BTN", new Vector2(300, 300), 50, 150);
         _exitButton = new Button("Exit_BTN", new Vector2(510, 300), 50, 150);
+        _tutoButton = new Button("unnamed1", new Vector2(700, 50), 50, 50);
         StartGame = false;
         ExitGame = false;
         _window = new Sprite("Window", new Vector2(400,250), 380, 450);
@@ -52,9 +54,30 @@ public class Mainmenu
         _fond.Draw(spriteBatch);
         _window.Draw(spriteBatch);
         _title.Draw(spriteBatch);
+        _tutoButton.Draw(spriteBatch);
         _playButton.Draw(spriteBatch);
         _exitButton.Draw(spriteBatch);
-        //spriteBatch.DrawString(_font, "MENU PRINCIPAL", new Vector2(330,20), Color.White);
+        
+        /*
+         private Sprite _cloudPause;
+         private Sprite _arrowUp;
+         private Sprite _arrowDown;
+         private Sprite _arrowLeft;
+         private Sprite _arrowRight;
+         
+         
+         _cloudPause = new Sprite("Cloud_02", new Vector2(400,250), 380, 450);
+        _arrowDown = new Sprite("unnamed3", new Vector2(400,250), 380, 450);
+        _arrowLeft = new Sprite("unnamed", new Vector2(400,250), 380, 450);
+        _arrowUp = new Sprite("unnamed1", new Vector2(400,250), 380, 450);
+        _arrowRight = new Sprite("unnamed2", new Vector2(400,250), 380, 450);
+        
+        _cloudPause.Draw(spriteBatch);
+        _arrowRight.Draw(spriteBatch);
+        _arrowLeft.Draw(spriteBatch);
+        
+        */
+        
     }
     
     
