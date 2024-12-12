@@ -39,8 +39,8 @@ public class Enemy : GameObject
     }
     public void groundReaction()
     {
-        _surSol = true;
-        _speed = new Vector2(_speed.X, 0.0f);
+        //_surSol = true;
+        _speed = new Vector2(_speed.X,  - _gravity);
     }
     /*public void setOffset(Vector2 offset)
     {
@@ -56,11 +56,8 @@ public class Enemy : GameObject
 
     public new void Update(GameTime gameTime)
     {
-        if (!_surSol)
-        {
-            _speed = new Vector2(_speed.X, _speed.Y+_gravity);
-        }
-        _speed.X = -0.1f;
+        _speed = new Vector2(_speed.X, _speed.Y+_gravity);
+        _speed.X = -0.5f;
         
         _position = new Vector2(_position.X + _speed.X, _position.Y + _speed.Y);
 

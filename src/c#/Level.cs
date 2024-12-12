@@ -17,6 +17,7 @@ public class Level
     private Tilemap _arrierePlan;
     private CollisionMap _collisionMap;
     private List<Enemy> _enemies;
+    private int _levelSize;
     
     private XmlDocument _doc;
     private XmlNode _root;
@@ -30,6 +31,7 @@ public class Level
     private List<Tile> _tiles;
     public Level(String path ,GraphicsDevice graphicsDevice)
     {
+        _levelSize = 30;
         _camera = new Camera(new Vector2(0.0f, 0.0f));
         
         _map = new List<string[]>();
@@ -37,11 +39,13 @@ public class Level
         
         _doc = new XmlDocument();
         string currentLevelForeGround = xmlMap(path,"AvantPlan");
-        _avantPlan = new Tilemap(currentLevelForeGround);
+        Console.WriteLine(xmlSpriteSHeet(path,"AvantPlan"));
+        _avantPlan = new Tilemap(currentLevelForeGround,_levelSize,xmlSpriteSHeet(path,"AvantPlan"),368);
         string currentLevelBackGround = xmlMap(path,"ArrierePlan");
-        _arrierePlan = new Tilemap(currentLevelBackGround);
+        Console.WriteLine(xmlSpriteSHeet(path,"ArrierePlan"));
+        _arrierePlan = new Tilemap(currentLevelBackGround,_levelSize,xmlSpriteSHeet(path,"ArrierePlan"),0);
         string currentLevelCollisions = xmlMap(path,"Collision");
-        _collisionMap = new CollisionMap(currentLevelCollisions,_texture,graphicsDevice);
+        _collisionMap = new CollisionMap(currentLevelCollisions,_texture,graphicsDevice,_levelSize);
         
         /*using (TextReader reader = new StreamReader("../../../src/xml/Player.xml"))
         {
@@ -161,6 +165,38 @@ public class Level
            Console.WriteLine("échec de la création du level on ne trouve pas 'data'.");
        }
        return map;
+    }
+    
+    public string xmlSpriteSHeet(string xmlPath,string name)
+    {
+        String map = "";
+        _doc.Load(xmlPath);
+        XmlNode node = _doc.SelectSingleNode("//property[../../@name=\""+name+"\" and @name='spriteSheet']");
+        if (node != null)
+        {
+            map += node.Attributes["value"].Value;
+        }
+        else
+        {
+            Console.WriteLine("échec de la création du level on ne trouve pas 'data'.");
+        }
+        return map;
+    }
+    
+    public int xmlDebutSheet(string xmlPath,string name)
+    {
+        int map = 0;
+        _doc.Load(xmlPath);
+        XmlNode node = _doc.SelectSingleNode("//property[../../@name=\""+name+"\" and @name='debutSheet']");
+        if (node != null)
+        {
+            map += Int32.Parse(node.Attributes["value"].Value);
+        }
+        else
+        {
+            Console.WriteLine("échec de la création du level on ne trouve pas 'data'.");
+        }
+        return map;
     }
 
     public List<Vector2> positionEnnemis(string xmlPath)

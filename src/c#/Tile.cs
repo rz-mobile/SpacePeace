@@ -17,16 +17,17 @@ public class Tile
     public Rectangle _bounds;
     private Sprite _sprite;
 
-    public Tile(int x, int y, String value,int size)
+    public Tile(int x, int y, int value,int size,string spriteSheet)
     {
-        int id =  Int32.Parse(value);
+        int id =  value;
         _position = new Vector2(x, y);
         _bounds = new Rectangle(); 
         _bounds.X = (id % 16)*16 -16;
-        _bounds.Y = id;
+        _bounds.Y = id -(id % 16);
+        //_bounds.Y = id;
         _bounds.Width = 16;
-        _bounds.Height = 10;
-        _sprite = new Sprite("map",_position,size);
+        _bounds.Height = 16;
+        _sprite = new Sprite(spriteSheet,_position,size);
         
     }
     public void Initialize() {
