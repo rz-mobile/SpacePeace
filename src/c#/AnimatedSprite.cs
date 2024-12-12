@@ -25,7 +25,7 @@ public class AnimatedSprite
         string s;
         for(short i = 1; i < nbAnimations+1; i++)
         {
-            s = "phase" + i;
+            s = texture + "_phase" + i;
             _listName[i-1] = s;
         }
         
@@ -45,7 +45,7 @@ public class AnimatedSprite
         string s;
         for(short i = 1; i < nbAnimations+1; i++)
         {
-            s = "phase" + i;
+            s = texture + "_phase" + i;
             _listName[i-1] = s;
         }
         
@@ -62,7 +62,7 @@ public class AnimatedSprite
     public AnimatedSprite()
     {
         _tabTexture = new Texture2D[7];
-        _listName = new List<string> { "phase1", "phase2", "phase3", "phase4", "phase5", "phase6", "phase7" };
+        _listName = new List<string> { "run_phase1", "run_phase2", "run_phase3", "run_phase4", "run_phase5", "run_phase6", "run_phase7" };
         for (int i = 0; i < 7; i++)
         {
             _tabTexture[i] = Utils._content.Load<Texture2D>(_listName[i]);
