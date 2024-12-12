@@ -9,14 +9,14 @@ namespace SpacePeace;
 public class Shoot : GameObject
 {
     private Vector2 speed;
-    public Shoot(String texture, Vector2 _position, int size): base(texture, _position, size)
+    public Shoot(String texture, Vector2 position, int size): base(texture, position, size)
     {
         speed = new Vector2(10, 0);
     }
 
     public void Update(GameTime gameTime)
     {
-        _position = new Vector2(_position.X + 10, _position.Y);
+        Position = new Vector2(Position.X + 10, Position.Y);
         
     }
 

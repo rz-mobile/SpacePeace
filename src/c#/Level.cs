@@ -21,14 +21,14 @@ public class Level
     private XmlNamespaceManager _nsmgr;
     
     private Texture2D _texture;
-    public Camera _camera;
+    public Camera Camera;
     
     private List<string[]> _map;
 
     private List<Tile> _tiles;
     public Level(String path ,GraphicsDevice graphicsDevice)
     {
-        _camera = new Camera(new Vector2(0.0f, 0.0f));
+        Camera = new Camera(new Vector2(0.0f, 0.0f));
         
         _map = new List<string[]>();
         _tiles = new List<Tile>();
@@ -57,7 +57,7 @@ public class Level
 
     public void Update(GameTime gameTime)
     {
-        Vector2 offset = _camera.moveCamera(_player._speed);
+        Vector2 offset = Camera.moveCamera(_player._speed);
         _player.shootOffset(offset);
         if (offset != Vector2.Zero)
         {
@@ -100,7 +100,7 @@ public class Level
                 e.groundReaction();
             }
 
-            if (!e._dead)
+            if (!e.Dead)
             {
                 e.Update(gameTime);
                 if (e.checkTopCollision(_player._bottomHitbox))
@@ -124,7 +124,7 @@ public class Level
         _tileMapTest.Draw(spriteBatch);
         foreach (Enemy e in _enemies)
         {
-            if (!e._dead)
+            if (!e.Dead)
             {
                 e.Draw(spriteBatch);
             }

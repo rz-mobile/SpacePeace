@@ -13,39 +13,39 @@ public class Sprite
 {
     [XmlElement("texture")] public string _textureName;
     private Texture2D _texture;
-    protected Vector2 _position;
-    [XmlElement("height")]public int _height;
-    [XmlElement("width")]public int _width;
+    protected Vector2 Position;
+    [XmlElement("height")]public int Height;
+    [XmlElement("width")]public int Width;
     private Color _color = Color.White;
-    public Rectangle _rect { get => new Rectangle((int) _position.X - _width/2, (int) _position.Y - _height/2,_width, _height); }
+    public Rectangle _rect { get => new Rectangle((int) Position.X - Width/2, (int) Position.Y - Height/2,Width, Height); }
 
     public Sprite(string texture, Vector2 position, int size) {
         _textureName = texture;
         _texture = Utils._content.Load<Texture2D>(_textureName);
-        _position = position; 
-        _height = size;
-        _width = size;
+        Position = position; 
+        Height = size;
+        Width = size;
     }
     
     public Sprite(string texture, Vector2 position, int height , int width) {
         _textureName = texture;
         _texture = Utils._content.Load<Texture2D>(_textureName);
-        _position = position; 
-        _height = height;
-        _width = width;
+        Position = position; 
+        Height = height;
+        Width = width;
     }
 
     public Sprite()
     {
-        _height = 50;
-        _width = 100;
-        _position = new Vector2(300, 300);
+        Height = 50;
+        Width = 100;
+        Position = new Vector2(300, 300);
         _texture = Utils._textures["ship2"];
     }
 
     public void setPosition(Vector2 position)
     {
-        _position = position;
+        Position = position;
     }
     
     public void Update(GameTime gameTime) {

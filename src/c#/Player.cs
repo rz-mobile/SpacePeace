@@ -17,10 +17,10 @@ public class Player : GameObject
     private float _gravity;
     private bool _isJumping = false;
     [XmlElement("jumpForce")] public float _jumpForce{get;private set;}
-    public Rectangle _bottomHitbox {get => new Rectangle((int)_position.X-(_width/2)+6, (int)_position.Y+(_height/2), _width-12, 4);}
-    public Rectangle _rightHitbox{get => new Rectangle((int)_position.X+(_width/2), (int)_position.Y-(_height/2)+3, 4, _height-6);}
-    public Rectangle _leftHitbox{get => new Rectangle((int)_position.X - (_width/2), (int)_position.Y-(_height/2)+3, 4, _height-6);}
-    public Rectangle _topHitbox{get => new Rectangle((int)_position.X-(_width/2)+6, (int)_position.Y-(_height/2), _width-12, 4);}
+    public Rectangle _bottomHitbox {get => new Rectangle((int)Position.X-(Width/2)+6, (int)Position.Y+(Height/2), Width-12, 4);}
+    public Rectangle _rightHitbox{get => new Rectangle((int)Position.X+(Width/2), (int)Position.Y-(Height/2)+3, 4, Height-6);}
+    public Rectangle _leftHitbox{get => new Rectangle((int)Position.X - (Width/2), (int)Position.Y-(Height/2)+3, 4, Height-6);}
+    public Rectangle _topHitbox{get => new Rectangle((int)Position.X-(Width/2)+6, (int)Position.Y-(Height/2), Width-12, 4);}
     public bool _rWall = false;
     public bool _lWall = false;
     [XmlElement("ptVie")]public int _ptVie { get;private set; }
@@ -93,7 +93,7 @@ public class Player : GameObject
         {
             if (!_tirPresse)
             {
-                tirList.Add(new Shoot("ship1", _position, 50));
+                tirList.Add(new Shoot("ship1", Position, 50));
                 tire();
                 _tirPresse = true;
             }
@@ -122,12 +122,12 @@ public class Player : GameObject
             {
                 _ptVie -= 2;
                 _speed = new Vector2(0, 0);
-                _position = new Vector2(100, 100);
+                Position = new Vector2(100, 100);
             }
 
         }
 
-        _position = new Vector2(_position.X, _position.Y + _speed.Y);
+        Position = new Vector2(Position.X, Position.Y + _speed.Y);
 
         
     }
@@ -173,7 +173,7 @@ public class Player : GameObject
     public bool tomber()
     {
         bool result = false;
-        if (_position.Y >1000)
+        if (Position.Y >1000)
         {
             result = true;
         }
@@ -187,8 +187,8 @@ public class Player : GameObject
         {
             // Action à exécuter après 300 ms
             Texture2D shipTexture = Utils._content.Load<Texture2D>("ship1");
-            //float pos_X = _position.X;
-            //float pos_Y = _position.Y;
+            //float pos_X = Position.X;
+            //float pos_Y = Position.Y;
 
             //tirList.Add(new Shoot("ship1", new Vector2(pos_X / 2, pos_Y / 2), 20));
             temps.Stop();

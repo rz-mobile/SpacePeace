@@ -14,8 +14,8 @@ public class Enemy : GameObject
     private float _gravity;
     private int _ptVie;
     private bool _surSol = false;
-    public bool _dead = false;
-    public Rectangle _topHitbox{get => new Rectangle((int)_position.X-(_width/2)+6, (int)_position.Y-(_height/2), _width-12, 4);}
+    public bool Dead = false;
+    public Rectangle _topHitbox{get => new Rectangle((int)Position.X-(Width/2)+6, (int)Position.Y-(Height/2), Width-12, 4);}
     [XmlAttribute("degats")] public int _degats { init; get; }
 
     public Enemy(string texture, Vector2 position, int size,int degats) : base(texture, position, size)
@@ -29,13 +29,13 @@ public class Enemy : GameObject
 
     public void spawn(Vector2 position)
     {
-        _dead = false;
-        _position = position;
+        Dead = false;
+        Position = position;
     }
 
     public void die()
     {
-        _dead = true;
+        Dead = true;
     }
     public void groundReaction()
     {
@@ -44,7 +44,7 @@ public class Enemy : GameObject
     }
     /*public void setOffset(Vector2 offset)
     {
-        _position = _position + offset;
+        Position = Position + offset;
     }*/
 
 
@@ -62,7 +62,7 @@ public class Enemy : GameObject
         }
         _speed.X = -0.1f;
         
-        _position = new Vector2(_position.X + _speed.X, _position.Y + _speed.Y);
+        Position = new Vector2(Position.X + _speed.X, Position.Y + _speed.Y);
 
     }
 
