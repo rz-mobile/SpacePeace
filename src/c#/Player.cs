@@ -10,6 +10,7 @@ namespace SpacePeace;
 [Serializable]
 public class Player : GameObject
 {
+    private int[] tabFrame = {2,14,9,7};
     int _timer = 0;
     public bool _surSol = false;
     bool _tirPresse = false;
@@ -64,9 +65,6 @@ public class Player : GameObject
     
     public new void Update(GameTime gameTime)
     {
-        base.Update(gameTime);
-        
-        
         if (_timer >= _maxTimer)
         {
             _unvulnerable = false;
@@ -79,15 +77,16 @@ public class Player : GameObject
         {
             _speed = new Vector2(_speed.X, _speed.Y+_gravity);
         }
-
-
+        
         _speed.X = 0;
         if (Keyboard.GetState().IsKeyDown(Keys.Right) && !_rWall)
         {
             _speed.X = 10.0f;
+            base.Update(gameTime, 2,tabFrame[1]);
         }else if (Keyboard.GetState().IsKeyDown(Keys.Left) && !_lWall)
         {
             _speed.X = -10.0f;
+            
         }
         
         
@@ -128,7 +127,18 @@ public class Player : GameObject
             }
 
         }
-
+        if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.Left))
+        {
+            base.Update(gameTime, 1,tabFrame[1]);
+        }else if (Keyboard.GetState().IsKeyDown(Keys.Up))
+        {
+            base.Update(gameTime, 2,tabFrame[2]);
+        }else if (Keyboard.GetState().IsKeyDown(Keys.Down))
+        {
+            base.Update(gameTime, 3,tabFrame[3]);
+        }else{
+            base.Update(gameTime, 0,tabFrame[0]);
+        }
         Position = new Vector2(Position.X, Position.Y + _speed.Y);
 
         
