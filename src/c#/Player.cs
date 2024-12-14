@@ -43,7 +43,9 @@ public class Player : GameObject
     public Player():base()
     {
         _speed = new Vector2(0.0f, 0.0f);
+        _jumpForce = 5.0f;
         _gravity = 0.1f;
+        _ptVie = 10;
     }
     public void groundReaction()
     {

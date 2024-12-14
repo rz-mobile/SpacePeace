@@ -11,10 +11,11 @@ namespace SpacePeace;
 
 public class AnimatedSprite : Sprite
 {
+    private int _heightA , _widthA; //taille du sprite sur le png
     private int _activeFrame, _counter , _nbFrames , _nbAnimation ;
     private Color _color = Color.White;
     
-    private Rectangle Rectsrc { get => new Rectangle(_activeFrame*Width,_nbAnimation*Height,Width, Height); }
+    private Rectangle Rectsrc { get => new Rectangle(_activeFrame*_widthA,_nbAnimation*_heightA,_widthA, _heightA); }
 
     public AnimatedSprite(string spritesheet, Vector2 position, int size,int nbAnimation, int nbFrame ) : base(spritesheet, position, size)
     {
@@ -35,6 +36,8 @@ public class AnimatedSprite : Sprite
 
     public AnimatedSprite() : base()
     {
+        _heightA = 16;
+        _widthA = 16;
         _activeFrame = 0;
         _nbAnimation = 3;
         _nbFrames = 7;

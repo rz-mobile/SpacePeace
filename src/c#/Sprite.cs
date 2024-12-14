@@ -14,8 +14,8 @@ public class Sprite
     [XmlElement("texture")] public string _textureName;
     private Texture2D _texture;
     protected Vector2 Position;
-    [XmlElement("height")]public int Height;
-    [XmlElement("width")]public int Width;
+    [XmlElement("height")]public int Height; //longueur sprite sur l'écran
+    [XmlElement("width")]public int Width; //largeur sprite sur l'écran
     private Color _color = Color.White;
     public Rectangle Rect { get => new Rectangle((int) Position.X - Width/2, (int) Position.Y - Height/2,Width, Height); }
 
@@ -38,8 +38,8 @@ public class Sprite
     public Sprite()
     {
         Position = new Vector2(300, 300);
-        Height = 16;
-        Width = 16;
+        Height = 64;
+        Width = 64;
         _texture = Utils._textures["player"];
         _textureName = "player";
     }

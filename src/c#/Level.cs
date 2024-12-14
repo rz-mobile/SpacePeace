@@ -49,7 +49,7 @@ public class Level
         Enemy _enemy2 = new Enemy("ship2", new Vector2(550, 150), 100,1);
         _enemies.Add(_enemy);
         _enemies.Add(_enemy2);
-        _player = new Player("player", new Vector2(300, 300), 16);
+        _player = new Player();
         
 
 
