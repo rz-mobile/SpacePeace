@@ -49,6 +49,7 @@ public class Game1 : Game
         Utils._textures.Add("map",Content.Load<Texture2D>("map"));
         Utils._textures.Add("ship1",Content.Load<Texture2D>("ship1"));
         Utils._textures.Add("ship2",Content.Load<Texture2D>("ship2"));
+        Utils._textures.Add("player",Content.Load<Texture2D>("player"));
         _gameplay = new Gameplay();
         _mainmenu = new Mainmenu();
     }

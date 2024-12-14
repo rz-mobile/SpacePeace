@@ -31,7 +31,7 @@ public class Player : GameObject
     private Shoot shooter;
     private static System.Timers.Timer temps;
     
-    public Player(string texture, Vector2 position, int size) : base(texture, position, size)
+    public Player(string texture, Vector2 position, int size) : base(texture, position, size, 3,7)
     {
         _speed = new Vector2(0.0f, 0.0f);
         _jumpForce = 5.0f;
@@ -136,7 +136,7 @@ public class Player : GameObject
     {
         if ((_timer % 4)==0)
         {
-            base.Draw(spriteBatch);
+            base.Draw(spriteBatch, new Rectangle()); // TODO
         }
         Texture2D rect = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
         rect.SetData(new Color[] { Color.White });
@@ -173,10 +173,7 @@ public class Player : GameObject
     public bool tomber()
     {
         bool result = false;
-        if (Position.Y >1000)
-        {
-            result = true;
-        }
+        if (Position.Y >1000) { result = true; }
         return result;
     }
 

@@ -46,10 +46,10 @@ public class Level
         */
         _enemies = new List<Enemy>();
         Enemy _enemy = new Enemy("ship1", new Vector2(400, 150), 50,1);
-        Enemy _enemy2 = new Enemy("ship1", new Vector2(550, 150), 100,1);
+        Enemy _enemy2 = new Enemy("ship2", new Vector2(550, 150), 100,1);
         _enemies.Add(_enemy);
         _enemies.Add(_enemy2);
-        _player = new Player("ship2",new Vector2(300,150), 50);
+        _player = new Player("player", new Vector2(300, 300), 16);
         
 
 
@@ -95,7 +95,7 @@ public class Level
 
         foreach (Enemy e in _enemies)
         {
-            if (_collisionMapTest.CheckCollision(e._rect))
+            if (_collisionMapTest.CheckCollision(e.Rect))
             {
                 e.groundReaction();
             }
@@ -107,7 +107,7 @@ public class Level
                 {
                     e.die();
                     _player._speed.Y = -_player._jumpForce;
-                }else if (e.checkCollision(_player._rect))
+                }else if (e.checkCollision(_player.Rect))
                 {
                     _player.damage(e._degats);
                 }

@@ -8,7 +8,7 @@ namespace SpacePeace;
 [XmlInclude(typeof(Player))]
 [XmlRoot("GameObject", Namespace = "http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/gameObjects")]
 [Serializable]
-public abstract class GameObject : Sprite
+public abstract class GameObject : AnimatedSprite
 {
     private Rectangle _hitbox => new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
 
@@ -17,6 +17,10 @@ public abstract class GameObject : Sprite
         Position = position;
     }
 
+    public GameObject(string texture, Vector2 position, int size,int nbAnimation, int nbFrame ):base(texture,position,size,nbAnimation,nbFrame)
+    {
+        Position = position;
+    }
     public GameObject():base()
     {
         Position = new Vector2(300,300);
@@ -44,7 +48,7 @@ public abstract class GameObject : Sprite
     
     public bool checkCollision(Rectangle rect)
     {
-        return _rect.Intersects(rect);
+        return Rect.Intersects(rect);
     }
     public void setOffset(Vector2 offset)
     {

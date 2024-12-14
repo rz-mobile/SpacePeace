@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace SpacePeace;
 [XmlInclude(typeof(GameObject))]
-[XmlRoot("Sprite", Namespace = "http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/animatedSprites")]
+[XmlRoot("Sprite", Namespace = "http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/Sprites")]
 [Serializable]
 
 public class Sprite
@@ -17,7 +17,7 @@ public class Sprite
     [XmlElement("height")]public int Height;
     [XmlElement("width")]public int Width;
     private Color _color = Color.White;
-    public Rectangle _rect { get => new Rectangle((int) Position.X - Width/2, (int) Position.Y - Height/2,Width, Height); }
+    public Rectangle Rect { get => new Rectangle((int) Position.X - Width/2, (int) Position.Y - Height/2,Width, Height); }
 
     public Sprite(string texture, Vector2 position, int size) {
         _textureName = texture;
@@ -37,23 +37,26 @@ public class Sprite
 
     public Sprite()
     {
-        Height = 50;
-        Width = 100;
         Position = new Vector2(300, 300);
-        _texture = Utils._textures["ship2"];
+        Height = 16;
+        Width = 16;
+        _texture = Utils._textures["player"];
+        _textureName = "player";
     }
 
-    public void setPosition(Vector2 position)
+    public void SetPosition(Vector2 position)
     {
         Position = position;
     }
-    
-    public void Update(GameTime gameTime) {
-        
+
+    public Texture2D GetTexture()
+    {
+        return _texture;
     }
+    
     public void Draw(SpriteBatch spriteBatch) {
         spriteBatch.Draw(   _texture, // Texture2D,
-            _rect, // Rectangle destinationRectangle,
+            Rect, // Rectangle destinationRectangle,
             null, // Nullable<Rectangle> sourceRectangle,
             _color); // float layerDepth
     }
@@ -61,9 +64,10 @@ public class Sprite
     public void Draw(SpriteBatch spriteBatch, Rectangle src)
     {
         spriteBatch.Draw(   _texture, // Texture2D,
-            _rect, // Rectangle destinationRectangle,
+            Rect, // Rectangle destinationRectangle,
             src, // Nullable<Rectangle> sourceRectangle,
             _color ); // float layerDepth
     }
 
+    
 }

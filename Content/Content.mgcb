@@ -25,7 +25,7 @@
 /processorParam:TextureFormat=Color
 /build:alienworld_tileset.png;map.png
 
-#begin Astronaut-Sheet.png
+#begin player.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -35,7 +35,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Astronaut-Sheet.png;player.png
+/build:player.png
 
 #begin BG.png
 /importer:TextureImporter
