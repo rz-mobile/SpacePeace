@@ -39,6 +39,7 @@ public abstract class GameObject : AnimatedSprite
     
 
     public void Update(GameTime gameTime){
+        base.Update(gameTime);
     }
 
     public void Draw(SpriteBatch spriteBatch)

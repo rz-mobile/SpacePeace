@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -50,7 +49,7 @@ public class AnimatedSprite : Sprite
         if(Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.Left))
         {
             _counter++;
-            if(_counter > 29)
+            if(_counter > 10)
             {
                 _counter = 0;
                 _activeFrame++;
