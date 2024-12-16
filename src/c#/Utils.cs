@@ -17,4 +17,21 @@ public static class Utils
     public static bool _isPlaying;
     public static bool _leftMousePressed;
 
+    public static int screenWidth
+    {
+        get
+        {
+            return _graphics.PreferredBackBufferWidth = _graphics.GraphicsDevice.Viewport.Width;
+        }
+    }
+    
+    
+    public static int screenHeight
+    {
+        get
+        {
+            return _graphics.PreferredBackBufferHeight = _graphics.GraphicsDevice.Viewport.Height;
+        }
+    }
+
 }

@@ -13,6 +13,7 @@ public class Player : GameObject
     int _timer = 0;
     public bool _surSol = false;
     bool _tirPresse = false;
+    public Vector2 _positionBase { get; init; }
     public Vector2 _speed;
     private float _gravity;
     private bool _isJumping = false;
@@ -23,7 +24,25 @@ public class Player : GameObject
     public Rectangle _topHitbox{get => new Rectangle((int)_position.X-(_size/2)+6, (int)_position.Y-(_size/2), _size-12, 4);}
     public bool _rWall = false;
     public bool _lWall = false;
-    [XmlElement("ptVie")] public int _ptVie;
+    private int ptVie;
+    [XmlElement("ptVie")]
+    
+    public int _ptVie
+    {
+        get => ptVie;
+        set
+        {
+            if (value < 0)
+            {
+                ptVie = 0;
+            }
+            else
+            {
+                ptVie = value;
+            }
+        }
+    }
+
     private int _maxTimer = 200;
     private bool _unvulnerable = false;
     public int _vies;
@@ -33,6 +52,7 @@ public class Player : GameObject
     
     public Player(string texture, Vector2 position, int size) : base(texture, position, size)
     {
+        _positionBase = position;
         _speed = new Vector2(0.0f, 0.0f);
         _jumpForce = 5.0f;
         _gravity = 0.1f;
@@ -44,6 +64,11 @@ public class Player : GameObject
     {
         _speed = new Vector2(0.0f, 0.0f);
         _gravity = 0.1f;
+    }
+
+    public void setGravity(float gravity)
+    {
+        _gravity = gravity;
     }
     public void groundReaction()
     {
@@ -58,8 +83,7 @@ public class Player : GameObject
             tir.setOffset(offset);
         }
     }
-    public void Initialize(){}
-    
+
     public new void Update(GameTime gameTime)
     {
         base.Update(gameTime);
@@ -117,11 +141,11 @@ public class Player : GameObject
         
         if (tomber())
         {
-            if (_ptVie >=0)
+            _ptVie -= 2;
+            if (_ptVie >0)
             {
-                _ptVie -= 2;
                 _speed = new Vector2(0, 0);
-                _position = new Vector2(100, 100);
+                _position = _positionBase;
             }
 
         }

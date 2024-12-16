@@ -17,7 +17,7 @@ public class Tile
     public Rectangle _bounds;
     private Sprite _sprite;
 
-    public Tile(int x, int y, int value,int size,string spriteSheet)
+    public Tile(int x, int y, int value,int size)
     {
         int id =  value;
         _position = new Vector2(x, y);
@@ -27,7 +27,7 @@ public class Tile
         //_bounds.Y = id;
         _bounds.Width = 16;
         _bounds.Height = 16;
-        _sprite = new Sprite(spriteSheet,_position,size);
+        _sprite = new Sprite("mapForest",_position,size);
         
     }
     public void Initialize() {

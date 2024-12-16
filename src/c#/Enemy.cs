@@ -46,7 +46,10 @@ public class Enemy : GameObject
     {
         _position = _position + offset;
     }*/
-
+    public void setGravity(float gravity)
+    {
+        _gravity = gravity;
+    }
 
     public bool checkTopCollision(Rectangle rect)
     {

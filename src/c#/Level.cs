@@ -7,6 +7,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace SpacePeace;
 
@@ -18,6 +19,9 @@ public class Level
     private CollisionMap _collisionMap;
     private List<Enemy> _enemies;
     private int _levelSize;
+    private EndOfLevel _end;
+    private string _path;
+    public bool _complete { get;private set; }
     
     private XmlDocument _doc;
     private XmlNode _root;
@@ -31,6 +35,8 @@ public class Level
     private List<Tile> _tiles;
     public Level(String path ,GraphicsDevice graphicsDevice)
     {
+        _path = path;
+        _complete = false;
         _levelSize = 30;
         _camera = new Camera(new Vector2(0.0f, 0.0f));
         
@@ -38,13 +44,11 @@ public class Level
         _tiles = new List<Tile>();
         
         _doc = new XmlDocument();
-        string currentLevelForeGround = xmlMap(path,"AvantPlan");
-        Console.WriteLine(xmlSpriteSHeet(path,"AvantPlan"));
-        _avantPlan = new Tilemap(currentLevelForeGround,_levelSize,xmlSpriteSHeet(path,"AvantPlan"),368);
-        string currentLevelBackGround = xmlMap(path,"ArrierePlan");
-        Console.WriteLine(xmlSpriteSHeet(path,"ArrierePlan"));
-        _arrierePlan = new Tilemap(currentLevelBackGround,_levelSize,xmlSpriteSHeet(path,"ArrierePlan"),0);
-        string currentLevelCollisions = xmlMap(path,"Collision");
+        string currentLevelForeGround = xmlMap("AvantPlan");
+        _avantPlan = new Tilemap(currentLevelForeGround,_levelSize);
+        string currentLevelBackGround = xmlMap("ArrierePlan");
+        _arrierePlan = new Tilemap(currentLevelBackGround,_levelSize);
+        string currentLevelCollisions = xmlMap("Collision");
         _collisionMap = new CollisionMap(currentLevelCollisions,_texture,graphicsDevice,_levelSize);
         
         /*using (TextReader reader = new StreamReader("../../../src/xml/Player.xml"))
@@ -54,14 +58,18 @@ public class Level
         }*/
         
         _enemies = new List<Enemy>();
-        List<Vector2> positionsEnnemis = positionEnnemis(path);
+        List<Vector2> positionsEnnemis = positionEnnemis();
         foreach (Vector2 position in positionsEnnemis)
         {
-            Enemy _enemy = new Enemy("ship1", new Vector2(0, 0), 60,1);
-            _enemy.setPosition(position);
-            _enemies.Add(_enemy);
+            Enemy enemy = new Enemy("ship1", new Vector2(0, 0), 60,1);
+            enemy.setPosition(new Vector2(position.X*levelWidthCoef(),position.Y*levelHeightCoef()));
+            enemy.setGravity(getGravity());
+            _enemies.Add(enemy);
         }
-        _player = new Player("ship2",new Vector2(300,150), 50);
+        _player = new Player("ship2",new Vector2(Utils.screenWidth/2,Utils.screenWidth/8), 50);
+        _player.setGravity(getGravity());
+        _end = new EndOfLevel();
+        _end.setPosition(new Vector2(positionFinDeNiveau().X*levelWidthCoef(),positionFinDeNiveau().Y*levelHeightCoef()));
         
 
 
@@ -76,6 +84,7 @@ public class Level
             _avantPlan.setOffset(offset);
             _arrierePlan.setOffset(offset);
             _collisionMap.setOffset(offset);
+            _end.setOffset(offset);
             foreach (Enemy e in _enemies)
             {
                 e.setOffset(offset);
@@ -128,6 +137,7 @@ public class Level
         }
 
         _player.Update(gameTime);
+        _complete = _end.checkCollision(_player._rect);
         _avantPlan.Update(gameTime);
         _arrierePlan.Update(gameTime);
 
@@ -136,6 +146,7 @@ public class Level
     public void Draw(SpriteBatch spriteBatch)
     {
         _arrierePlan.Draw(spriteBatch);
+        _end.Draw(spriteBatch);
         foreach (Enemy e in _enemies)
         {
             if (!e._dead)
@@ -151,10 +162,10 @@ public class Level
     }
 
     
-    public String xmlMap(string xmlPath,string name)
+    public String xmlMap(string name)
     {
         String map = "";
-        _doc.Load(xmlPath);
+        _doc.Load(_path);
         XmlNode node = _doc.SelectSingleNode("//data[../@name=\""+name+"\"]");
        if (node != null)
        {
@@ -166,42 +177,10 @@ public class Level
        }
        return map;
     }
-    
-    public string xmlSpriteSHeet(string xmlPath,string name)
-    {
-        String map = "";
-        _doc.Load(xmlPath);
-        XmlNode node = _doc.SelectSingleNode("//property[../../@name=\""+name+"\" and @name='spriteSheet']");
-        if (node != null)
-        {
-            map += node.Attributes["value"].Value;
-        }
-        else
-        {
-            Console.WriteLine("échec de la création du level on ne trouve pas 'data'.");
-        }
-        return map;
-    }
-    
-    public int xmlDebutSheet(string xmlPath,string name)
-    {
-        int map = 0;
-        _doc.Load(xmlPath);
-        XmlNode node = _doc.SelectSingleNode("//property[../../@name=\""+name+"\" and @name='debutSheet']");
-        if (node != null)
-        {
-            map += Int32.Parse(node.Attributes["value"].Value);
-        }
-        else
-        {
-            Console.WriteLine("échec de la création du level on ne trouve pas 'data'.");
-        }
-        return map;
-    }
 
-    public List<Vector2> positionEnnemis(string xmlPath)
+    public List<Vector2> positionEnnemis()
     {
-        _doc.Load(xmlPath);
+        _doc.Load(_path);
         XmlNodeList objets = _doc.DocumentElement.SelectNodes("//object[@name='Enemy']");
         List<Vector2> positions = new List<Vector2>();
         foreach (XmlNode objet in objets)
@@ -210,5 +189,33 @@ public class Level
             positions.Add(new Vector2(float.Parse(objet.Attributes["x"].Value,CultureInfo.InvariantCulture), float.Parse(objet.Attributes["y"].Value,CultureInfo.InvariantCulture)));
         }
         return positions;
+    }
+    
+    public Vector2 positionFinDeNiveau()
+    {
+        _doc.Load(_path);
+        XmlNode objet = _doc.DocumentElement.SelectSingleNode("//object[@name='EndLevel']");
+        Vector2 value = new Vector2(float.Parse(objet.Attributes["x"].Value,CultureInfo.InvariantCulture), float.Parse(objet.Attributes["y"].Value,CultureInfo.InvariantCulture));
+        return value;
+    }
+
+    public float getGravity()
+    {
+        _doc.Load(_path);
+        XmlNode g = _doc.DocumentElement.SelectSingleNode("//property[@name='Gravity']");
+        return float.Parse(g.Attributes["value"].Value,CultureInfo.InvariantCulture);
+    }
+
+    public float levelWidthCoef()
+    {
+        _doc.Load(_path);
+        XmlNode w = _doc.DocumentElement.SelectSingleNode("//map");
+        return (float.Parse(w.Attributes["width"].Value)*_levelSize)/Utils.screenWidth;
+    }
+    public float levelHeightCoef()
+    {
+        _doc.Load(_path);
+        XmlNode h = _doc.DocumentElement.SelectSingleNode("//map");
+        return (float.Parse(h.Attributes["height"].Value)*_levelSize)/Utils.screenHeight;
     }
 }

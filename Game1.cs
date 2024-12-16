@@ -15,7 +15,7 @@ public class Game1 : Game
     private Sprite _ship;
     private Tile _testTile;
     private Texture2D _tileTest;
-
+    private bool _levelBegan = false;
     private int _wTest = 500;
 
     private int _hTest = 500;
@@ -60,6 +60,7 @@ public class Game1 : Game
         }
         if (!_isPlaying)
         {
+            _levelBegan = false;
             _mainmenu.Update(gameTime);
             if (_mainmenu.StartGame){
                 _isPlaying = true;
@@ -70,6 +71,11 @@ public class Game1 : Game
         }
         else
         {
+            if (!_levelBegan)
+            {
+                _gameplay = new Gameplay();
+                _levelBegan = true;
+            }
             _gameplay.Update(gameTime);
         }
         

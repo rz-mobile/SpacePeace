@@ -36,7 +36,11 @@ public class Sprite
     {
         _position = position;
     }
-    
+
+    public Vector2 getPosition()
+    {
+        return _position;
+    }
     public void Update(GameTime gameTime) {
         
     }

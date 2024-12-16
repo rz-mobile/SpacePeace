@@ -17,11 +17,11 @@ public abstract class GameObject : Sprite
         _position = position;
     }
 
-    public void setPosition(Vector2 position)
+    /*public void setPosition(Vector2 position)
     {
         _position = position;
         Console.WriteLine(_position);
-    }
+    }*/
 
     public GameObject():base()
     {
