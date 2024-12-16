@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+
 namespace SpacePeace;
 [XmlInclude(typeof(GameObject))]
 [XmlRoot("Sprite", Namespace = "http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/Sprites")]
@@ -11,6 +12,7 @@ namespace SpacePeace;
 
 public class Sprite
 {
+    
     [XmlElement("texture")] public string _textureName;
     private Texture2D _texture;
     protected Vector2 Position;
@@ -55,18 +57,12 @@ public class Sprite
     }
     
     public void Draw(SpriteBatch spriteBatch) {
-        spriteBatch.Draw(   _texture, // Texture2D,
-            Rect, // Rectangle destinationRectangle,
-            null, // Nullable<Rectangle> sourceRectangle,
-            _color); // float layerDepth
+        spriteBatch.Draw(_texture,Rect,null,_color);
     }
 
-    public void Draw(SpriteBatch spriteBatch, Rectangle src)
+    public void Draw(SpriteBatch spriteBatch, Rectangle src, SpriteEffects effects)
     {
-        spriteBatch.Draw(   _texture, // Texture2D,
-            Rect, // Rectangle destinationRectangle,
-            src, // Nullable<Rectangle> sourceRectangle,
-            _color ); // float layerDepth
+        spriteBatch.Draw(_texture,Rect,src,_color,0.0f,Vector2.Zero,effects,0 );
     }
 
     

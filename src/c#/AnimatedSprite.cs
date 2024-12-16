@@ -63,7 +63,7 @@ public class AnimatedSprite : Sprite
         _nbAnimation = nbAnimation;
         _nbFrames = nbFrames;
         _counter++;
-        if(_counter > (80/(nbAnimation+1)))
+        if(_counter > 20)
         {
             _counter = 0;
             _activeFrame++;
@@ -89,13 +89,10 @@ public class AnimatedSprite : Sprite
     }
     public void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw( GetTexture(), // Texture2D,
-            Rect, // Rectangle destinationRectangle,
-            null, // Nullable<Rectangle> sourceRectangle,
-            _color); // float layerDepth
+        spriteBatch.Draw( GetTexture(),Rect,null,_color);
     }
-    public void Draw(SpriteBatch spriteBatch, Rectangle rec)
+    public void Draw(SpriteBatch spriteBatch, Rectangle rec, SpriteEffects flip)
     {
-        base.Draw(spriteBatch, Rectsrc);
+        base.Draw(spriteBatch, Rectsrc, flip);
     }
 }

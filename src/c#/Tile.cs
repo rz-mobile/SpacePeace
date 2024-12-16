@@ -45,6 +45,6 @@ public class Tile
     }
     public void Draw(SpriteBatch spriteBatch)
     {
-        _sprite.Draw(spriteBatch,_bounds);
+        _sprite.Draw(spriteBatch,_bounds, 0);
     }
 }

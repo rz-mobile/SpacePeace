@@ -31,6 +31,7 @@ public class Player : GameObject
     private List<Shoot> tirList = new List<Shoot>();
     private Shoot shooter;
     private static System.Timers.Timer temps;
+    private SpriteEffects _flip;
     
     public Player(string texture, Vector2 position, int size) : base(texture, position, size, 3,7)
     {
@@ -127,9 +128,19 @@ public class Player : GameObject
             }
 
         }
-        if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.Left))
+
+        if (Keyboard.GetState().IsKeyDown(Keys.Right))
+        {
+            base.Update(gameTime, 1, tabFrame[1]);
+            if (_flip == SpriteEffects.FlipHorizontally)
+            {
+                _flip = SpriteEffects.None;
+            }
+                
+        }else if (Keyboard.GetState().IsKeyDown(Keys.Left))
         {
             base.Update(gameTime, 1,tabFrame[1]);
+            _flip = SpriteEffects.FlipHorizontally;
         }else if (Keyboard.GetState().IsKeyDown(Keys.Up))
         {
             base.Update(gameTime, 2,tabFrame[2]);
@@ -148,7 +159,7 @@ public class Player : GameObject
     {
         if ((_timer % 4)==0)
         {
-            base.Draw(spriteBatch, new Rectangle()); // TODO
+            base.Draw(spriteBatch, new Rectangle(), _flip);
         }
         Texture2D rect = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
         rect.SetData(new Color[] { Color.White });
