@@ -11,7 +11,8 @@
     <complexType name="Sprite">
         <sequence>
             <element name="texture" type="string"/>
-            <element name="size" type="int"/>
+            <element name="height" type="int"/>
+            <element name="wigth" type="int"/>
         </sequence>
     </complexType>
     
