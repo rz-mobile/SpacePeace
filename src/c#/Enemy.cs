@@ -12,12 +12,12 @@ public class Enemy : GameObject
 {
     private Vector2 _speed;
     private float _gravity;
-    private int _ptVie;
     private bool _surSol = false;
     public bool _dead = false;
     public Rectangle _topHitbox{get => new Rectangle((int)_position.X-(_width/2)+6, (int)_position.Y-(_height/2), _width-12, 4);}
     [XmlAttribute("degats")] public int _degats { init; get; }
-
+    [XmlAttribute("Pv")] public int _ptVie;
+    
     public Enemy(string texture, Vector2 position, int size,int degats) : base(texture, position, size)
     {
         _degats = degats;
@@ -27,6 +27,13 @@ public class Enemy : GameObject
         
     }
 
+    public Enemy() : base()
+    {
+        _speed = new Vector2(0.0f, 0.0f);
+        _gravity = 0.1f;
+    }
+    
+    
     public void spawn(Vector2 position)
     {
         _dead = false;

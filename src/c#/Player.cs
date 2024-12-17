@@ -17,7 +17,7 @@ public class Player : GameObject
     public Vector2 _speed;
     private float _gravity;
     private bool _isJumping = false;
-    [XmlElement("jumpForce")] public float _jumpForce{get;private set;}
+    [XmlElement("jumpForce")] public float _jumpForce;
     public Rectangle _bottomHitbox {get => new Rectangle((int)_position.X-(_width/2)+6, (int)_position.Y+(_height/2), _width-12, 4);}
     public Rectangle _rightHitbox{get => new Rectangle((int)_position.X+(_width/2), (int)_position.Y-(_height/2)+3, 4, _height-6);}
     public Rectangle _leftHitbox{get => new Rectangle((int)_position.X - (_width/2), (int)_position.Y-(_height/2)+3, 4, _height-6);}
