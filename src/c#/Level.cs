@@ -45,8 +45,8 @@ public class Level
         }
         */
         _enemies = new List<Enemy>();
-        Enemy _enemy = new Enemy("ship1", new Vector2(400, 150), 50,1);
-        Enemy _enemy2 = new Enemy("ship2", new Vector2(550, 150), 100,1);
+        Enemy _enemy = new Enemy("player", new Vector2(400, 150), 50,1);
+        Enemy _enemy2 = new Enemy("player", new Vector2(550, 150), 100,1);
         _enemies.Add(_enemy);
         _enemies.Add(_enemy2);
         _player = new Player();

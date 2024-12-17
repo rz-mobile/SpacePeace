@@ -159,14 +159,14 @@ public class Player : GameObject
     {
         if ((_timer % 4)==0)
         {
-            base.Draw(spriteBatch, new Rectangle(), _flip);
+            base.Draw(spriteBatch, _flip);
         }
-        Texture2D rect = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
+        /*Texture2D rect = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
         rect.SetData(new Color[] { Color.White });
         spriteBatch.Draw(rect,_leftHitbox, Color.Yellow);
         spriteBatch.Draw(rect,_rightHitbox, Color.Blue);
         spriteBatch.Draw(rect,_bottomHitbox, Color.Red);
-        spriteBatch.Draw(rect,_topHitbox, Color.Green);
+        spriteBatch.Draw(rect,_topHitbox, Color.Green);*/
         foreach (var tir in tirList)
         {
             tir.Draw(spriteBatch);

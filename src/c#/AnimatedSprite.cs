@@ -20,6 +20,8 @@ public class AnimatedSprite : Sprite
 
     public AnimatedSprite(string spritesheet, Vector2 position, int size,int maxAnimation, int maxFrame ) : base(spritesheet, position, size)
     {
+        _heightA = 16;
+        _widthA = 16;
         _activeFrame = 0;
         _maxFrames = maxFrame;
         _maxAnimation = maxAnimation-1;
@@ -91,7 +93,7 @@ public class AnimatedSprite : Sprite
     {
         spriteBatch.Draw( GetTexture(),Rect,null,_color);
     }
-    public void Draw(SpriteBatch spriteBatch, Rectangle rec, SpriteEffects flip)
+    public void Draw(SpriteBatch spriteBatch, SpriteEffects flip)
     {
         base.Draw(spriteBatch, Rectsrc, flip);
     }

@@ -42,10 +42,18 @@ public abstract class GameObject : AnimatedSprite
         base.Update(gameTime);
     }
 
+    /*public void Update(GameTime gameTime, int nbAnimation, int nbFrames){
+        base.Update(gameTime,nbAnimation,nbFrames);
+    }*/
     public void Draw(SpriteBatch spriteBatch)
     {
         base.Draw(spriteBatch);
     }
+    
+    /*public void Draw(SpriteBatch spriteBatch, SpriteEffects flip)
+    {
+        base.Draw(spriteBatch,flip);
+    }*/
     
     public bool checkCollision(Rectangle rect)
     {
