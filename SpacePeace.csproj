@@ -18,6 +18,7 @@
         <None Remove="Content\fond_level.png" />
         <None Remove="Content\bin\DesktopGL\fond_level.xnb" />
         <None Remove="Content\obj\DesktopGL\fond_level.mgcontent" />
+        <None Remove="Content\espace.png" />
     </ItemGroup>
     <ItemGroup>
         <EmbeddedResource Include="Icon.ico">

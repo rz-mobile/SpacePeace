@@ -115,11 +115,11 @@ public class Player : GameObject
         }
         
         
-        if (Keyboard.GetState().IsKeyDown(Keys.Down) )
+        if (Keyboard.GetState().IsKeyDown(Keys.Space) )
         {
             if (!_tirPresse)
             {
-                tirList.Add(new Shoot("ship1", Position, 50));
+                tirList.Add(new Shoot("Missile", Position, 30));
                 tire();
                 _tirPresse = true;
             }
@@ -156,10 +156,7 @@ public class Player : GameObject
         if (Keyboard.GetState().IsKeyDown(Keys.Right))
         {
             base.Update(gameTime, 1, tabFrame[1]);
-            if (_flip == SpriteEffects.FlipHorizontally)
-            {
-                _flip = SpriteEffects.None;
-            }
+            _flip = SpriteEffects.None;
                 
         }else if (Keyboard.GetState().IsKeyDown(Keys.Left))
         {
@@ -230,7 +227,7 @@ public class Player : GameObject
         temps.Elapsed += (sender, e) =>
         {
             // Action à exécuter après 300 ms
-            Texture2D shipTexture = Utils._content.Load<Texture2D>("ship1");
+            Texture2D shipTexture = Utils._content.Load<Texture2D>("Missile");
             //float pos_X = Position.X;
             //float pos_Y = Position.Y;
 

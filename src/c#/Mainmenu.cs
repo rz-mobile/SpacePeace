@@ -21,6 +21,8 @@ public class Mainmenu
     Button _playButton;
     Button _exitButton;
     Button _tutoButton;
+    Sprite _echap;
+    Sprite _espace;
     
     // touche pour le tuto
     private Sprite _fondTuto;
@@ -51,13 +53,15 @@ public class Mainmenu
         _fondTuto = new Sprite("BG", new Vector2(400,400), 1000, 1000);
         _infoTuto = new Sprite("unnamed1", new Vector2(700, 50), 50, 50);
         _cloudPause = new Sprite("Cloud_02", new Vector2(400,250), 300, 380);
-        //_arrowDown = new Sprite("arrowDown", new Vector2(402,230), 70, 70);
         _arrowRight = new Sprite("unnamed", new Vector2(482,180), 70, 70);
         _arrowUp = new Sprite("arrowUp", new Vector2(400,180), 70, 70);
         _arrowLeft = new Sprite("unnamed2", new Vector2(322,180), 70, 70);
         
         _arrow1 =  new Sprite("arrow", new Vector2(315,200), 70, 70);
         _arrow2 = new Sprite("arrow2", new Vector2(322,230), 70, 70);
+        _echap =  new Sprite("button_echap", new Vector2(330,270), 50, 75);
+        _espace = new Sprite("button_espace", new Vector2(330,315), 50, 75);
+        
     }
 
     public void Update(GameTime gameTime){
@@ -94,11 +98,14 @@ public class Mainmenu
             _arrowUp.Draw(spriteBatch);
             //_arrow1.Draw(spriteBatch);
             //_arrow2.Draw(spriteBatch);
+            _echap.Draw(spriteBatch);
+            _espace.Draw(spriteBatch);
             spriteBatch.DrawString(_font, "Avancer", new Vector2(450,215), Color.White);
             spriteBatch.DrawString(_font, "Reculer", new Vector2(290,215), Color.White);
             spriteBatch.DrawString(_font, "Sauter", new Vector2(380,215), Color.White);
-            spriteBatch.DrawString(_font, "Tirer", new Vector2(380,270), Color.White);
+            spriteBatch.DrawString(_font, "Tirer", new Vector2(380,260), Color.White);
             spriteBatch.DrawString(_font, "Mettre en Pause", new Vector2(380,300), Color.White);
+            
         }
         
     }
