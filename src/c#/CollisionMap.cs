@@ -13,13 +13,15 @@ public class CollisionMap
     private Texture2D _rectangleTexture;
     private List<string[]> _map;
     public bool done = false;
+    private int _size;
     
 
     private List<Rectangle> _rectangles;
     private GraphicsDevice _graphics;
 
-    public CollisionMap(string _mmap,Texture2D rectangleTexture,GraphicsDevice graphicsDevice)
+    public CollisionMap(string _mmap,Texture2D rectangleTexture,GraphicsDevice graphicsDevice,int size)
     {
+        _size = size;
         _graphics = graphicsDevice;
         _rectangles = new List<Rectangle>();
         _map = new List<string[]>();
@@ -35,8 +37,7 @@ public class CollisionMap
             {
                 if (_map[i][j] != "0" && _map[i][j] != ""  && _map[i][j] != "\t"  && _map[i][j] != "\n" && _map[i][j] != "'" && _map[i][j] != null)
                 {
-                    int size = 60;
-                    _rectangles.Add(new Rectangle((j*size)-(size/2),(i*size)-(size/2),size,size));
+                    _rectangles.Add(new Rectangle((j*_size)-(_size/2),(i*_size)-(_size/2),_size,_size));
                 }
             }
         }

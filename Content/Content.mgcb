@@ -83,7 +83,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:alienworld_tileset.png;map.png
+/build:alienworld_tileset.png;mapForest.png
 
 #begin arrow.png
 /importer:TextureImporter

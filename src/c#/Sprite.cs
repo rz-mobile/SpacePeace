@@ -40,14 +40,18 @@ public class Sprite
         _height = 50;
         _width = 100;
         _position = new Vector2(300, 300);
-        _texture = Utils._textures["ship2"];
+        _texture = Utils._content.Load<Texture2D>(_textureName);
     }
 
     public void setPosition(Vector2 position)
     {
         _position = position;
     }
-    
+
+    public Vector2 getPosition()
+    {
+        return _position;
+    }
     public void Update(GameTime gameTime) {
         
     }

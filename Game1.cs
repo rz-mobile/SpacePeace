@@ -15,7 +15,7 @@ public class Game1 : Game
     private Sprite _ship;
     private Tile _testTile;
     private Texture2D _tileTest;
-
+    private bool _levelBegan = false;
     private int _wTest = 500;
 
     private int _hTest = 500;
@@ -28,7 +28,7 @@ public class Game1 : Game
         Utils._graphics = _graphics;
         Utils._content = Content;
         Utils._content.RootDirectory = "Content";
-        Utils._textures = new Dictionary<string, Texture2D>();
+        //Utils._textures = new Dictionary<string, Texture2D>();
         IsMouseVisible = true;
     }
 
@@ -46,16 +46,21 @@ public class Game1 : Game
     }
 
     protected override void LoadContent() {
-        Utils._textures.Add("map",Content.Load<Texture2D>("map"));
+        /*Utils._textures.Add("map",Content.Load<Texture2D>("map"));
         Utils._textures.Add("ship1",Content.Load<Texture2D>("ship1"));
-        Utils._textures.Add("ship2",Content.Load<Texture2D>("ship2"));
+        Utils._textures.Add("ship2",Content.Load<Texture2D>("ship2"));*/
         _gameplay = new Gameplay();
         _mainmenu = new Mainmenu();
     }
 
     protected override void Update(GameTime gameTime) {
+        if (Mouse.GetState().LeftButton != ButtonState.Pressed)
+        {
+            Utils._leftMousePressed = false;
+        }
         if (!_isPlaying)
         {
+            _levelBegan = false;
             _mainmenu.Update(gameTime);
             if (_mainmenu.StartGame){
                 _isPlaying = true;
@@ -66,6 +71,11 @@ public class Game1 : Game
         }
         else
         {
+            if (!_levelBegan)
+            {
+                _gameplay = new Gameplay();
+                _levelBegan = true;
+            }
             _gameplay.Update(gameTime);
         }
         

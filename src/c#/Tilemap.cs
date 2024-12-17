@@ -12,9 +12,11 @@ public class Tilemap
     private List<string[]> _map;
 
     private List<Tile> _tiles;
+    private int _size;
 
-    public Tilemap( string map)
+    public Tilemap( string map,int size )
     {
+        _size = size;
         _tiles = new List<Tile>();
         _map = new List<string[]>();
         string[] tmpMap = map.Split('\n');
@@ -29,10 +31,8 @@ public class Tilemap
             {
                 if (_map[i][j] != "0" && _map[i][j] != ""  && _map[i][j] != "\t"  && _map[i][j] != "\n" && _map[i][j] != "'" && _map[i][j] != null)
                 {
-                    int size = 60;
-                   //_tiles.Add(new Tile(j*size,i*size,_map[i][j],size));
-                    //_tiles.Add(new Tile(j,i,_map[i][j],_texture));
-                    //Console.WriteLine(i +":" +j);
+                    int value = Int32.Parse(_map[i][j]);
+                    _tiles.Add(new Tile(j*_size,i*_size,value,_size));
                 }
             }
         }

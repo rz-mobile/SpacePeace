@@ -24,7 +24,7 @@ public class UI
         {
             if (_quitButton.Clicked())
             {
-                Utils._currentGame.Exit();
+                Utils._isPlaying = false;
             }
 
             if (_resumeButton.Clicked())
