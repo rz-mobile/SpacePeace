@@ -42,7 +42,7 @@ public class Game1 : Game
             var xmlC = new XmlSerializer(typeof(Sprite));
             _ship = (Sprite)xmlC.Deserialize(reader);
         }*/
-        XMLUtils.XslTransform("../../../data/xml/GameOne.xml","../../../data/xslt/attributs_du_jeu.xslt","../../../data/html/attributs_du_jeu.html" );
+        //XMLUtils.XslTransform("../../../data/xml/GameOne.xml","../../../data/xslt/attributs_du_jeu.xslt","../../../data/html/attributs_du_jeu.html" );
 
     }
 

@@ -15,11 +15,11 @@ public class Enemy : GameObject
     private float _gravity;
     private bool _surSol = false;
     public bool _dead = false;
-    public Rectangle _topHitbox{get => new Rectangle((int)_position.X-(_width/2)+6, (int)_position.Y-(_height/2), _width-12, 4);}
+    public Rectangle _topHitbox{get => new Rectangle((int)Position.X-(Width/2)+6, (int)Position.Y-(Height/2), Width-12, 4);}
     [XmlAttribute("degats")] public int _degats { init; get; }
     [XmlAttribute("Pv")] public int _ptVie;
     
-    public Enemy(string texture, Vector2 position, int size,int degats) : base(texture, position, size)
+    public Enemy(string texture, Vector2 position, int size,int degats) : base(texture, position, size, 0, 2)
     {
         _degats = degats;
         _speed = new Vector2(0.0f, 0.0f);
@@ -50,6 +50,8 @@ public class Enemy : GameObject
         //_surSol = true;
         _speed = new Vector2(_speed.X,  - _gravity);
     }
+
+
     /*public void setOffset(Vector2 offset)
     {
         _position = _position + offset;

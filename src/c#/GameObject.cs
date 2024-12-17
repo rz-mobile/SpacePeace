@@ -55,6 +55,11 @@ public abstract class GameObject : AnimatedSprite
         base.Draw(spriteBatch,flip);
     }*/
     
+    public void setPosition(Vector2 position)
+    {
+        Position = position;
+    }
+    
     public bool checkCollision(Rectangle rect)
     {
         return Rect.Intersects(rect);

@@ -76,7 +76,7 @@ public class Level
             enemy.setGravity(getGravity());
             _enemies.Add(enemy);
         }
-        _player = new Player("ship2",new Vector2(Utils.screenWidth/2,Utils.screenWidth/8), 50);
+        _player = new Player("player",new Vector2(Utils.screenWidth/2,Utils.screenWidth/8), 50);
         _player.setGravity(getGravity());
         _end = new EndOfLevel();
         _end.setPosition(new Vector2(positionFinDeNiveau().X*levelWidthCoef(),positionFinDeNiveau().Y*levelHeightCoef()));
@@ -156,7 +156,7 @@ public class Level
         }
 
         _player.Update(gameTime);
-        _complete = _player.checkCollision(_end._rect);
+        _complete = _player.checkCollision(_end.Rect);
         _avantPlan.Update(gameTime);
         _arrierePlan.Update(gameTime);
 
