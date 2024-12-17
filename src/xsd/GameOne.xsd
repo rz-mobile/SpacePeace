@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:sp="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/animatedSprites"
+        xmlns:en="http://www.univ-grenoble-alpes.fr/Enemy"
+        xmlns:pl="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/gameObjects"
+        xmlns:go="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/GameOne"
+        targetNamespace="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/GameOne"
+        elementFormDefault="qualified">
+    <import namespace="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/gameObjects" schemaLocation="GameObjects.xsd"/>
+    <import namespace="http://www.univ-grenoble-alpes.fr/Enemy" schemaLocation="Enemy.xsd"/>
+    <import namespace="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/animatedSprites" schemaLocation="Sprite.xsd"/>
+
+    <element name="GameOne" type="go:GameOne"/>
+    
+    <complexType name="GameOne">
+        <sequence>
+            <element name="Player" type="pl:Player"/>
+            <element name="Enemy" type="en:Enemy"/>
+            <element name="Sprite" type="sp:Sprite"/>
+        </sequence>
+    </complexType>
+
+</schema>

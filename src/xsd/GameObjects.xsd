@@ -4,6 +4,8 @@
         xmlns:go = "http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/gameObjects"
         targetNamespace="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/gameObjects"
         elementFormDefault="qualified">
+    <import namespace="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/animatedSprites" schemaLocation="Sprite.xsd"/>
+
     <element name="Player" type="go:Player"/>
     <element name="GameObject" type="go:GameObject"/>
     
