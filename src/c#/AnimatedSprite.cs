@@ -97,4 +97,8 @@ public class AnimatedSprite : Sprite
     {
         base.Draw(spriteBatch, Rectsrc, flip);
     }
+    public void Draw(SpriteBatch spriteBatch, SpriteEffects flip, Color color)
+    {
+        base.Draw(spriteBatch, Rectsrc, flip, color);
+    }
 }

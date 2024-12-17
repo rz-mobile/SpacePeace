@@ -70,5 +70,9 @@ public class Sprite
         spriteBatch.Draw(_texture,Rect,src,_color,0.0f,Vector2.Zero,effects,0 );
     }
 
-    
+    public void Draw(SpriteBatch spriteBatch, Rectangle src, SpriteEffects effects, Color color )
+    {
+        spriteBatch.Draw(_texture,Rect,src,color,0.0f,Vector2.Zero,effects,0 );
+    }
+
 }

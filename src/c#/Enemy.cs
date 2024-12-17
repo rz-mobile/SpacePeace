@@ -79,7 +79,7 @@ public class Enemy : GameObject
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        base.Draw(spriteBatch, SpriteEffects.FlipHorizontally);
+        base.Draw(spriteBatch, SpriteEffects.FlipHorizontally, Color.Red);
         Texture2D rect = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
         rect.SetData(new Color[] { Color.White });
         spriteBatch.Draw(rect,_topHitbox, Color.Yellow);
