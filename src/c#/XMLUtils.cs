@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -35,10 +36,13 @@ public class XMLUtils
     }   
     public static void XslTransform( string xmlFilePath , string xsltFilePath , string htmlFilePath)
     {
+        if(!File.Exists(xmlFilePath))
+            throw new FileNotFoundException("Fichier XML introuvable", xmlFilePath);
+        if(!File.Exists(xsltFilePath))
+            throw new FileNotFoundException("Fichier xslt introuvable", xsltFilePath);
         XsltSettings settings = new XsltSettings(true, true);
         XmlResolver resolver = new XmlUrlResolver();
         XPathDocument xpathDoc = new XPathDocument(xmlFilePath);
-        XsltArgumentList argList = new XsltArgumentList();
         XslCompiledTransform xslt = new XslCompiledTransform();
         xslt.Load(xsltFilePath, settings, resolver);
         XmlTextWriter htmlWriter = new XmlTextWriter(htmlFilePath, null);

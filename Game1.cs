@@ -29,20 +29,23 @@ public class Game1 : Game
         Utils._content = Content;
         Utils._content.RootDirectory = "Content";
         IsMouseVisible = true;
+        
     }
 
     protected override void Initialize() {
         base.Initialize();
         Utils._currentGame = this;
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        _tileTest = Utils._content.Load<Texture2D>("map");
+        _tileTest = Utils._content.Load<Texture2D>("mapForest");
         ;/*
         using (TextReader reader = new StreamReader("../../../src/xml/testSprite.xml"))
         {
             var xmlC = new XmlSerializer(typeof(Sprite));
             _ship = (Sprite)xmlC.Deserialize(reader);
         }*/
-        //XMLUtils.XslTransform("../../../data/xml/GameOne.xml","../../../data/xslt/attributs_du_jeu.xslt","../../../data/html/attributs_du_jeu.html" );
+        XMLUtils.ValidateXmlFileAsync("http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/GameOne","../src/xsd/GameOne.xsd","../src/xml/GameOne.xml");
+        XMLUtils.XslTransform("../../../src/xml/GameOne.xml","../../../src/xslt/attributs_du_jeu.xsl","../../../src/html/attributs_du_jeu.html" );
+        
 
     }
 
@@ -52,6 +55,7 @@ public class Game1 : Game
         Utils._textures.Add("ship2",Content.Load<Texture2D>("ship2"));*/
         _gameplay = new Gameplay();
         _mainmenu = new Mainmenu();
+        
     }
 
     protected override void Update(GameTime gameTime) {
@@ -87,6 +91,7 @@ public class Game1 : Game
     }
 
     protected override void Draw(GameTime gameTime) {
+
         GraphicsDevice.Clear(Color.CornflowerBlue);
         _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
         if (!_isPlaying)
@@ -100,5 +105,6 @@ public class Game1 : Game
         //_ship.Draw(_spriteBatch);
         _spriteBatch.End();
         base.Draw(gameTime);
+
     }
 }
