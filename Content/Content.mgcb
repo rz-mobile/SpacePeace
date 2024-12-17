@@ -13,18 +13,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin ../../../Documents/L3/xml/png_jeu_video/Missile.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:../../../Documents/L3/xml/png_jeu_video/Missile.png;Missile.png
-
 #begin 12.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -181,6 +169,7 @@
 /processorParam:TextureFormat=Color
 /build:Bomb_1_Explosion_005.png
 
+
 #begin button_echap.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -204,6 +193,7 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:button_espace.png
+
 
 #begin Cloud_02.png
 /importer:TextureImporter
@@ -356,18 +346,6 @@
 /processorParam:TextureFormat=Color
 /build:Meteor_04.png
 
-#begin ok.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:ok.png
-
 #begin player.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -379,6 +357,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:player.png
+
+#begin ok.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ok.png
 
 #begin player32.png
 /importer:TextureImporter
@@ -451,6 +441,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:ship2.png
+
+#begin space.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:space.png;MapSpace.png
 
 #begin Start_BTN.png
 /importer:TextureImporter

@@ -27,7 +27,7 @@ public class Tile
         //_bounds.Y = id;
         _bounds.Width = 16;
         _bounds.Height = 16;
-        _sprite = new Sprite("mapForest",_position,size);
+        _sprite = new Sprite("MapSpace",_position,size);
         
     }
     public void Initialize() {
