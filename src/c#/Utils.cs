@@ -10,12 +10,13 @@ public static class Utils
 {
     public static ContentManager _content;
     public static GraphicsDeviceManager _graphics;
-    public static Game1 _currentGame;
+    //public static Game1 _currentGame;
+    public static Gameplay _currentGameplay;
     public static bool _paused;
-    public const int LEVEL_NUMBER = 3;
-    //public static Dictionary<string,Texture2D> _textures;
+    public const int LEVEL_NUMBER = 1;
     public static bool _isPlaying;
-    public static bool _leftMousePressed;
+    public static bool _gameOver = false;
+    public static bool _gameComplete = false;
 
     public static int screenWidth
     {
@@ -32,6 +33,11 @@ public static class Utils
         {
             return _graphics.PreferredBackBufferHeight = _graphics.GraphicsDevice.Viewport.Height;
         }
+    }
+
+    public static void RestartLevel()
+    {
+        _currentGameplay.RestartLevel();
     }
 
 }

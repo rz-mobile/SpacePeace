@@ -89,7 +89,11 @@ public class Player : GameObject
     public new void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        
+        if (_ptVie <= 0)
+        {
+            Utils._paused = true;
+            Utils._gameOver = true;
+        }
         if (_timer >= _maxTimer)
         {
             _unvulnerable = false;
@@ -144,7 +148,7 @@ public class Player : GameObject
         
         if (tomber())
         {
-            _ptVie -= 2;
+            damage(2);
             if (_ptVie >0)
             {
                 _speed = new Vector2(0, 0);

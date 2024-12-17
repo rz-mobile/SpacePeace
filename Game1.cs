@@ -34,7 +34,7 @@ public class Game1 : Game
 
     protected override void Initialize() {
         base.Initialize();
-        Utils._currentGame = this;
+        //Utils._currentGame = this;
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         _tileTest = Utils._content.Load<Texture2D>("mapForest");
         ;/*
@@ -59,10 +59,6 @@ public class Game1 : Game
     }
 
     protected override void Update(GameTime gameTime) {
-        if (Mouse.GetState().LeftButton != ButtonState.Pressed)
-        {
-            Utils._leftMousePressed = false;
-        }
         if (!_isPlaying)
         {
             _levelBegan = false;
