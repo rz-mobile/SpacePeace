@@ -20,6 +20,7 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>Image du Playeur</th>
                             <th>Puissance du saut</th>
                             <th>Points de vie</th>
                         </tr>
@@ -34,6 +35,7 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>Texture </th>
                             <th>Points de vie</th>
                             <th>Dégâts</th>
                         </tr>
@@ -66,6 +68,9 @@
     <!-- Template pour chaque Player -->
     <xsl:template match="go:Player">
         <tr>
+            <td>
+                <img src="../../Content/Astronaut.png" alt="Image du joueur"/>
+            </td>
             <td><xsl:value-of select="pl:jumpForce"/></td>
             <td><xsl:value-of select="pl:ptVie"/></td>
         </tr>
@@ -74,6 +79,7 @@
     <!-- Template pour chaque Enemy -->
     <xsl:template match="go:Enemy">
         <tr>
+            <td> <img src="../../Content/.png" alt="Image de l'ennemi"/> </td>
             <td><xsl:value-of select="en:Pv"/></td>
             <td><xsl:value-of select="en:Degats"/></td>
         </tr>
