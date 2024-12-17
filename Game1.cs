@@ -28,7 +28,6 @@ public class Game1 : Game
         Utils._graphics = _graphics;
         Utils._content = Content;
         Utils._content.RootDirectory = "Content";
-        //Utils._textures = new Dictionary<string, Texture2D>();
         IsMouseVisible = true;
     }
 

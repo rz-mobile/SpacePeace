@@ -10,6 +10,7 @@ namespace SpacePeace;
 
 public class Enemy : GameObject
 {
+    private int[] tabFrame = {2,14,9,7};
     private Vector2 _speed;
     private float _gravity;
     private bool _surSol = false;
@@ -37,7 +38,7 @@ public class Enemy : GameObject
     public void spawn(Vector2 position)
     {
         _dead = false;
-        _position = position;
+        Position = position;
     }
 
     public void die()
@@ -66,19 +67,20 @@ public class Enemy : GameObject
 
     public new void Update(GameTime gameTime)
     {
-        _speed = new Vector2(_speed.X, _speed.Y+_gravity);
-        _speed.X = -0.5f;
+        base.Update(gameTime, 0,2 );
+            _speed = new Vector2(_speed.X, _speed.Y+_gravity);
+        _speed.X = -0.1f;
         
-        _position = new Vector2(_position.X + _speed.X, _position.Y + _speed.Y);
+        Position = new Vector2(Position.X + _speed.X, Position.Y + _speed.Y);
 
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        base.Draw(spriteBatch);
-        Texture2D rect = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
+        base.Draw(spriteBatch, SpriteEffects.FlipHorizontally);
+        /*Texture2D rect = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
         rect.SetData(new Color[] { Color.White });
-        spriteBatch.Draw(rect,_topHitbox, Color.Yellow);
+        spriteBatch.Draw(rect,_topHitbox, Color.Yellow);*/
     }
     
 

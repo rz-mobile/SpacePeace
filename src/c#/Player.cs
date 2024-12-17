@@ -10,6 +10,7 @@ namespace SpacePeace;
 [Serializable]
 public class Player : GameObject
 {
+    private int[] tabFrame = {2,14,9,7};
     int _timer = 0;
     public bool _surSol = false;
     bool _tirPresse = false;
@@ -17,11 +18,11 @@ public class Player : GameObject
     public Vector2 _speed;
     private float _gravity;
     private bool _isJumping = false;
-    [XmlElement("jumpForce")] public float _jumpForce;
-    public Rectangle _bottomHitbox {get => new Rectangle((int)_position.X-(_width/2)+6, (int)_position.Y+(_height/2), _width-12, 4);}
-    public Rectangle _rightHitbox{get => new Rectangle((int)_position.X+(_width/2), (int)_position.Y-(_height/2)+3, 4, _height-6);}
-    public Rectangle _leftHitbox{get => new Rectangle((int)_position.X - (_width/2), (int)_position.Y-(_height/2)+3, 4, _height-6);}
-    public Rectangle _topHitbox{get => new Rectangle((int)_position.X-(_width/2)+6, (int)_position.Y-(_height/2), _width-12, 4);}
+    [XmlElement("jumpForce")] public float _jumpForce{get;private set;}
+    public Rectangle _bottomHitbox {get => new Rectangle((int)Position.X-(Width/2)+6, (int)Position.Y+(Height/2), Width-12, 4);}
+    public Rectangle _rightHitbox{get => new Rectangle((int)Position.X+(Width/2), (int)Position.Y-(Height/2)+3, 4, Height-6);}
+    public Rectangle _leftHitbox{get => new Rectangle((int)Position.X - (Width/2), (int)Position.Y-(Height/2)+3, 4, Height-6);}
+    public Rectangle _topHitbox{get => new Rectangle((int)Position.X-(Width/2)+6, (int)Position.Y-(Height/2), Width-12, 4);}
     public bool _rWall = false;
     public bool _lWall = false;
     private int ptVie;
@@ -49,8 +50,9 @@ public class Player : GameObject
     private List<Shoot> tirList = new List<Shoot>();
     private Shoot shooter;
     private static System.Timers.Timer temps;
+    private SpriteEffects _flip;
     
-    public Player(string texture, Vector2 position, int size) : base(texture, position, size)
+    public Player(string texture, Vector2 position, int size) : base(texture, position, size, 3,7)
     {
         _positionBase = position;
         _speed = new Vector2(0.0f, 0.0f);
@@ -100,15 +102,16 @@ public class Player : GameObject
         {
             _speed = new Vector2(_speed.X, _speed.Y+_gravity);
         }
-
-
+        
         _speed.X = 0;
         if (Keyboard.GetState().IsKeyDown(Keys.Right) && !_rWall)
         {
             _speed.X = 10.0f;
+            base.Update(gameTime, 2,tabFrame[1]);
         }else if (Keyboard.GetState().IsKeyDown(Keys.Left) && !_lWall)
         {
             _speed.X = -10.0f;
+            
         }
         
         
@@ -116,7 +119,7 @@ public class Player : GameObject
         {
             if (!_tirPresse)
             {
-                tirList.Add(new Shoot("ship1", _position, 50));
+                tirList.Add(new Shoot("ship1", Position, 50));
                 tire();
                 _tirPresse = true;
             }
@@ -145,12 +148,33 @@ public class Player : GameObject
             if (_ptVie >0)
             {
                 _speed = new Vector2(0, 0);
-                _position = _positionBase;
+                Position = _positionBase;
             }
 
         }
 
-        _position = new Vector2(_position.X, _position.Y + _speed.Y);
+        if (Keyboard.GetState().IsKeyDown(Keys.Right))
+        {
+            base.Update(gameTime, 1, tabFrame[1]);
+            if (_flip == SpriteEffects.FlipHorizontally)
+            {
+                _flip = SpriteEffects.None;
+            }
+                
+        }else if (Keyboard.GetState().IsKeyDown(Keys.Left))
+        {
+            base.Update(gameTime, 1,tabFrame[1]);
+            _flip = SpriteEffects.FlipHorizontally;
+        }else if (Keyboard.GetState().IsKeyDown(Keys.Up))
+        {
+            base.Update(gameTime, 2,tabFrame[2]);
+        }else if (Keyboard.GetState().IsKeyDown(Keys.Down))
+        {
+            base.Update(gameTime, 3,tabFrame[3]);
+        }else{
+            base.Update(gameTime, 0,tabFrame[0]);
+        }
+        Position = new Vector2(Position.X, Position.Y + _speed.Y);
 
         
     }
@@ -159,14 +183,14 @@ public class Player : GameObject
     {
         if ((_timer % 4)==0)
         {
-            base.Draw(spriteBatch);
+            base.Draw(spriteBatch, _flip);
         }
-        Texture2D rect = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
+        /*Texture2D rect = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
         rect.SetData(new Color[] { Color.White });
         spriteBatch.Draw(rect,_leftHitbox, Color.Yellow);
         spriteBatch.Draw(rect,_rightHitbox, Color.Blue);
         spriteBatch.Draw(rect,_bottomHitbox, Color.Red);
-        spriteBatch.Draw(rect,_topHitbox, Color.Green);
+        spriteBatch.Draw(rect,_topHitbox, Color.Green);*/
         foreach (var tir in tirList)
         {
             tir.Draw(spriteBatch);
@@ -196,10 +220,7 @@ public class Player : GameObject
     public bool tomber()
     {
         bool result = false;
-        if (_position.Y >1000)
-        {
-            result = true;
-        }
+        if (Position.Y >1000) { result = true; }
         return result;
     }
 
@@ -210,8 +231,8 @@ public class Player : GameObject
         {
             // Action à exécuter après 300 ms
             Texture2D shipTexture = Utils._content.Load<Texture2D>("ship1");
-            //float pos_X = _position.X;
-            //float pos_Y = _position.Y;
+            //float pos_X = Position.X;
+            //float pos_Y = Position.Y;
 
             //tirList.Add(new Shoot("ship1", new Vector2(pos_X / 2, pos_Y / 2), 20));
             temps.Stop();
