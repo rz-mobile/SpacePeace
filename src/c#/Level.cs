@@ -119,7 +119,7 @@ public class Level
                 e.groundReaction();
             }
 
-            if (!e._dead)
+            if (!e._dead && (Math.Abs(e._position.X - _player._position.X)<=400))
             {
                 e.Update(gameTime);
                 foreach (Shoot s in _player.tirList)
@@ -170,7 +170,7 @@ public class Level
         _end.Draw(spriteBatch);
         foreach (Enemy e in _enemies)
         {
-            if (!e._dead)
+            if (!e._dead&& (Math.Abs(e._position.X - _player._position.X)<=400))
             {
                 e.Draw(spriteBatch);
             }

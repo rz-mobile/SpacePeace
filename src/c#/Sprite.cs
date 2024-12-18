@@ -15,7 +15,7 @@ public class Sprite
     
     [XmlElement("texture")] public string _textureName;
     private Texture2D _texture;
-    protected Vector2 _position;
+    public Vector2 _position { get; protected set; }
     [XmlElement("height")]public int Height; //longueur sprite sur l'écran
     [XmlElement("width")]public int Width; //largeur sprite sur l'écran
     private Color _color = Color.White;
