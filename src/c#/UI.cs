@@ -13,6 +13,7 @@ public class UI
     Button _resumeButton;
     Button _restartButton;
     private Sprite YouLose;
+    public bool ExitGame { get; private set; }
     private bool _paused
     {
         get => Utils._paused;
@@ -53,7 +54,7 @@ public class UI
                     XmlManager<Saves> sxml = new XmlManager<Saves>();
                     sxml.Save("../../../src/xml/Save.xml",s,new XmlSerializerNamespaces());*/
                     Utils.Save();
-                    Utils._isPlaying = false;
+                    Utils._game1.Exit();
                 }
 
                 if (_resumeButton._clicked)
