@@ -159,6 +159,8 @@ public class Level
         _complete = _player.checkCollision(_end.Rect);
         _avantPlan.Update(gameTime);
         _arrierePlan.Update(gameTime);
+        _end.Update(gameTime, _complete);
+           
 
         
     }

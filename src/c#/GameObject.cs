@@ -38,14 +38,14 @@ public abstract class GameObject : AnimatedSprite
     }
     
 
-    public void Update(GameTime gameTime){
+    public new void Update(GameTime gameTime){
         base.Update(gameTime);
     }
 
     /*public void Update(GameTime gameTime, int nbAnimation, int nbFrames){
         base.Update(gameTime,nbAnimation,nbFrames);
     }*/
-    public void Draw(SpriteBatch spriteBatch)
+    public new void Draw(SpriteBatch spriteBatch)
     {
         base.Draw(spriteBatch);
     }
