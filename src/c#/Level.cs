@@ -21,6 +21,7 @@ public class Level
     private int _levelSize;
     private EndOfLevel _end;
     private string _path;
+    private List<Shoot> _shoots;
     public bool _complete { get;private set; }
     
     private XmlDocument _doc;
@@ -52,6 +53,7 @@ public class Level
         
         _map = new List<string[]>();
         _tiles = new List<Tile>();
+        _shoots = new List<Shoot>();
         
         _doc = new XmlDocument();
         string currentLevelForeGround = xmlMap("AvantPlan");
@@ -144,10 +146,20 @@ public class Level
             if (!e._dead)
             {
                 e.Update(gameTime);
+                foreach (Shoot s in _shoots)
+                {
+                    if (e.checkCollision(s._rightHitbox))
+                    {
+                        e.die();
+                        s.Detruit = true;
+                        Console.WriteLine("Colision détectée !");
+                    }
+                }
                 if (e.checkTopCollision(_player._bottomHitbox))
                 {
                     e.die();
                     _player._speed.Y = -_player._jumpForce;
+                    Utils.addScore(1);
                 }else if (e.checkCollision(_player.Rect))
                 {
                     _player.damage(e._degats);
@@ -155,8 +167,13 @@ public class Level
             }
         }
 
+        if (_player.checkCollision(_end.Rect))
+        {
+            Utils.addScore(20);
+            _complete = true;
+        }
+        
         _player.Update(gameTime);
-        _complete = _player.checkCollision(_end.Rect);
         _avantPlan.Update(gameTime);
         _arrierePlan.Update(gameTime);
 

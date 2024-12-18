@@ -13,6 +13,8 @@ public static class Utils
     public static Game1 _currentGame;
     public static bool _paused;
     public const int LEVEL_NUMBER = 3;
+
+    public static int _score = 0;
     //public static Dictionary<string,Texture2D> _textures;
     public static bool _isPlaying;
     public static bool _leftMousePressed;
@@ -34,4 +36,9 @@ public static class Utils
         }
     }
 
+    public static int addScore(int score)
+    {
+        _score += score;
+        return score;
+    }
 }
