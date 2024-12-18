@@ -31,8 +31,8 @@ public class Tilemap
             {
                 if (_map[i][j] != "0" && _map[i][j] != ""  && _map[i][j] != "\t"  && _map[i][j] != "\n" && _map[i][j] != "'" && _map[i][j] != null)
                 {
-                    int value = Int32.Parse(_map[i][j]);
-                    _tiles.Add(new Tile(j*_size,i*_size,value,_size));
+                    //int value = Int32.Parse(_map[i][j]);
+                    //_tiles.Add(new Tile(j*_size,i*_size,value,_size));
                 }
             }
         }

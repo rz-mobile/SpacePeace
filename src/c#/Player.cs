@@ -19,10 +19,10 @@ public class Player : GameObject
     private float _gravity;
     private bool _isJumping = false;
     [XmlElement("jumpForce")] public float _jumpForce{get;private set;}
-    public Rectangle _bottomHitbox {get => new Rectangle((int)Position.X-(Width/2)+6, (int)Position.Y+(Height/2), Width-12, 4);}
-    public Rectangle _rightHitbox{get => new Rectangle((int)Position.X+(Width/2), (int)Position.Y-(Height/2)+3, 4, Height-6);}
-    public Rectangle _leftHitbox{get => new Rectangle((int)Position.X - (Width/2), (int)Position.Y-(Height/2)+3, 4, Height-6);}
-    public Rectangle _topHitbox{get => new Rectangle((int)Position.X-(Width/2)+6, (int)Position.Y-(Height/2), Width-12, 4);}
+    public Rectangle _bottomHitbox {get => new Rectangle((int)_position.X-(Width/2)+6, (int)_position.Y+(Height/2), Width-12, 4);}
+    public Rectangle _rightHitbox{get => new Rectangle((int)_position.X+(Width/2), (int)_position.Y-(Height/2)+3, 4, Height-6);}
+    public Rectangle _leftHitbox{get => new Rectangle((int)_position.X - (Width/2), (int)_position.Y-(Height/2)+3, 4, Height-6);}
+    public Rectangle _topHitbox{get => new Rectangle((int)_position.X-(Width/2)+6, (int)_position.Y-(Height/2), Width-12, 4);}
     public bool _rWall = false;
     public bool _lWall = false;
     private int ptVie;
@@ -52,9 +52,9 @@ public class Player : GameObject
     private static System.Timers.Timer temps;
     private SpriteEffects _flip;
     
-    public Player(string texture, Vector2 position, int size) : base(texture, position, size, 3,7)
+    public Player(string texture, Vector2 _position, int size) : base(texture, _position, size, 3,7)
     {
-        _positionBase = position;
+        _positionBase = _position;
         _speed = new Vector2(0.0f, 0.0f);
         _jumpForce = 5.0f;
         _gravity = 0.1f;
@@ -119,7 +119,7 @@ public class Player : GameObject
         {
             if (!_tirPresse)
             {
-                tirList.Add(new Shoot("Missile", Position, 30));
+                tirList.Add(new Shoot("Missile", _position, 30));
                 tire();
                 _tirPresse = true;
             }
@@ -151,7 +151,7 @@ public class Player : GameObject
             if (_ptVie >0)
             {
                 _speed = new Vector2(0, 0);
-                Position = _positionBase;
+                _position = _positionBase;
             }
 
         }
@@ -174,7 +174,7 @@ public class Player : GameObject
         }else{
             base.Update(gameTime, 0,tabFrame[0]);
         }
-        Position = new Vector2(Position.X, Position.Y + _speed.Y);
+        _position = new Vector2(_position.X, _position.Y + _speed.Y);
 
         
     }
@@ -222,7 +222,7 @@ public class Player : GameObject
     public bool tomber()
     {
         bool result = false;
-        if (Position.Y >1000) { result = true; }
+        if (_position.Y >1000) { result = true; }
         return result;
     }
 
@@ -233,10 +233,10 @@ public class Player : GameObject
         {
             // Action à exécuter après 300 ms
             Texture2D shipTexture = Utils._content.Load<Texture2D>("Missile");
-            //float pos_X = Position.X;
-            //float pos_Y = Position.Y;
 
-            //tirList.Add(new Shoot("ship1", new Vector2(pos_X / 2, pos_Y / 2), 20));
+            
+
+
             temps.Stop();
             temps.Dispose();
         };

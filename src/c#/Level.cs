@@ -177,6 +177,8 @@ public class Level
         _player.Update(gameTime);
         _avantPlan.Update(gameTime);
         _arrierePlan.Update(gameTime);
+        _end.Update(gameTime, _complete);
+           
 
         
     }

@@ -22,9 +22,9 @@ public class Shoot : GameObject
         speed = new Vector2(10, 0);
     }
 
-    public void Update(GameTime gameTime)
+    public new void Update(GameTime gameTime)
     {
-        Position = new Vector2(Position.X + 10, Position.Y);
+        _position = new Vector2(_position.X + 10, _position.Y);
         
     }
 
