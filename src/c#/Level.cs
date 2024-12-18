@@ -52,7 +52,6 @@ public class Level
         
         _map = new List<string[]>();
         _tiles = new List<Tile>();
-        
         _doc = new XmlDocument();
         string currentLevelForeGround = xmlMap("AvantPlan");
         _avantPlan = new Tilemap(currentLevelForeGround,_levelSize);
@@ -144,10 +143,24 @@ public class Level
             if (!e._dead)
             {
                 e.Update(gameTime);
+                foreach (Shoot s in _player.tirList)
+                { 
+                    Console.WriteLine("shoot lancé");
+                    if (e.checkleftCollision(s._rightHitbox))
+                    {
+                        Console.WriteLine("Colision détectée !");
+                        e.die();
+                        s.touche();
+                        Utils.addScore(1);
+                        
+                        
+                    }
+                }
                 if (e.checkTopCollision(_player._bottomHitbox))
                 {
                     e.die();
                     _player._speed.Y = -_player._jumpForce;
+                    Utils.addScore(1);
                 }else if (e.checkCollision(_player.Rect))
                 {
                     _player.damage(e._degats);
@@ -155,8 +168,13 @@ public class Level
             }
         }
 
+        if (_player.checkCollision(_end.Rect))
+        {
+            Utils.addScore(20);
+            _complete = true;
+        }
+        
         _player.Update(gameTime);
-        _complete = _player.checkCollision(_end.Rect);
         _avantPlan.Update(gameTime);
         _arrierePlan.Update(gameTime);
 

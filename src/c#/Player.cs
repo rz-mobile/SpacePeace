@@ -47,7 +47,7 @@ public class Player : GameObject
     private int _maxTimer = 200;
     private bool _unvulnerable = false;
     public int _vies;
-    private List<Shoot> tirList = new List<Shoot>();
+    public List<Shoot> tirList = new List<Shoot>();
     private Shoot shooter;
     private static System.Timers.Timer temps;
     private SpriteEffects _flip;
@@ -132,9 +132,12 @@ public class Player : GameObject
 
         foreach (Shoot tir in tirList)
         {
-            tir.Update(gameTime);
+            if (!tir.Detruit)
+            {
+                tir.Update(gameTime);
+            }
         }
-        
+         
         
         if (Keyboard.GetState().IsKeyDown(Keys.Up))
         {
@@ -190,7 +193,10 @@ public class Player : GameObject
         spriteBatch.Draw(rect,_topHitbox, Color.Green);
         foreach (var tir in tirList)
         {
-            tir.Draw(spriteBatch);
+            if (!tir.Detruit)
+            {
+                tir.Draw(spriteBatch);
+            }
         }
     }
 
@@ -207,8 +213,7 @@ public class Player : GameObject
     public void damage(int degats)
     {
         if (!_unvulnerable)
-        {
-            //Console.WriteLine("ouch!");
+        { 
             _timer = 0;
             _ptVie -= degats;
             _unvulnerable = true;

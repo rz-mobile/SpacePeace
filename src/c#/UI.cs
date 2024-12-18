@@ -37,7 +37,9 @@ public class UI
     public void Draw(SpriteBatch spriteBatch,bool paused,Player p)
     {
         string output = "Health : " + p._ptVie;
+        string output2 = "Score : " + Utils._score;
         
+        spriteBatch.DrawString(_font, output2, new Vector2(_fontPos.X,_fontPos.Y+20), Color.White);
         spriteBatch.DrawString(_font, output, _fontPos, Color.White);
         if (paused)
         {

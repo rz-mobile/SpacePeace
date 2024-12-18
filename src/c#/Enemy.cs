@@ -16,6 +16,8 @@ public class Enemy : GameObject
     private bool _surSol = false;
     public bool _dead = false;
     public Rectangle _topHitbox{get => new Rectangle((int)Position.X-(Width/2)+6, (int)Position.Y-(Height/2), Width-12, 4);}
+    public Rectangle _leftHitbox{get => new Rectangle((int)Position.X - (Width/2), (int)Position.Y-(Height/2)+3, 4, Height-6);}
+
     [XmlAttribute("degats")] public int _degats { init; get; }
     [XmlAttribute("Pv")] public int _ptVie;
     
@@ -65,6 +67,11 @@ public class Enemy : GameObject
     {
         return _topHitbox.Intersects(rect);
     }
+
+    public bool checkleftCollision(Rectangle rect)
+    {
+        return _leftHitbox.Intersects(rect);
+    }
     public void Initilize(){}
 
     public new void Update(GameTime gameTime)
@@ -83,15 +90,6 @@ public class Enemy : GameObject
         Texture2D rect = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
         rect.SetData(new Color[] { Color.White });
         spriteBatch.Draw(rect,_topHitbox, Color.Yellow);
+        spriteBatch.Draw(rect,_leftHitbox, Color.Blue);
     }
-    
-
-
-
-
-
-
-    
-    
-    
 }
