@@ -21,6 +21,7 @@
                     <thead>
                         <tr>
                             <th>Image du Playeur</th>
+                            <th>Image du Projectile</th>
                             <th>Puissance du saut</th>
                             <th>Points de vie</th>
                         </tr>
@@ -70,6 +71,9 @@
         <tr>
             <td>
                 <img src="../../Content/Astronaut.png" alt="Image du joueur"/>
+            </td>
+            <td>
+                <img src="../../Content/Missile.png" alt="Image du Missile"/>
             </td>
             <td><xsl:value-of select="pl:jumpForce"/></td>
             <td><xsl:value-of select="pl:ptVie"/></td>
