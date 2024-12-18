@@ -18,7 +18,7 @@ public class Player : GameObject
     public Vector2 _speed;
     private float _gravity;
     private bool _isJumping = false;
-    [XmlElement("jumpForce")] public float _jumpForce{get;private set;}
+    [XmlElement("jumpForce")] public float _jumpForce{get;set;}
     public Rectangle _bottomHitbox {get => new Rectangle((int)Position.X-(Width/2)+6, (int)Position.Y+(Height/2), Width-12, 4);}
     public Rectangle _rightHitbox{get => new Rectangle((int)Position.X+(Width/2), (int)Position.Y-(Height/2)+3, 4, Height-6);}
     public Rectangle _leftHitbox{get => new Rectangle((int)Position.X - (Width/2), (int)Position.Y-(Height/2)+3, 4, Height-6);}
@@ -89,7 +89,11 @@ public class Player : GameObject
     public new void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        
+        if (_ptVie <= 0)
+        {
+            Utils._paused = true;
+            Utils._gameOver = true;
+        }
         if (_timer >= _maxTimer)
         {
             _unvulnerable = false;
@@ -147,7 +151,7 @@ public class Player : GameObject
         
         if (tomber())
         {
-            _ptVie -= 2;
+            damage(2);
             if (_ptVie >0)
             {
                 _speed = new Vector2(0, 0);

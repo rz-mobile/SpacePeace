@@ -7,6 +7,8 @@ namespace SpacePeace;
 public class Button
 {
     Sprite _sprite;
+    private bool alreadyCLicked = false;
+    public bool _clicked { get; private set; } = false;
 
     public Button(string texture, Vector2 position, int size)
     {
@@ -23,8 +25,34 @@ public class Button
         _sprite.Draw(spriteBatch);
     }
 
-    public bool Clicked()
+    public void Update(GameTime gameTime)
     {
-        return _sprite.Rect.Contains(Mouse.GetState().Position) && Mouse.GetState().LeftButton == ButtonState.Pressed;
+        if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+        {
+            if (!alreadyCLicked)
+            {
+                alreadyCLicked = true;
+                _clicked = _sprite.Rect.Contains(Mouse.GetState().Position);
+            }
+        }
+        else
+        {
+            alreadyCLicked = false;
+            _clicked = false;
+        }
     }
+
+    /*public bool Clicked()
+    {
+        if (!alreadyCLicked)
+        {
+            alreadyCLicked = true;
+            return _sprite.Rect.Contains(Mouse.GetState().Position) && Mouse.GetState().LeftButton == ButtonState.Pressed;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }*/
 }

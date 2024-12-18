@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,14 +11,18 @@ public static class Utils
 {
     public static ContentManager _content;
     public static GraphicsDeviceManager _graphics;
-    public static Game1 _currentGame;
+    public static Gameplay _currentGameplay;
     public static bool _paused;
-    public const int LEVEL_NUMBER = 3;
-
-    public static int _score = 0;
-    //public static Dictionary<string,Texture2D> _textures;
+    public static readonly int LEVEL_NUMBER = 1;
     public static bool _isPlaying;
-    public static bool _leftMousePressed;
+    public static bool _gameOver = false;
+    public static bool _gameComplete = false;
+    public static int _currentLevelId;
+    public static string _currentPlayer;
+    public static int _currentScore;
+    public static XmlManager<Saves> saveManager;
+    public static Saves _saves;
+    
 
     public static int screenWidth
     {
@@ -26,8 +31,12 @@ public static class Utils
             return _graphics.PreferredBackBufferWidth = _graphics.GraphicsDevice.Viewport.Width;
         }
     }
-    
-    
+
+    public static void Initialize()
+    {
+        saveManager = new XmlManager<Saves>();
+        _saves = saveManager.Load("../../../src/xml/Save.xml");
+    }
     public static int screenHeight
     {
         get
@@ -41,4 +50,17 @@ public static class Utils
         _score += score;
         return score;
     }
+    public static void RestartLevel()
+    {
+        _currentGameplay.RestartLevel();
+    }
+
+    public static void Save()
+    {
+        _saves.addSave(_currentPlayer,_currentScore,_currentLevelId);
+        saveManager.Save("../../../src/xml/Save.xml",_saves,new XmlSerializerNamespaces());
+    }
+    
+    
+
 }

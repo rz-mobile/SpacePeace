@@ -6,6 +6,8 @@ namespace SpacePeace;
 
 public class Mainmenu
 {
+ 
+    
     
     private UI _main;
     private Level _level1;
@@ -65,14 +67,17 @@ public class Mainmenu
     }
 
     public void Update(GameTime gameTime){
+        _playButton.Update(gameTime);
+        _tutoButton.Update(gameTime);
+        _exitButton.Update(gameTime);
         _graphicsDevice.Clear(Color.Blue);
-        if (_playButton.Clicked())
+        if (_playButton._clicked)
         {
             // le jeu commence
             StartGame = true;
         }
 
-        if (_exitButton.Clicked())
+        if (_exitButton._clicked)
         {
             ExitGame = true;
         }
@@ -86,7 +91,7 @@ public class Mainmenu
         _playButton.Draw(spriteBatch);
         _exitButton.Draw(spriteBatch);
 
-        if (_tutoButton.Clicked())
+        if (_tutoButton._clicked)
         {
             
             _fondTuto.Draw(spriteBatch);

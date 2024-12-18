@@ -34,7 +34,7 @@ public class Game1 : Game
 
     protected override void Initialize() {
         base.Initialize();
-        Utils._currentGame = this;
+        //Utils._currentGame = this;
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         _tileTest = Utils._content.Load<Texture2D>("mapForest");
         ;/*
@@ -43,6 +43,7 @@ public class Game1 : Game
             var xmlC = new XmlSerializer(typeof(Sprite));
             _ship = (Sprite)xmlC.Deserialize(reader);
         }*/
+        Utils.Initialize();
         XMLUtils.ValidateXmlFileAsync("http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/GameOne","../src/xsd/GameOne.xsd","../src/xml/GameOne.xml");
         XMLUtils.XslTransform("../../../src/xml/GameOne.xml","../../../src/xslt/attributs_du_jeu.xsl","../../../src/html/attributs_du_jeu.html" );
         
@@ -59,10 +60,6 @@ public class Game1 : Game
     }
 
     protected override void Update(GameTime gameTime) {
-        if (Mouse.GetState().LeftButton != ButtonState.Pressed)
-        {
-            Utils._leftMousePressed = false;
-        }
         if (!_isPlaying)
         {
             _levelBegan = false;
