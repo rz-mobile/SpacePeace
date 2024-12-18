@@ -22,8 +22,8 @@ public class Tile
         int id =  value;
         _position = new Vector2(x, y);
         _bounds = new Rectangle(); 
-        _bounds.X = (id % 16)*16 -16;
-        _bounds.Y = id -(id % 16);
+        _bounds.X = (id % 12)*16-16;
+        _bounds.Y = id -(id % 12);
         //_bounds.Y = id;
         _bounds.Width = 16;
         _bounds.Height = 16;

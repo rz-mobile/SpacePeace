@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:sa="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/Saves"
+           targetNamespace="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/Saves"
+           elementFormDefault="qualified">
+    <xs:element name="Saves" type="sa:Saves"/>
+    
+    <xs:complexType name="Saves">
+        <xs:sequence>
+            <xs:element name="SaveInstance" type="sa:SaveInstance" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="SaveInstance">
+        <xs:sequence>
+            <xs:element name="PlayerName" type="xs:string"/>
+            <xs:element name="Score" type="xs:int"/>
+            <xs:element name="Niveau" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

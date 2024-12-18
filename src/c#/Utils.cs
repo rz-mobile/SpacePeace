@@ -13,7 +13,7 @@ public static class Utils
     //public static Game1 _currentGame;
     public static Gameplay _currentGameplay;
     public static bool _paused;
-    public const int LEVEL_NUMBER = 1;
+    public static readonly int LEVEL_NUMBER = 1;
     public static bool _isPlaying;
     public static bool _gameOver = false;
     public static bool _gameComplete = false;
@@ -38,6 +38,11 @@ public static class Utils
     public static void RestartLevel()
     {
         _currentGameplay.RestartLevel();
+    }
+
+    public static void save()
+    {
+        
     }
 
 }

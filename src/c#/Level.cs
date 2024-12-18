@@ -53,13 +53,9 @@ public class Level
         _arrierePlan = new Tilemap(currentLevelBackGround,_levelSize);
         string currentLevelCollisions = xmlMap("Collision");
         _collisionMap = new CollisionMap(currentLevelCollisions,_texture,graphicsDevice,_levelSize);
-        
-        /*using (TextReader reader = new StreamReader("../../../src/xml/Player.xml"))
-        {
-            var xmlC = new XmlSerializer(typeof(Player));
-            _player = (Player)xmlC.Deserialize(reader);
-        }
-        */
+        /*
+        XmlManager<Player> plxml = new XmlManager<Player>();
+        _player = plxml.Load(../../../src/xml/Player.xml);*/
         _enemies = new List<Enemy>();
         List<Vector2> positionsEnnemis = positionEnnemis();
         foreach (Vector2 position in positionsEnnemis)
@@ -74,7 +70,6 @@ public class Level
         _end = new EndOfLevel();
         _end.setPosition(new Vector2(positionFinDeNiveau().X*levelWidthCoef(),positionFinDeNiveau().Y*levelHeightCoef()));
         
-       
         
     }
 

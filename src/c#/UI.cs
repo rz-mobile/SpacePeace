@@ -1,4 +1,5 @@
 using System;
+using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -44,6 +45,11 @@ public class UI
                 _resumeButton.Update(gameTime);
                 if (_quitButton._clicked)
                 {
+                    Saves s = new Saves();
+                    s.addSave("test1",50,0);
+                    s.addSave("test2",100,15);
+                    XmlManager<Saves> sxml = new XmlManager<Saves>();
+                    sxml.Save("../../../src/xml/Save.xml",s,new XmlSerializerNamespaces());
                     Utils._isPlaying = false;
                 }
 
