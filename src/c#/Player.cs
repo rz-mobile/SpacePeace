@@ -52,7 +52,7 @@ public class Player : GameObject
     private static System.Timers.Timer temps;
     private SpriteEffects _flip;
     
-    public Player(string texture, Vector2 position, int size) : base(texture, _position, size, 3,7)
+    public Player(string texture, Vector2 position, int size) : base(texture, position, size, 3,7)
     {
         _positionBase = position;
         _speed = new Vector2(0.0f, 0.0f);
