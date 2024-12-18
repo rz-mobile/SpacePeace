@@ -47,7 +47,7 @@ public static class Utils
 
     public static int addScore(int score)
     {
-        _score += score;
+        _currentScore += score;
         return score;
     }
     public static void RestartLevel()
