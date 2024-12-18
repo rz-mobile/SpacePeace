@@ -83,7 +83,7 @@
     <!-- Template pour chaque Enemy -->
     <xsl:template match="go:Enemy">
         <tr>
-            <td> <img src="../../Content/.png" alt="Image de l'ennemi"/> </td>
+            <td> <img src="../../Content/enemy.png" alt="Image de l'ennemi"/> </td>
             <td><xsl:value-of select="en:Pv"/></td>
             <td><xsl:value-of select="en:Degats"/></td>
         </tr>

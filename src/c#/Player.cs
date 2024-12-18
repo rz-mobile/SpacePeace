@@ -44,7 +44,7 @@ public class Player : GameObject
         }
     }
 
-    private int _maxTimer = 200;
+    private int _maxTimer = 60;
     private bool _unvulnerable = false;
     public int _vies;
     public List<Shoot> tirList = new List<Shoot>();
@@ -110,11 +110,11 @@ public class Player : GameObject
         _speed.X = 0;
         if (Keyboard.GetState().IsKeyDown(Keys.Right) && !_rWall)
         {
-            _speed.X = 10.0f;
+            _speed.X = 3.0f;
             base.Update(gameTime, 2,tabFrame[1]);
         }else if (Keyboard.GetState().IsKeyDown(Keys.Left) && !_lWall)
         {
-            _speed.X = -10.0f;
+            _speed.X = -3.0f;
             
         }
         
