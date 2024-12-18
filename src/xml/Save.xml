@@ -1,28 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Saves xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/Saves">
   <SaveInstance>
-    <PlayerName>glade</PlayerName>
-    <Score>0</Score>
-    <Niveau>0</Niveau>
-  </SaveInstance>
-  <SaveInstance>
-    <PlayerName>glade</PlayerName>
-    <Score>0</Score>
-    <Niveau>0</Niveau>
-  </SaveInstance>
-  <SaveInstance>
-    <PlayerName>glade</PlayerName>
+    <PlayerName>Nom</PlayerName>
     <Score>1</Score>
-    <Niveau>0</Niveau>
-  </SaveInstance>
-  <SaveInstance>
-    <PlayerName>glade</PlayerName>
-    <Score>0</Score>
-    <Niveau>0</Niveau>
-  </SaveInstance>
-  <SaveInstance>
-    <PlayerName>glade</PlayerName>
-    <Score>0</Score>
     <Niveau>1</Niveau>
   </SaveInstance>
 </Saves>

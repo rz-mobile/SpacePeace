@@ -56,7 +56,7 @@ public class Player : GameObject
     {
         _positionBase = position;
         _speed = new Vector2(0.0f, 0.0f);
-        _jumpForce = 5.0f;
+        _jumpForce = 3.5f;
         _gravity = 0.1f;
         _ptVie = 10;
 
@@ -110,11 +110,11 @@ public class Player : GameObject
         _speed.X = 0;
         if (Keyboard.GetState().IsKeyDown(Keys.Right) && !_rWall)
         {
-            _speed.X = 3.0f;
+            _speed.X = 2.0f;
             base.Update(gameTime, 2,tabFrame[1]);
         }else if (Keyboard.GetState().IsKeyDown(Keys.Left) && !_lWall)
         {
-            _speed.X = -3.0f;
+            _speed.X = -2.0f;
             
         }
         

@@ -18,7 +18,7 @@ public static class Utils
     public static bool _gameOver = false;
     public static bool _gameComplete = false;
     public static int _currentLevelId;
-    public static string _currentPlayer = "glade";
+    public static string _currentPlayer = "Nom";
     public static int _currentScore;
     public static XmlManager<Saves> saveManager;
     public static Saves _saves;
