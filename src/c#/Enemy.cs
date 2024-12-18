@@ -14,8 +14,8 @@ public class Enemy : GameObject
     private float _gravity;
     private bool _surSol = false;
     public bool _dead = false;
-    public Rectangle _topHitbox{get => new Rectangle((int)Position.X-(Width/2)+6, (int)Position.Y-(Height/2), Width-12, 4);}
-    public Rectangle _leftHitbox{get => new Rectangle((int)Position.X - (Width/2), (int)Position.Y-(Height/2)+3, 4, Height-6);}
+    public Rectangle _topHitbox{get => new Rectangle((int)_position.X-(Width/2)+6, (int)_position.Y-(Height/2), Width-12, 4);}
+    public Rectangle _leftHitbox{get => new Rectangle((int)_position.X - (Width/2), (int)_position.Y-(Height/2)+3, 4, Height-6);}
 
     [XmlAttribute("degats")] public int _degats { init; get; }
     [XmlAttribute("Pv")] public int _ptVie;
