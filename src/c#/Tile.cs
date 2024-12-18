@@ -36,7 +36,7 @@ public class Tile
 
     public void setOffset(Vector2 offset)
     {
-        _position = _position + offset;
+        _position += offset;
     }
 
     public void Update(GameTime gameTime)

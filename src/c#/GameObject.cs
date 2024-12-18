@@ -10,21 +10,21 @@ namespace SpacePeace;
 [Serializable]
 public abstract class GameObject : AnimatedSprite
 {
-    private Rectangle _hitbox => new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
+    private Rectangle _hitbox => new Rectangle((int)_position.X, (int)_position.Y, Width, Height);
 
     public GameObject(string texture, Vector2 position, int size):base(texture,position,size)
     {
-        Position = position;
+        _position = position;
     }
 
     public GameObject(string texture, Vector2 position, int size,int nbAnimation, int nbFrame ):base(texture,position,size,nbAnimation,nbFrame)
     {
-        Position = position;
+        _position = position;
     }
     public GameObject():base()
     {
-        Position = new Vector2(300,300);
-        //_hitbox = new Rectangle((int)Position.X, (int)Position.Y, _sprite._size, _sprite._size);
+        _position = new Vector2(300,300);
+        //_hitbox = new Rectangle((int)_position.X, (int)_position.Y, _sprite._size, _sprite._size);
     }
 
     protected Rectangle GetHitbox()
@@ -38,14 +38,14 @@ public abstract class GameObject : AnimatedSprite
     }
     
 
-    public void Update(GameTime gameTime){
+    public new void Update(GameTime gameTime){
         base.Update(gameTime);
     }
 
     /*public void Update(GameTime gameTime, int nbAnimation, int nbFrames){
         base.Update(gameTime,nbAnimation,nbFrames);
     }*/
-    public void Draw(SpriteBatch spriteBatch)
+    public new void Draw(SpriteBatch spriteBatch)
     {
         base.Draw(spriteBatch);
     }
@@ -57,7 +57,7 @@ public abstract class GameObject : AnimatedSprite
     
     public void setPosition(Vector2 position)
     {
-        Position = position;
+        _position = position;
     }
     
     public bool checkCollision(Rectangle rect)
@@ -66,7 +66,7 @@ public abstract class GameObject : AnimatedSprite
     }
     public void setOffset(Vector2 offset)
     {
-        Position = Position + offset;
+        _position += offset;
     }
     
 }

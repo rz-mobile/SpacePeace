@@ -10,13 +10,12 @@ namespace SpacePeace;
 
 public class Enemy : GameObject
 {
-    private int[] tabFrame = {2,14,9,7};
     private Vector2 _speed;
     private float _gravity;
     private bool _surSol = false;
     public bool _dead = false;
-    public Rectangle _topHitbox{get => new Rectangle((int)Position.X-(Width/2)+6, (int)Position.Y-(Height/2), Width-12, 4);}
-    public Rectangle _leftHitbox{get => new Rectangle((int)Position.X - (Width/2), (int)Position.Y-(Height/2)+3, 4, Height-6);}
+    public Rectangle _topHitbox{get => new Rectangle((int)_position.X-(Width/2)+6, (int)_position.Y-(Height/2), Width-12, 4);}
+    public Rectangle _leftHitbox{get => new Rectangle((int)_position.X - (Width/2), (int)_position.Y-(Height/2)+3, 4, Height-6);}
 
     [XmlAttribute("degats")] public int _degats { init; get; }
     [XmlAttribute("Pv")] public int _ptVie;
@@ -40,7 +39,7 @@ public class Enemy : GameObject
     public void spawn(Vector2 position)
     {
         _dead = false;
-        Position = position;
+        _position = position;
     }
 
     public void die()
@@ -80,13 +79,13 @@ public class Enemy : GameObject
             _speed = new Vector2(_speed.X, _speed.Y+_gravity);
         _speed.X = -0.1f;
         
-        Position = new Vector2(Position.X + _speed.X, Position.Y + _speed.Y);
+        _position = new Vector2(_position.X + _speed.X, _position.Y + _speed.Y);
 
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        base.Draw(spriteBatch, SpriteEffects.FlipHorizontally);
+        base.Draw(spriteBatch, SpriteEffects.FlipHorizontally, Color.Red);
         Texture2D rect = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
         rect.SetData(new Color[] { Color.White });
         spriteBatch.Draw(rect,_topHitbox, Color.Yellow);

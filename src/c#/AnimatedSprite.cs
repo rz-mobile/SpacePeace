@@ -89,12 +89,21 @@ public class AnimatedSprite : Sprite
                 }
             }
     }
-    public void Draw(SpriteBatch spriteBatch)
+    public new void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Draw( GetTexture(),Rect,null,_color);
     }
     public void Draw(SpriteBatch spriteBatch, SpriteEffects flip)
     {
         base.Draw(spriteBatch, Rectsrc, flip);
+    }
+    public void Draw(SpriteBatch spriteBatch, SpriteEffects flip, Color color)
+    {
+        base.Draw(spriteBatch, Rectsrc, flip, color);
+    }
+    
+    public void Draw(SpriteBatch spriteBatch,float rotation, SpriteEffects effects, Color color )
+    {
+        base.Draw(spriteBatch, Rectsrc, rotation, effects, color);
     }
 }

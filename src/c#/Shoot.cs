@@ -12,19 +12,19 @@ public class Shoot : GameObject
     public const int _degats = 1;
     public bool Detruit = false;
     
-    public Rectangle _bottomHitbox {get => new Rectangle((int)Position.X-(Width/2)+6, (int)Position.Y+(Height/2), Width-12, 4);}
-    public Rectangle _rightHitbox{get => new Rectangle((int)Position.X+(Width/2), (int)Position.Y-(Height/2)+3, 4, Height-6);}
-    public Rectangle _leftHitbox{get => new Rectangle((int)Position.X - (Width/2), (int)Position.Y-(Height/2)+3, 4, Height-6);}
-    public Rectangle _topHitbox{get => new Rectangle((int)Position.X-(Width/2)+6, (int)Position.Y-(Height/2), Width-12, 4);}
+    public Rectangle _bottomHitbox {get => new Rectangle((int)_position.X-(Width/2)+6, (int)_position.Y+(Height/2), Width-12, 4);}
+    public Rectangle _rightHitbox{get => new Rectangle((int)_position.X+(Width/2), (int)_position.Y-(Height/2)+3, 4, Height-6);}
+    public Rectangle _leftHitbox{get => new Rectangle((int)_position.X - (Width/2), (int)_position.Y-(Height/2)+3, 4, Height-6);}
+    public Rectangle _topHitbox{get => new Rectangle((int)_position.X-(Width/2)+6, (int)_position.Y-(Height/2), Width-12, 4);}
 
     public Shoot(String texture, Vector2 position, int size): base(texture, position, size)
     {
         speed = new Vector2(10, 0);
     }
 
-    public void Update(GameTime gameTime)
+    public new void Update(GameTime gameTime)
     {
-        Position = new Vector2(Position.X + 10, Position.Y);
+        _position = new Vector2(_position.X + 10, _position.Y);
         
     }
 
