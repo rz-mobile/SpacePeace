@@ -24,7 +24,7 @@ public class Enemy : GameObject
     {
         _degats = degats;
         _speed = new Vector2(0.0f, 0.0f);
-        _gravity = 0.1f;
+        _gravity = 0.5f;
         _ptVie = 1;
         
     }
