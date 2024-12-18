@@ -20,7 +20,7 @@ public class EndOfLevel : GameObject
             Height += 1;
         }
         base.Update(gameTime);
-        _rotation += (float)gameTime.ElapsedGameTime.TotalSeconds;
+        _rotation = MathHelper.ToRadians(_rotation +10);;
     }
     
     public new void Draw(SpriteBatch spriteBatch)

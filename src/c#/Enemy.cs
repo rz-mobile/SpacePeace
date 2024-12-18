@@ -10,12 +10,11 @@ namespace SpacePeace;
 
 public class Enemy : GameObject
 {
-    private int[] tabFrame = {2,14,9,7};
     private Vector2 _speed;
     private float _gravity;
     private bool _surSol = false;
     public bool _dead = false;
-    public Rectangle _topHitbox{get => new Rectangle((int)Position.X-(Width/2)+6, (int)Position.Y-(Height/2), Width-12, 4);}
+    public Rectangle _topHitbox{get => new Rectangle((int)_position.X-(Width/2)+6, (int)_position.Y-(Height/2), Width-12, 4);}
     [XmlAttribute("degats")] public int _degats { init; get; }
     [XmlAttribute("Pv")] public int _ptVie;
     
@@ -38,7 +37,7 @@ public class Enemy : GameObject
     public void spawn(Vector2 position)
     {
         _dead = false;
-        Position = position;
+        _position = position;
     }
 
     public void die()
@@ -73,7 +72,7 @@ public class Enemy : GameObject
             _speed = new Vector2(_speed.X, _speed.Y+_gravity);
         _speed.X = -0.1f;
         
-        Position = new Vector2(Position.X + _speed.X, Position.Y + _speed.Y);
+        _position = new Vector2(_position.X + _speed.X, _position.Y + _speed.Y);
 
     }
 
