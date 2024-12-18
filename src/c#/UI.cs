@@ -66,6 +66,7 @@ public class UI
             if (_restartButton._clicked)
             {
                 _paused = !_paused;
+                Utils._currentScore = 0;
                 Utils.RestartLevel();
             }
         }

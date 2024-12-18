@@ -67,6 +67,8 @@ public class Gameplay
             _credits.Update(gameTime);
         }
 
+        Utils._currentLevelId = _lvId + 1;
+
     }
 
     public void Draw(SpriteBatch spriteBatch)

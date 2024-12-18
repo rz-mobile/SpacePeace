@@ -5,4 +5,24 @@
     <Score>0</Score>
     <Niveau>0</Niveau>
   </SaveInstance>
+  <SaveInstance>
+    <PlayerName>glade</PlayerName>
+    <Score>0</Score>
+    <Niveau>0</Niveau>
+  </SaveInstance>
+  <SaveInstance>
+    <PlayerName>glade</PlayerName>
+    <Score>1</Score>
+    <Niveau>0</Niveau>
+  </SaveInstance>
+  <SaveInstance>
+    <PlayerName>glade</PlayerName>
+    <Score>0</Score>
+    <Niveau>0</Niveau>
+  </SaveInstance>
+  <SaveInstance>
+    <PlayerName>glade</PlayerName>
+    <Score>0</Score>
+    <Niveau>1</Niveau>
+  </SaveInstance>
 </Saves>
