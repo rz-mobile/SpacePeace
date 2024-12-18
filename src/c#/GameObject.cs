@@ -16,8 +16,14 @@ public abstract class GameObject : AnimatedSprite
     {
         _position = position;
     }
-
+    
     public GameObject(string texture, Vector2 position, int size,int nbAnimation, int nbFrame ):base(texture,position,size,nbAnimation,nbFrame)
+    {
+        _position = position;
+    }
+
+    public GameObject(string spritesheet, Vector2 position, int height, int width) : base(spritesheet, position,
+        height, width)
     {
         _position = position;
     }
@@ -54,6 +60,11 @@ public abstract class GameObject : AnimatedSprite
     {
         base.Draw(spriteBatch,flip);
     }*/
+    
+    public new void DrawTrouNoir(SpriteBatch spriteBatch,float rotation, SpriteEffects effects, Color color )
+    {
+        base.DrawTrouNoir(spriteBatch, rotation, SpriteEffects.None, Color.White);
+    }
     
     public void setPosition(Vector2 position)
     {

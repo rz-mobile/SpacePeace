@@ -56,6 +56,7 @@ public class AnimatedSprite : Sprite
 
     public AnimatedSprite(string spritesheet, Vector2 position, int size) : base(spritesheet, position, size){} //pour les objets sans animation
     
+    public AnimatedSprite(string spritesheet, Vector2 position, int height, int width) : base(spritesheet, position, height, width){}
     public void Update(GameTime gameTime, int nbAnimation, int nbFrames)
     {
         if (nbAnimation != _nbAnimation)
@@ -102,8 +103,8 @@ public class AnimatedSprite : Sprite
         base.Draw(spriteBatch, Rectsrc, flip, color);
     }
     
-    public void Draw(SpriteBatch spriteBatch,float rotation, SpriteEffects effects, Color color )
+    public new void DrawTrouNoir(SpriteBatch spriteBatch,float rotation, SpriteEffects effects, Color color )
     {
-        base.Draw(spriteBatch, Rectsrc, rotation, effects, color);
+        base.DrawTrouNoir(spriteBatch, rotation, effects, color);
     }
 }

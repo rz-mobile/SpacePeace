@@ -75,9 +75,11 @@ public class Sprite
         spriteBatch.Draw(_texture,Rect,src,color,0.0f,Vector2.Zero,effects,0 );
     }
     
-    public void Draw(SpriteBatch spriteBatch, Rectangle src,float rotation, SpriteEffects effects, Color color )
+    public void DrawTrouNoir(SpriteBatch spriteBatch,float rotation, SpriteEffects effects, Color color )
     {
-        spriteBatch.Draw(_texture,Rect,src,color,rotation,Vector2.Zero,effects,0 );
+        spriteBatch.Draw(_texture,Rect,null,color,rotation
+            ,new Vector2(170,170)
+            ,effects,0 );
     }
 
 }

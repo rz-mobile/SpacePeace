@@ -111,7 +111,6 @@ public class Player : GameObject
         if (Keyboard.GetState().IsKeyDown(Keys.Right) && !_rWall)
         {
             _speed.X = 2.0f;
-            base.Update(gameTime, 2,tabFrame[1]);
         }else if (Keyboard.GetState().IsKeyDown(Keys.Left) && !_lWall)
         {
             _speed.X = -2.0f;

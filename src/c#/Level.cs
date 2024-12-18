@@ -156,7 +156,7 @@ public class Level
         _player.Update(gameTime);
         _avantPlan.Update(gameTime);
         _arrierePlan.Update(gameTime);
-        _end.Update(gameTime, _complete);
+        _end.UpdateTrouNoir(gameTime, _complete);
            
 
         
@@ -167,7 +167,7 @@ public class Level
         
         
         _arrierePlan.Draw(spriteBatch);
-        _end.Draw(spriteBatch);
+        _end.DrawTrouNoir(spriteBatch);
         foreach (Enemy e in _enemies)
         {
             if (!e._dead&& (Math.Abs(e._position.X - _player._position.X)<=400))
