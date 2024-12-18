@@ -43,6 +43,7 @@ public class Game1 : Game
             var xmlC = new XmlSerializer(typeof(Sprite));
             _ship = (Sprite)xmlC.Deserialize(reader);
         }*/
+        Utils.Initialize();
         XMLUtils.ValidateXmlFileAsync("http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/GameOne","../src/xsd/GameOne.xsd","../src/xml/GameOne.xml");
         XMLUtils.XslTransform("../../../src/xml/GameOne.xml","../../../src/xslt/attributs_du_jeu.xsl","../../../src/html/attributs_du_jeu.html" );
         

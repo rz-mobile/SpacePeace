@@ -7,7 +7,7 @@
     
     <xs:complexType name="Saves">
         <xs:sequence>
-            <xs:element name="SaveInstance" type="sa:SaveInstance" maxOccurs="unbounded"/>
+            <xs:element name="SaveInstance" type="sa:SaveInstance" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
     
