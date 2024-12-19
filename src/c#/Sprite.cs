@@ -6,18 +6,15 @@ using Microsoft.Xna.Framework.Input;
 
 
 namespace SpacePeace;
-[XmlInclude(typeof(GameObject))]
-[XmlRoot("Sprite", Namespace = "http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/Sprites")]
-[Serializable]
 
 public class Sprite
 {
     
-    [XmlElement("texture")] public string _textureName;
-    private Texture2D _texture;
-    public Vector2 _position { get; protected set; }
-    [XmlElement("height")]public int Height; //longueur sprite sur l'écran
-    [XmlElement("width")]public int Width; //largeur sprite sur l'écran
+    public string _textureName;
+    protected Texture2D _texture;
+    public Vector2 _position { get;  set; } 
+    public int Height; //longueur sprite sur l'écran
+    public int Width; //largeur sprite sur l'écran
     private Color _color = Color.White;
     public Rectangle Rect { get => new Rectangle((int) _position.X - Width/2, (int) _position.Y - Height/2,Width, Height); }
 
@@ -39,11 +36,8 @@ public class Sprite
 
     public Sprite()
     {
-        _position = new Vector2(300, 300);
-        Height = 64;
-        Width = 64;
-        _texture = Utils._content.Load<Texture2D>(_textureName);
-        _textureName = "player";
+        //_position = new Vector2(Utils.screenWidth/2,Utils.screenWidth/8);
+        //_texture = Utils._content.Load<Texture2D>("player");
     }
 
     public void SetPosition(Vector2 position)

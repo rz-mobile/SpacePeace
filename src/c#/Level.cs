@@ -59,14 +59,20 @@ public class Level
         List<Vector2> positionsEnnemis = positionEnnemis();
         foreach (Vector2 position in positionsEnnemis)
         {
-            Enemy enemy = new Enemy("player", new Vector2(0, 0), 60,1);
+            //Enemy enemy = new Enemy("player", new Vector2(0, 0), 60,1);
+            XmlManager<Enemy> enxml = new XmlManager<Enemy>();
+            Enemy enemy = enxml.Load("../../../src/xml/Enemy.xml");
+            //Console.WriteLine(enemy);
             //enemy.setPosition(new Vector2(position.X*levelWidthCoef(),position.Y*levelHeightCoef()));
             enemy.setPosition(new Vector2(position.X,position.Y));
             enemy.setGravity(getGravity());
             _enemies.Add(enemy);
         }
-        _player = new Player("player",new Vector2(Utils.screenWidth/2,Utils.screenWidth/8), 50);
+        //_player = new Player("player",new Vector2(Utils.screenWidth/2,Utils.screenWidth/8), 50);
+        XmlManager<Player> plxml = new XmlManager<Player>();
+        _player = plxml.Load("../../../src/xml/Player.xml");
         _player.setGravity(getGravity());
+        Utils._player = _player;
         _end = new EndOfLevel();
         //_end.setPosition(new Vector2(positionFinDeNiveau().X*levelWidthCoef(),positionFinDeNiveau().Y*levelHeightCoef()));
         _end.setPosition(new Vector2(positionFinDeNiveau().X,positionFinDeNiveau().Y));
@@ -76,9 +82,7 @@ public class Level
 
     public void Update(GameTime gameTime)
     {
-        //Console.WriteLine(Vector2.Distance(_end.getPosition(),_player.getPosition()));
-        Console.WriteLine(levelWidthCoef() + "-" + levelHeightCoef());
-        Vector2 offset = _camera.moveCamera(_player._speed);
+        Vector2 offset = _camera.moveCamera(_player._move);
         _player.shootOffset(offset);
         if (offset != Vector2.Zero)
         {
@@ -142,7 +146,7 @@ public class Level
                 if (e.checkTopCollision(_player._bottomHitbox))
                 {
                     e.die();
-                    _player._speed.Y = -_player._jumpForce;
+                    _player._move.Y = -_player._jumpForce;
                     Utils.addScore(1);
                 }else if (e.checkCollision(_player.Rect))
                 {

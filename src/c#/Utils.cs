@@ -23,6 +23,7 @@ public static class Utils
     public static XmlManager<Saves> saveManager;
     public static Saves _saves;
     public static Game1 _game1;
+    public static Player _player;
     
 
     public static int screenWidth

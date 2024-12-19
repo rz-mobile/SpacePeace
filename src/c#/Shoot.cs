@@ -22,6 +22,15 @@ public class Shoot : GameObject
         speed = new Vector2(10, 0);
     }
 
+    public Shoot()
+    {
+        _position = Utils._player._position;
+        speed = new Vector2(10, 0);
+        _texture = Utils._content.Load<Texture2D>("Missile");
+        Height = 30;
+        Width = 30;
+    }
+
     public new void Update(GameTime gameTime)
     {
         _position = new Vector2(_position.X + 10, _position.Y);

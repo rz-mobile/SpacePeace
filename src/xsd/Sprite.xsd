@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-           xmlns:as="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/animatedSprites"
-           targetNamespace="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/animatedSprites"
+           xmlns:as="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/Sprites"
+           targetNamespace="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/Sprites"
            elementFormDefault="qualified">
 
     <element name="AnimatedSprite" type="as:AnimatedSprite"/>
@@ -12,7 +12,7 @@
         <sequence>
             <element name="texture" type="string"/>
             <element name="height" type="int"/>
-            <element name="wigth" type="int"/>
+            <element name="width" type="int"/>
         </sequence>
     </complexType>
     

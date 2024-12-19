@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-        xmlns:as="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/animatedSprites"
+        xmlns:as="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/Sprites"
         xmlns:go = "http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/gameObjects"
         targetNamespace="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/gameObjects"
         elementFormDefault="qualified">
-    <import namespace="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/animatedSprites" schemaLocation="Sprite.xsd"/>
+    <!--<import namespace="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/animatedSprites" schemaLocation="../xsd/Sprite.xsd"/>-->
 
     <element name="Player" type="go:Player"/>
-    <element name="GameObject" type="go:GameObject"/>
+    <element name="Enemy" type="go:Enemy"/>
     
-    <complexType name="GameObject">
-        <complexContent>
-            <extension base="as:Sprite"/>
-        </complexContent>
-    </complexType>
     
     <complexType name="Player">
-        <complexContent>
-            <extension base="go:GameObject">
-                <sequence>
-                    <element name="jumpForce" type="float"/>
-                    <element name="ptVie" type="int"/>
-                </sequence>
-            </extension>
-        </complexContent>
+        <sequence>
+            <element name="speed" type="float"/>
+            <element name="jumpForce" type="float"/>
+            <element name="ptVie" type="int"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Enemy">
+        <sequence>
+            <element name="Pv" type="int"/>
+            <element name="degats" type="int"/>
+            <element name="speed" type="float"/>
+        </sequence>
     </complexType>
 </schema>

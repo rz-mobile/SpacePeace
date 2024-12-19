@@ -6,34 +6,40 @@ using Microsoft.Xna.Framework.Graphics;
 namespace SpacePeace;
 
 [Serializable]
-[XmlRoot("Enemy", Namespace ="http://www.univ-grenoble-alpes.fr/Enemy" )]
+[XmlRoot("Enemy", Namespace ="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/gameObjects" )]
 
 public class Enemy : GameObject
 {
-    private Vector2 _speed;
+    private Vector2 _move;
     private float _gravity;
     private bool _surSol = false;
     public bool _dead = false;
     public Rectangle _topHitbox{get => new Rectangle((int)_position.X-(Width/2)+6, (int)_position.Y-(Height/2), Width-12, 4);}
     public Rectangle _leftHitbox{get => new Rectangle((int)_position.X - (Width/2), (int)_position.Y-(Height/2)+3, 4, Height-6);}
 
-    [XmlAttribute("degats")] public int _degats { init; get; }
-    [XmlAttribute("Pv")] public int _ptVie;
+    [XmlElement("degats")] public int _degats { init; get; }
+    [XmlElement("Pv")] public int _ptVie;
+    [XmlElement("speed")]public float _speed;
     
     public Enemy(string texture, Vector2 position, int size,int degats) : base(texture, position, size, 0, 2)
     {
         _degats = degats;
-        _speed = new Vector2(0.0f, 0.0f);
+        _move = new Vector2(0.0f, 0.0f);
         _gravity = 0.5f;
         _ptVie = 1;
         
     }
 
-    public Enemy() : base()
+    public Enemy()
     {
-        _speed = new Vector2(0.0f, 0.0f);
+        _texture = Utils._content.Load<Texture2D>("player");
+        _position = new Vector2(0.0f, 0.0f);
+        Height = 60;
+        Width = 60;
+        _move = new Vector2(0.0f, 0.0f);
         _gravity = 0.1f;
     }
+    
     
     
     public void spawn(Vector2 position)
@@ -49,7 +55,7 @@ public class Enemy : GameObject
     public void groundReaction()
     {
         //_surSol = true;
-        _speed = new Vector2(_speed.X,  - _gravity);
+        _move = new Vector2(_move.X,  - _gravity);
     }
 
 
@@ -76,10 +82,11 @@ public class Enemy : GameObject
     public new void Update(GameTime gameTime)
     {
         base.Update(gameTime, 0,2 );
-            _speed = new Vector2(_speed.X, _speed.Y+_gravity);
-        _speed.X = -0.1f;
+        //Console.WriteLine(_speed +"-" + _ptVie + "-" + _degats);
+            _move = new Vector2(_move.X, _move.Y+_gravity);
+        _move.X = -_speed;
         
-        _position = new Vector2(_position.X + _speed.X, _position.Y + _speed.Y);
+        _position = new Vector2(_position.X + _move.X, _position.Y + _move.Y);
 
     }
 

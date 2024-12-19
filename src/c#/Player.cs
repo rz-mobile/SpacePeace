@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace SpacePeace;
+//[XmlInclude(typeof(GameObject))]
 [XmlRoot("Player", Namespace = "http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/gameObjects")]
 [Serializable]
 public class Player : GameObject
@@ -15,10 +16,10 @@ public class Player : GameObject
     public bool _surSol = false;
     bool _tirPresse = false;
     public Vector2 _positionBase { get; init; }
-    public Vector2 _speed;
+    public Vector2 _move;
     private float _gravity;
     private bool _isJumping = false;
-    [XmlElement("jumpForce")] public float _jumpForce{get;private set;}
+    [XmlElement("jumpForce")] public float _jumpForce{get; set;}
     public Rectangle _bottomHitbox {get => new Rectangle((int)_position.X-(Width/2)+6, (int)_position.Y+(Height/2), Width-12, 4);}
     public Rectangle _rightHitbox{get => new Rectangle((int)_position.X+(Width/2), (int)_position.Y-(Height/2)+3, 4, Height-6);}
     public Rectangle _leftHitbox{get => new Rectangle((int)_position.X - (Width/2), (int)_position.Y-(Height/2)+3, 4, Height-6);}
@@ -26,6 +27,7 @@ public class Player : GameObject
     public bool _rWall = false;
     public bool _lWall = false;
     private int ptVie;
+
     [XmlElement("ptVie")]
     
     public int _ptVie
@@ -51,22 +53,31 @@ public class Player : GameObject
     private Shoot shooter;
     private static System.Timers.Timer temps;
     private SpriteEffects _flip;
+    [XmlElement("speed")] public float _speed;
     
     public Player(string texture, Vector2 position, int size) : base(texture, position, size, 3,7)
     {
-        _positionBase = position;
-        _speed = new Vector2(0.0f, 0.0f);
+        _positionBase = _position;
+        _move = new Vector2(0.0f, 0.0f);
         _jumpForce = 3.5f;
         _gravity = 0.1f;
         _ptVie = 10;
+        _speed = 2.0f;
 
     }
 
-    public Player():base()
+    public Player()
     {
-        _speed = new Vector2(0.0f, 0.0f);
+        _textureName = "player";
+        _position = new Vector2(Utils.screenWidth/2,Utils.screenWidth/8);
+        _texture = Utils._content.Load<Texture2D>(_textureName);
+        Height = 50;
+        Width = 50;
+        _positionBase = _position;
+        _move = new Vector2(0.0f, 0.0f);
         _gravity = 0.1f;
     }
+    
 
     public void setGravity(float gravity)
     {
@@ -75,7 +86,7 @@ public class Player : GameObject
     public void groundReaction()
     {
         _surSol = true;
-        _speed = new Vector2(_speed.X, 0.0f);
+        _move = new Vector2(_move.X, 0.0f);
     }
 
     public void shootOffset(Vector2 offset)
@@ -89,6 +100,7 @@ public class Player : GameObject
     public new void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+        //Console.WriteLine(_jumpForce + "-" + _ptVie);
         if (_ptVie <= 0)
         {
             Utils._paused = true;
@@ -104,16 +116,16 @@ public class Player : GameObject
         }
         if (!_surSol)
         {
-            _speed = new Vector2(_speed.X, _speed.Y+_gravity);
+            _move = new Vector2(_move.X, _move.Y+_gravity);
         }
         
-        _speed.X = 0;
+        _move.X = 0;
         if (Keyboard.GetState().IsKeyDown(Keys.Right) && !_rWall)
         {
-            _speed.X = 2.0f;
+            _move.X = _speed;
         }else if (Keyboard.GetState().IsKeyDown(Keys.Left) && !_lWall)
         {
-            _speed.X = -2.0f;
+            _move.X = -_speed;
             
         }
         
@@ -153,7 +165,7 @@ public class Player : GameObject
             damage(2);
             if (_ptVie >0)
             {
-                _speed = new Vector2(0, 0);
+                _move = new Vector2(0, 0);
                 _position = _positionBase;
             }
 
@@ -177,7 +189,7 @@ public class Player : GameObject
         }else{
             base.Update(gameTime, 0,tabFrame[0]);
         }
-        _position = new Vector2(_position.X, _position.Y + _speed.Y);
+        _position = new Vector2(_position.X, _position.Y + _move.Y);
 
         
     }
@@ -208,7 +220,7 @@ public class Player : GameObject
         if (_surSol)
         {
             //Console.Write("jump");
-            _speed.Y = -_jumpForce;
+            _move.Y = -_jumpForce;
 
         }
     }
