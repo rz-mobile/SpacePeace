@@ -60,20 +60,24 @@ public class Level
         foreach (Vector2 position in positionsEnnemis)
         {
             Enemy enemy = new Enemy("player", new Vector2(0, 0), 60,1);
-            enemy.setPosition(new Vector2(position.X*levelWidthCoef(),position.Y*levelHeightCoef()));
+            //enemy.setPosition(new Vector2(position.X*levelWidthCoef(),position.Y*levelHeightCoef()));
+            enemy.setPosition(new Vector2(position.X,position.Y));
             enemy.setGravity(getGravity());
             _enemies.Add(enemy);
         }
         _player = new Player("player",new Vector2(Utils.screenWidth/2,Utils.screenWidth/8), 50);
         _player.setGravity(getGravity());
         _end = new EndOfLevel();
-        _end.setPosition(new Vector2(positionFinDeNiveau().X*levelWidthCoef(),positionFinDeNiveau().Y*levelHeightCoef()));
+        //_end.setPosition(new Vector2(positionFinDeNiveau().X*levelWidthCoef(),positionFinDeNiveau().Y*levelHeightCoef()));
+        _end.setPosition(new Vector2(positionFinDeNiveau().X,positionFinDeNiveau().Y));
         
         
     }
 
     public void Update(GameTime gameTime)
     {
+        //Console.WriteLine(Vector2.Distance(_end.getPosition(),_player.getPosition()));
+        Console.WriteLine(levelWidthCoef() + "-" + levelHeightCoef());
         Vector2 offset = _camera.moveCamera(_player._speed);
         _player.shootOffset(offset);
         if (offset != Vector2.Zero)
@@ -124,10 +128,10 @@ public class Level
                 e.Update(gameTime);
                 foreach (Shoot s in _player.tirList)
                 { 
-                    Console.WriteLine("shoot lancé");
+                    //Console.WriteLine("shoot lancé");
                     if (e.checkleftCollision(s._rightHitbox))
                     {
-                        Console.WriteLine("Colision détectée !");
+                        //Console.WriteLine("Colision détectée !");
                         e.die();
                         s.touche();
                         Utils.addScore(1);

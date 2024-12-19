@@ -2,7 +2,56 @@
 <Saves xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/Saves">
   <SaveInstance>
     <PlayerName>Nom</PlayerName>
+    <Score>2</Score>
+    <Niveau>1</Niveau>
+    <Date>2024-12-18T21:04:20.334061+01:00</Date>
+  </SaveInstance>
+  <SaveInstance>
+    <PlayerName>Nom</PlayerName>
+    <Score>5</Score>
+    <Niveau>1</Niveau>
+    <Date>2024-12-18T21:06:52.2295078+01:00</Date>
+  </SaveInstance>
+  <SaveInstance>
+    <PlayerName>Nom</PlayerName>
     <Score>1</Score>
     <Niveau>1</Niveau>
+    <Date>2024-12-18T21:08:47.8769029+01:00</Date>
+  </SaveInstance>
+  <SaveInstance>
+    <PlayerName>SSSSSSSSSSSSSSDDDDDDQQQQQQQDDDDDDDZZZZZZ</PlayerName>
+    <Score>0</Score>
+    <Niveau>1</Niveau>
+    <Date>2024-12-19T09:17:55.7557904+01:00</Date>
+  </SaveInstance>
+  <SaveInstance>
+    <PlayerName>Anonyme</PlayerName>
+    <Score>1</Score>
+    <Niveau>1</Niveau>
+    <Date>2024-12-19T09:20:21.5205744+01:00</Date>
+  </SaveInstance>
+  <SaveInstance>
+    <PlayerName>LeftShiftTEST</PlayerName>
+    <Score>0</Score>
+    <Niveau>1</Niveau>
+    <Date>2024-12-19T09:20:43.0053678+01:00</Date>
+  </SaveInstance>
+  <SaveInstance>
+    <PlayerName>TESTNumPad1Back</PlayerName>
+    <Score>10</Score>
+    <Niveau>1</Niveau>
+    <Date>2024-12-19T09:21:20.5345581+01:00</Date>
+  </SaveInstance>
+  <SaveInstance>
+    <PlayerName>QHJKKDJQLLKL</PlayerName>
+    <Score>15</Score>
+    <Niveau>1</Niveau>
+    <Date>2024-12-19T09:23:17.779342+01:00</Date>
+  </SaveInstance>
+  <SaveInstance>
+    <PlayerName>SCQFFFEE</PlayerName>
+    <Score>1</Score>
+    <Niveau>1</Niveau>
+    <Date>2024-12-19T10:11:34.0770745+01:00</Date>
   </SaveInstance>
 </Saves>

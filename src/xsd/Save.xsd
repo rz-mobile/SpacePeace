@@ -16,6 +16,7 @@
             <xs:element name="PlayerName" type="xs:string"/>
             <xs:element name="Score" type="xs:int"/>
             <xs:element name="Niveau" type="xs:int"/>
+            <xs:element name="Date" type="xs:dateTime"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>
