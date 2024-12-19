@@ -74,7 +74,7 @@ public class Level
         _player.setGravity(getGravity());
         Utils._player = _player;
         _end = new EndOfLevel();
-        //_end.setPosition(new Vector2(positionFinDeNiveau().X*levelWidthCoef(),positionFinDeNiveau().Y*levelHeightCoef()));
+        _end.setPosition(new Vector2(positionFinDeNiveau().X*levelWidthCoef(),positionFinDeNiveau().Y));
         //_end.setPosition(new Vector2(positionFinDeNiveau().X,positionFinDeNiveau().Y));
         
         
@@ -239,7 +239,7 @@ public class Level
     {
         _doc.Load(_path);
         XmlNode w = _doc.DocumentElement.SelectSingleNode("//map");
-        return ((float.Parse(w.Attributes["width"].Value)*_levelSize)/Utils.screenWidth);
+        return (((float.Parse(w.Attributes["width"].Value)*_levelSize)/Utils.screenWidth)/4);
     }
     public float levelHeightCoef()
     {
