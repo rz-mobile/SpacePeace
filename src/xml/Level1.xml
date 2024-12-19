@@ -80,16 +80,10 @@
   <object id="12" name="EndLevel" x="3003.77" y="215.955">
    <point/>
   </object>
-  <object id="13" name="Enemy" type="Enemy" x="266.455" y="222.606">
-   <point/>
-  </object>
   <object id="14" name="Enemy" type="Enemy" x="914.652" y="224.091">
    <point/>
   </object>
   <object id="15" name="Enemy" type="Enemy" x="2275.47" y="222.682">
-   <point/>
-  </object>
-  <object id="16" name="Enemy" type="Enemy" x="1696.97" y="218.182">
    <point/>
   </object>
   <object id="17" name="Enemy" type="Enemy" x="3185.33" y="46.6667">
@@ -102,12 +96,6 @@
    <point/>
   </object>
   <object id="20" name="Enemy" type="Enemy" x="1349" y="222">
-   <point/>
-  </object>
-  <object id="21" name="Enemy" type="Enemy" x="1781" y="222.5">
-   <point/>
-  </object>
-  <object id="22" name="Enemy" type="Enemy" x="409" y="212.5">
    <point/>
   </object>
   <object id="23" name="Enemy" type="Enemy" x="566.5" y="224">
@@ -140,13 +128,7 @@
   <object id="32" name="Enemy" type="Enemy" x="2614.67" y="225.333">
    <point/>
   </object>
-  <object id="33" name="Enemy" type="Enemy" x="2477.33" y="205.333">
-   <point/>
-  </object>
   <object id="34" name="Enemy" type="Enemy" x="2892" y="141.333">
-   <point/>
-  </object>
-  <object id="35" name="Enemy" type="Enemy" x="2694.67" y="226.667">
    <point/>
   </object>
  </objectgroup>

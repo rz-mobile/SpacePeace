@@ -13,7 +13,7 @@ public static class Utils
     public static GraphicsDeviceManager _graphics;
     public static Gameplay _currentGameplay;
     public static bool _paused;
-    public static readonly int LEVEL_NUMBER = 1;
+    public static readonly int LEVEL_NUMBER = 3;
     public static bool _isPlaying;
     public static bool _gameOver = false;
     public static bool _gameComplete = false;

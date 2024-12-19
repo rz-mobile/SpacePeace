@@ -8,7 +8,7 @@ namespace SpacePeace;
 public class Gameplay
 {
     private BackGround _backGround;
-    private int _lvId = 1;
+    private int _lvId = 0;
     private bool _paused
     {
         get
