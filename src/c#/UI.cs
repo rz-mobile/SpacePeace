@@ -31,7 +31,7 @@ public class UI
         _font = Utils._content.Load<SpriteFont>("MyMenuFont");
         _quitButton = new Button("Exit_BTN",new Vector2(550,300),50, 150);
         _resumeButton = new Button("Start_BTN",new Vector2(240,300),50, 150);
-        _restartButton = new Button("Info_BTN",new Vector2(395,400),50, 150);
+        _restartButton = new Button("Replay",new Vector2(355,300),80, 80);
         YouLose = new Sprite("YouLose",new Vector2(Utils.screenWidth/2,150),50, 250);
         _quitButton = new Button("Exit_BTN",new Vector2(510,300),50, 150);
         _resumeButton = new Button("ok",new Vector2(240,300),80, 80);
@@ -48,11 +48,6 @@ public class UI
                 _resumeButton.Update(gameTime);
                 if (_quitButton._clicked)
                 {
-                    /*Saves s = new Saves();
-                    s.addSave("test1",50,0);
-                    s.addSave("test2",100,15);
-                    XmlManager<Saves> sxml = new XmlManager<Saves>();
-                    sxml.Save("../../../src/xml/Save.xml",s,new XmlSerializerNamespaces());*/
                     Utils.Save();
                     Utils._game1.Exit();
                 }

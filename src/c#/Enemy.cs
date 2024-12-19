@@ -54,15 +54,10 @@ public class Enemy : GameObject
     }
     public void groundReaction()
     {
-        //_surSol = true;
         _move = new Vector2(_move.X,  - _gravity);
     }
 
-
-    /*public void setOffset(Vector2 offset)
-    {
-        _position = _position + offset;
-    }*/
+    
     public void setGravity(float gravity)
     {
         _gravity = gravity;
@@ -82,8 +77,7 @@ public class Enemy : GameObject
     public new void Update(GameTime gameTime)
     {
         base.Update(gameTime, 0,2 );
-        //Console.WriteLine(_speed +"-" + _ptVie + "-" + _degats);
-            _move = new Vector2(_move.X, _move.Y+_gravity);
+        _move = new Vector2(_move.X, _move.Y+_gravity);
         _move.X = -_speed;
         
         _position = new Vector2(_position.X + _move.X, _position.Y + _move.Y);
@@ -95,7 +89,5 @@ public class Enemy : GameObject
         base.Draw(spriteBatch, SpriteEffects.FlipHorizontally, Color.Red);
         Texture2D rect = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
         rect.SetData(new Color[] { Color.White });
-        spriteBatch.Draw(rect,_topHitbox, Color.Yellow);
-        spriteBatch.Draw(rect,_leftHitbox, Color.Blue);
     }
 }

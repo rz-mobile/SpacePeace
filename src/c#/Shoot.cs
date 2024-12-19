@@ -47,9 +47,6 @@ public class Shoot : GameObject
         base.Draw(spriteBatch);
         Texture2D rect = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
         rect.SetData(new Color[] { Color.White });
-        spriteBatch.Draw(rect,_leftHitbox, Color.Yellow);
-        spriteBatch.Draw(rect,_rightHitbox, Color.Blue);
-        spriteBatch.Draw(rect,_bottomHitbox, Color.Red);
-        spriteBatch.Draw(rect,_topHitbox, Color.Green);
+       
     }
 }

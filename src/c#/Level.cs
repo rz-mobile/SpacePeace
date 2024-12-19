@@ -52,30 +52,24 @@ public class Level
         _arrierePlan = new Tilemap(currentLevelBackGround,_levelSize);
         string currentLevelCollisions = xmlMap("Collision");
         _collisionMap = new CollisionMap(currentLevelCollisions,_texture,graphicsDevice,_levelSize);
-        /*
-        XmlManager<Player> plxml = new XmlManager<Player>();
-        _player = plxml.Load(../../../src/xml/Player.xml);*/
+       
         _enemies = new List<Enemy>();
         List<Vector2> positionsEnnemis = positionEnnemis();
         foreach (Vector2 position in positionsEnnemis)
         {
-            //Enemy enemy = new Enemy("player", new Vector2(0, 0), 60,1);
             XmlManager<Enemy> enxml = new XmlManager<Enemy>();
             Enemy enemy = enxml.Load("../../../src/xml/Enemy.xml");
             enemy.setPosition(new Vector2(position.X*levelWidthCoef(),position.Y));
-            //enemy.setPosition(new Vector2(position.X,position.Y));
             enemy.setGravity(getGravity());
             Console.WriteLine(enemy.getPosition());
             _enemies.Add(enemy);
         }
-        //_player = new Player("player",new Vector2(Utils.screenWidth/2,Utils.screenWidth/8), 50);
         XmlManager<Player> plxml = new XmlManager<Player>();
         _player = plxml.Load("../../../src/xml/Player.xml");
         _player.setGravity(getGravity());
         Utils._player = _player;
         _end = new EndOfLevel();
         _end.setPosition(new Vector2(positionFinDeNiveau().X*levelWidthCoef(),positionFinDeNiveau().Y));
-        //_end.setPosition(new Vector2(positionFinDeNiveau().X,positionFinDeNiveau().Y));
         
         
     }
@@ -132,10 +126,9 @@ public class Level
                 e.Update(gameTime);
                 foreach (Shoot s in _player.tirList)
                 { 
-                    //Console.WriteLine("shoot lancé");
                     if (e.checkleftCollision(s._rightHitbox))
                     {
-                        //Console.WriteLine("Colision détectée !");
+                       
                         e.die();
                         s.touche();
                         Utils.addScore(1);
@@ -214,7 +207,6 @@ public class Level
         List<Vector2> positions = new List<Vector2>();
         foreach (XmlNode objet in objets)
         {
-            //positions.Add(new Vector2(float.Parse(objet.Attributes["x"].Value), float.Parse(objet.Attributes["y"].Value)));
             positions.Add(new Vector2(float.Parse(objet.Attributes["x"].Value,CultureInfo.InvariantCulture), float.Parse(objet.Attributes["y"].Value,CultureInfo.InvariantCulture)));
         }
         return positions;

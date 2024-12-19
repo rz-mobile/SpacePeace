@@ -123,10 +123,7 @@ public class Mainmenu
             _cloudPause.Draw(spriteBatch);
             _arrowRight.Draw(spriteBatch);
             _arrowLeft.Draw(spriteBatch);
-            //_arrowDown.Draw(spriteBatch);
             _arrowUp.Draw(spriteBatch);
-            //_arrow1.Draw(spriteBatch);
-            //_arrow2.Draw(spriteBatch);
             _echap.Draw(spriteBatch);
             _espace.Draw(spriteBatch);
             spriteBatch.DrawString(_font, "Avancer", new Vector2(450,215), Color.White);

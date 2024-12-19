@@ -41,18 +41,4 @@ public class Button
             _clicked = false;
         }
     }
-
-    /*public bool Clicked()
-    {
-        if (!alreadyCLicked)
-        {
-            alreadyCLicked = true;
-            return _sprite.Rect.Contains(Mouse.GetState().Position) && Mouse.GetState().LeftButton == ButtonState.Pressed;
-        }
-        else
-        {
-            return false;
-        }
-        
-    }*/
 }

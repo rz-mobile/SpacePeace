@@ -24,7 +24,6 @@ public class Tile
         _bounds = new Rectangle(); 
         _bounds.X = (id % 12)*16-16;
         _bounds.Y = id -(id % 12);
-        //_bounds.Y = id;
         _bounds.Width = 16;
         _bounds.Height = 16;
         _sprite = new Sprite("MapSpace",_position,size);
