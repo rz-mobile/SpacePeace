@@ -70,7 +70,7 @@
     <xsl:template match="go:Player">
         <tr>
             <td>
-                <img src="../../Content/Astronaut.png" alt="Image du joueur"/>
+                <img src="../../Content/Astronaute.png" alt="Image du joueur"/>
             </td>
             <td>
                 <img src="../../Content/Missile.png" alt="Image du Missile"/>
