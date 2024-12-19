@@ -75,7 +75,7 @@ public class Level
         Utils._player = _player;
         _end = new EndOfLevel();
         //_end.setPosition(new Vector2(positionFinDeNiveau().X*levelWidthCoef(),positionFinDeNiveau().Y*levelHeightCoef()));
-        _end.setPosition(new Vector2(positionFinDeNiveau().X,positionFinDeNiveau().Y));
+        //_end.setPosition(new Vector2(positionFinDeNiveau().X,positionFinDeNiveau().Y));
         
         
     }

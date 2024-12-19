@@ -90,7 +90,11 @@ public class Mainmenu
             if (keyPressed == false)
             {
                 keyPressed = true;
-                Utils._currentPlayer += Keyboard.GetState().GetPressedKeys()[0];
+                if (Keyboard.GetState().GetPressedKeys()[0] >= Keys.A &&
+                    Keyboard.GetState().GetPressedKeys()[0] <= Keys.Z)
+                {
+                    Utils._currentPlayer += Keyboard.GetState().GetPressedKeys()[0];
+                }
             }
 
         }
@@ -109,12 +113,11 @@ public class Mainmenu
         _tutoButton.Draw(spriteBatch);
         _playButton.Draw(spriteBatch);
         _exitButton.Draw(spriteBatch);
-        spriteBatch.DrawString(_font, Utils._currentPlayer, new Vector2(Utils.screenWidth/4,Utils.screenHeight/8), Color.White);
+        spriteBatch.DrawString(_font, "NOM : " +Utils._currentPlayer, new Vector2(Utils.screenWidth/4,(Utils.screenHeight/8)+10), Color.White);
         
 
         if (_tutoButton._clicked)
         {
-            
             _fondTuto.Draw(spriteBatch);
             _infoTuto.Draw(spriteBatch);
             _cloudPause.Draw(spriteBatch);
