@@ -62,10 +62,10 @@ public class Level
             //Enemy enemy = new Enemy("player", new Vector2(0, 0), 60,1);
             XmlManager<Enemy> enxml = new XmlManager<Enemy>();
             Enemy enemy = enxml.Load("../../../src/xml/Enemy.xml");
-            //Console.WriteLine(enemy);
-            //enemy.setPosition(new Vector2(position.X*levelWidthCoef(),position.Y*levelHeightCoef()));
-            enemy.setPosition(new Vector2(position.X,position.Y));
+            enemy.setPosition(new Vector2(position.X*levelWidthCoef(),position.Y));
+            //enemy.setPosition(new Vector2(position.X,position.Y));
             enemy.setGravity(getGravity());
+            Console.WriteLine(enemy.getPosition());
             _enemies.Add(enemy);
         }
         //_player = new Player("player",new Vector2(Utils.screenWidth/2,Utils.screenWidth/8), 50);
@@ -239,12 +239,12 @@ public class Level
     {
         _doc.Load(_path);
         XmlNode w = _doc.DocumentElement.SelectSingleNode("//map");
-        return (float.Parse(w.Attributes["width"].Value)*_levelSize)/Utils.screenWidth;
+        return ((float.Parse(w.Attributes["width"].Value)*_levelSize)/Utils.screenWidth);
     }
     public float levelHeightCoef()
     {
         _doc.Load(_path);
         XmlNode h = _doc.DocumentElement.SelectSingleNode("//map");
-        return (float.Parse(h.Attributes["height"].Value)*_levelSize)/Utils.screenHeight;
+        return ((float.Parse(h.Attributes["height"].Value)*_levelSize)/Utils.screenHeight);
     }
 }
