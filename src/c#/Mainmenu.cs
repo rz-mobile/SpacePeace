@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -7,7 +8,7 @@ namespace SpacePeace;
 public class Mainmenu
 {
  
-    
+    private bool keyPressed = false;
     
     private UI _main;
     private Level _level1;
@@ -64,6 +65,8 @@ public class Mainmenu
         _echap =  new Sprite("button_echap", new Vector2(330,270), 50, 75);
         _espace = new Sprite("button_espace", new Vector2(330,315), 50, 75);
         
+        Utils._currentPlayer = String.Empty;
+        
     }
 
     public void Update(GameTime gameTime){
@@ -81,6 +84,22 @@ public class Mainmenu
         {
             ExitGame = true;
         }
+
+        if (Keyboard.GetState().GetPressedKeys().Length != 0)
+        {
+            if (keyPressed == false)
+            {
+                keyPressed = true;
+                Utils._currentPlayer += Keyboard.GetState().GetPressedKeys()[0];
+            }
+
+        }
+        else
+        {
+            keyPressed = false;
+        }
+
+
     }
 
     public void Draw(SpriteBatch spriteBatch){
@@ -90,6 +109,8 @@ public class Mainmenu
         _tutoButton.Draw(spriteBatch);
         _playButton.Draw(spriteBatch);
         _exitButton.Draw(spriteBatch);
+        spriteBatch.DrawString(_font, Utils._currentPlayer, new Vector2(Utils.screenWidth/4,Utils.screenHeight/8), Color.White);
+        
 
         if (_tutoButton._clicked)
         {

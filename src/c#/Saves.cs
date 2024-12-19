@@ -16,9 +16,9 @@ public class Saves
         saves = new List<SaveInstance>();
     }
     
-    public void addSave(string playerName, int score,int level)
+    public void addSave(string playerName, int score,int level,DateTime date)
     {
-        saves.Add(new SaveInstance(playerName, score,level));
+        saves.Add(new SaveInstance(playerName, score,level,date));
     }
 
 }

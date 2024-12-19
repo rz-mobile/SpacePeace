@@ -18,11 +18,12 @@ public static class Utils
     public static bool _gameOver = false;
     public static bool _gameComplete = false;
     public static int _currentLevelId;
-    public static string _currentPlayer = "Nom";
+    public static string _currentPlayer = String.Empty;
     public static int _currentScore;
     public static XmlManager<Saves> saveManager;
     public static Saves _saves;
     public static Game1 _game1;
+    public static Player _player;
     
 
     public static int screenWidth
@@ -58,9 +59,19 @@ public static class Utils
 
     public static void Save()
     {
-        _saves.addSave(_currentPlayer,_currentScore,_currentLevelId);
+        if (_currentPlayer != String.Empty)
+        {
+            _saves.addSave(_currentPlayer,_currentScore,_currentLevelId,DateTime.Now);
+        }
+        else
+        {
+            _saves.addSave("Anonyme",_currentScore,_currentLevelId,DateTime.Now);
+        }
+        
         saveManager.Save("../../../src/xml/Save.xml",_saves,new XmlSerializerNamespaces());
+        XMLUtils.XslTransform("../../../src/xml/Save.xml","../../../src/xslt/Save.xsl","../../../src/html/hiScores.html");
     }
+    
     
     
 

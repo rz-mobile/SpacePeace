@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Player xmlns = "http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/gameObjects"
+<Enemy xmlns = "http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/gameObjects"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/gameObjects //src/xsd/GameObjects.xsd">
-    <speed>6</speed>
-    <jumpForce>7.5</jumpForce>
-    <ptVie>10</ptVie>
-</Player>
+    <Pv>1</Pv>
+    <degats>3</degats>
+    <speed>0.5</speed>
+</Enemy>

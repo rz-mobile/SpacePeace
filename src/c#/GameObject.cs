@@ -5,9 +5,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace SpacePeace;
-[XmlInclude(typeof(Player))]
-[XmlRoot("GameObject", Namespace = "http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/gameObjects")]
-[Serializable]
+
 public abstract class GameObject : AnimatedSprite
 {
     private Rectangle _hitbox => new Rectangle((int)_position.X, (int)_position.Y, Width, Height);
@@ -29,7 +27,6 @@ public abstract class GameObject : AnimatedSprite
     }
     public GameObject():base()
     {
-        _position = new Vector2(300,300);
         //_hitbox = new Rectangle((int)_position.X, (int)_position.Y, _sprite._size, _sprite._size);
     }
 

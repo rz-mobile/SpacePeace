@@ -59,22 +59,30 @@ public class Level
         List<Vector2> positionsEnnemis = positionEnnemis();
         foreach (Vector2 position in positionsEnnemis)
         {
-            Enemy enemy = new Enemy("player", new Vector2(0, 0), 60,1);
-            enemy.setPosition(new Vector2(position.X*levelWidthCoef(),position.Y*levelHeightCoef()));
+            //Enemy enemy = new Enemy("player", new Vector2(0, 0), 60,1);
+            XmlManager<Enemy> enxml = new XmlManager<Enemy>();
+            Enemy enemy = enxml.Load("../../../src/xml/Enemy.xml");
+            enemy.setPosition(new Vector2(position.X*levelWidthCoef(),position.Y));
+            //enemy.setPosition(new Vector2(position.X,position.Y));
             enemy.setGravity(getGravity());
+            Console.WriteLine(enemy.getPosition());
             _enemies.Add(enemy);
         }
-        _player = new Player("player",new Vector2(Utils.screenWidth/2,Utils.screenWidth/8), 50);
+        //_player = new Player("player",new Vector2(Utils.screenWidth/2,Utils.screenWidth/8), 50);
+        XmlManager<Player> plxml = new XmlManager<Player>();
+        _player = plxml.Load("../../../src/xml/Player.xml");
         _player.setGravity(getGravity());
+        Utils._player = _player;
         _end = new EndOfLevel();
-        _end.setPosition(new Vector2(positionFinDeNiveau().X*levelWidthCoef(),positionFinDeNiveau().Y*levelHeightCoef()));
+        //_end.setPosition(new Vector2(positionFinDeNiveau().X*levelWidthCoef(),positionFinDeNiveau().Y*levelHeightCoef()));
+        _end.setPosition(new Vector2(positionFinDeNiveau().X,positionFinDeNiveau().Y));
         
         
     }
 
     public void Update(GameTime gameTime)
     {
-        Vector2 offset = _camera.moveCamera(_player._speed);
+        Vector2 offset = _camera.moveCamera(_player._move);
         _player.shootOffset(offset);
         if (offset != Vector2.Zero)
         {
@@ -124,10 +132,10 @@ public class Level
                 e.Update(gameTime);
                 foreach (Shoot s in _player.tirList)
                 { 
-                    Console.WriteLine("shoot lancé");
+                    //Console.WriteLine("shoot lancé");
                     if (e.checkleftCollision(s._rightHitbox))
                     {
-                        Console.WriteLine("Colision détectée !");
+                        //Console.WriteLine("Colision détectée !");
                         e.die();
                         s.touche();
                         Utils.addScore(1);
@@ -138,7 +146,7 @@ public class Level
                 if (e.checkTopCollision(_player._bottomHitbox))
                 {
                     e.die();
-                    _player._speed.Y = -_player._jumpForce;
+                    _player._move.Y = -_player._jumpForce;
                     Utils.addScore(1);
                 }else if (e.checkCollision(_player.Rect))
                 {
@@ -231,12 +239,12 @@ public class Level
     {
         _doc.Load(_path);
         XmlNode w = _doc.DocumentElement.SelectSingleNode("//map");
-        return (float.Parse(w.Attributes["width"].Value)*_levelSize)/Utils.screenWidth;
+        return ((float.Parse(w.Attributes["width"].Value)*_levelSize)/Utils.screenWidth);
     }
     public float levelHeightCoef()
     {
         _doc.Load(_path);
         XmlNode h = _doc.DocumentElement.SelectSingleNode("//map");
-        return (float.Parse(h.Attributes["height"].Value)*_levelSize)/Utils.screenHeight;
+        return ((float.Parse(h.Attributes["height"].Value)*_levelSize)/Utils.screenHeight);
     }
 }

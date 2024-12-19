@@ -25,7 +25,8 @@ public class Credits
         _quitButton.Update(gameTime);
         if (_quitButton._clicked)
         {
-            Utils._isPlaying = false;
+            Utils.Save();
+            Utils._game1.Exit();
         }
     }
 }
