@@ -63,7 +63,6 @@ public class Level
             Enemy enemy = enxml.Load("../../../src/xml/Enemy.xml");
             enemy.setPosition(new Vector2(position.X*levelWidthCoef(),position.Y));
             enemy.setGravity(getGravity());
-            Console.WriteLine(enemy.getPosition());
             _enemies.Add(enemy);
         }
         XmlManager<Player> plxml = new XmlManager<Player>();

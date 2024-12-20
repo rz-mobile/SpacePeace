@@ -30,7 +30,6 @@ public class XmlManager<T>
     //prends une chaine de caractere ,un objet et un XmlSerializeNamespaces et ne renvoie rien, serialise un objet dans le fichier xml designe par le chemin selon son namespace  
     public void Save(string path, object obj,XmlSerializerNamespaces ns)
     {
-        Console.WriteLine(path);
         using (TextWriter writer = new StreamWriter(path))
         {
             var xml = new XmlSerializer(typeof(T));

@@ -101,7 +101,6 @@ public class Player : GameObject
     public new void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        //Console.WriteLine(_jumpForce + "-" + _ptVie);
         if (_ptVie <= 0)
         {
             Utils._paused = true;

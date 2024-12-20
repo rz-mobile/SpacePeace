@@ -19,7 +19,6 @@ public class XMLUtils
         var settings = new XmlReaderSettings();
         settings.Schemas.Add(schemaNamespace , xsdFilePath);
         settings.ValidationType= ValidationType.Schema;
-        Console.WriteLine(" Nombre de schemas utilisés dans la validation:" + settings.Schemas.Count);
         settings.ValidationEventHandler += ValidationCallBack;
         var readItems = XmlReader.Create(xmlFilePath, settings ) ;
         while (readItems.Read()){ }
