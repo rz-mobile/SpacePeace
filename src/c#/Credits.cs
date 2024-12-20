@@ -11,7 +11,7 @@ public class Credits
     SpriteFont _font;
     private Array f;
 
-    //Constructeur
+    //Constructeur vide
     public Credits()
     {
         _font =  Utils._content.Load<SpriteFont>("MyMenuFont");
@@ -20,8 +20,8 @@ public class Credits
         _quitButton = new Button("Exit_BTN",new Vector2(Utils.screenWidth/2,300),50, 150);
     }
 
-    //méthode Draw qui prend un SpriteBatch en entrée et qui renvoi rien
-    //Cette méthode permet de dessiner les crédits
+    //méthode Draw qui prend un SpriteBatch en entrée et qui ne renvoie rien
+    //Cette méthode permet d'afficher les crédits
     public void Draw(SpriteBatch spriteBatch)
     {
         YouWin.Draw(spriteBatch);
@@ -30,8 +30,8 @@ public class Credits
     }
     
     
-    //Fontion Update prend un GameTime en entrée et renvoi rien 
-    //Cette fonction permet de m'être à jour les crédits.
+    //Fontion Update prend un GameTime en entrée et ne renvoie rien 
+    //Cette fonction permet de mettre à jour les crédits a chaque image
     public void Update(GameTime gameTime)
     {
         _quitButton.Update(gameTime);

@@ -19,8 +19,7 @@ public class AnimatedSprite : Sprite
     private Rectangle Rectsrc { get => new Rectangle(_activeFrame*_widthA,_nbAnimation*_heightA,_widthA, _heightA); }
     // rectangle définissant la frame actuelle 
     
-    //String, Vecor2, int, int, int
-    //contructeur prenant un carré comme Rectsrc 
+    //Constructeur prenant une chaine de caracteres, un Vector2 et 3 entiers
     public AnimatedSprite(string spritesheet, Vector2 position, int size,int maxAnimation, int maxFrame ) : base(spritesheet, position, size)
     {
         _heightA = 16;
@@ -34,7 +33,7 @@ public class AnimatedSprite : Sprite
 
     }
     
-    //a suppr
+    //Constructeur prenant une chaine de caracteres, un Vector2 et 4 entiers
     public AnimatedSprite(string spritesheet, Vector2 position, int height , int width, int maxAnimation, int maxFrame ) :base(spritesheet, position, height, width)
     {
         _activeFrame = 0;
@@ -45,7 +44,7 @@ public class AnimatedSprite : Sprite
         _counter = 0;
     }
 
-    // constructeur sans paramètre utilisé pour player
+    // Constructeur sans paramètres
     public AnimatedSprite() : base()
     {
         _heightA = 16;
@@ -59,11 +58,12 @@ public class AnimatedSprite : Sprite
 
     }
 
-    //pour les objets sans animation
+    //Constructeur prenant une chaine de caracteres, un Vector2 et un entier
     public AnimatedSprite(string spritesheet, Vector2 position, int size) : base(spritesheet, position, size){} 
+    //Constructeur prenant une chaine de caracteres, un Vector2 et 2 entiers
     public AnimatedSprite(string spritesheet, Vector2 position, int height, int width) : base(spritesheet, position, height, width){}
     
-    //Permet de passer d'une frame a l'autre
+    //prend un GameTime en entrée, 2 entiers et ne renvoie rien, s'actualise a chaque image
     public void Update(GameTime gameTime, int nbAnimation, int nbFrames)
     {
         if (nbAnimation != _nbAnimation)
@@ -83,8 +83,8 @@ public class AnimatedSprite : Sprite
             }
         }
     }
-    
-    public void Update(GameTime gameTime) //a suppr
+    //prend un GameTime en entrée et ne renvoie rien, s'actualise a chaque image
+    public void Update(GameTime gameTime)
     {
             _counter++;
             if(_counter > 10)
@@ -98,21 +98,23 @@ public class AnimatedSprite : Sprite
             }
     }
     
-    //Méthodes déssinant le Sprite
+    //Prends un SpriteBatch et ne renvoie rien ,affiche le AnimatedSprite a chaque image
     public new void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Draw( GetTexture(),Rect,null,_color);
     }
+    //Prends un SpriteBatch et un SpriteEffects et ne renvoie rien ,affiche le AnimatedSprite a chaque image
     public void Draw(SpriteBatch spriteBatch, SpriteEffects flip)
     {
         base.Draw(spriteBatch, Rectsrc, flip);
     }
+    //Prends un SpriteBatch,un spriteEffect et une couleur et ne renvoie rien ,affiche le AnimatedSprite a chaque image
     public void Draw(SpriteBatch spriteBatch, SpriteEffects flip, Color color)
     {
         base.Draw(spriteBatch, Rectsrc, flip, color);
     }
-    //Méthode utilisant la rotation pour faire tourner le trou noir
-    public new void DrawTrouNoir(SpriteBatch spriteBatch,float rotation, SpriteEffects effects, Color color )
+    //Prends un SpriteBatch,un spriteEffect et une couleur et ne renvoie rien ,affiche le AnimatedSprite a chaque image (specifique a l'objet EndOfLevel)
+    public new void Draw(SpriteBatch spriteBatch,float rotation, SpriteEffects effects, Color color )
     {
         base.DrawTrouNoir(spriteBatch, rotation, effects, color);
     }

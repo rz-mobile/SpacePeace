@@ -3,21 +3,21 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SpacePeace;
 
-public class EndOfLevel : GameObject // classe gérant le trou noir
+public class EndOfLevel : GameObject
 {
     
     private int _drotation; // rotation en degré
     private float _rotation; // rotation en radian
     
-    //constructeur
+    //Constructeur Vide
     public EndOfLevel() : base("BlackHole",new Vector2(100,300),100)
     {
         _rotation = 0.0f;
         _drotation = 0;
     }
     
-    //actualise la rotation du trou noir
-    public void UpdateTrouNoir(GameTime gameTime, bool levelcomplete)
+    //Prend un GameTime et un booleen et ne renvoi rien, actualise l'objet
+    public void Update(GameTime gameTime, bool levelcomplete)
     {
         if (levelcomplete)
         {
@@ -35,9 +35,9 @@ public class EndOfLevel : GameObject // classe gérant le trou noir
         
     }
     
-    //Dessine le trou noir
-    public void DrawTrouNoir(SpriteBatch spriteBatch)
+    //Prends un SpriteBatch et ne renvoie rien, affiche l'objet
+    public void Draw(SpriteBatch spriteBatch)
     {
-        base.DrawTrouNoir(spriteBatch,_rotation, SpriteEffects.None, Color.White);
+        base.Draw(spriteBatch,_rotation, SpriteEffects.None, Color.White);
     }
 }

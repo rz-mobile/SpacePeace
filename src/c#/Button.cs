@@ -10,27 +10,26 @@ public class Button
     private bool alreadyCLicked = false;
     public bool _clicked { get; private set; } = false;
 
-    //Constructeur
-    
+    //Constructeur prenant une chaine de caracteres, une Vector2 et un entier
     public Button(string texture, Vector2 position, int size)
     {
         _sprite = new Sprite(texture, position, size);
     }
-    
+    //Constructeur prenant une chaine de caracteres, une Vector2 et 2 entiers
     public Button(string texture, Vector2 position, int height, int width)
     {
         _sprite = new Sprite(texture, position, height, width);
     }
 
-    //méthode Draw qui prend un SpriteBatch en entrée et qui renvoi rien
-    //Cette méthode permet de dessiner les Boutons
+    //méthode Draw qui prends un SpriteBatch en entrée et qui ne renvoie rien
+    //Cette méthode permet de dessiner le Bouton
     public void Draw(SpriteBatch spriteBatch)
     {
         _sprite.Draw(spriteBatch);
     }
 
-    //Fontion Update prend un GameTime en entrée et renvoi rien 
-    //Cette fonction permet de m'être à jour les boutons.
+    //Fontion Update prend un GameTime en entrée et ne renvoie rien 
+    //Cette fonction permet de m'être à jour les boutons a chaque image
     public void Update(GameTime gameTime)
     {
         if (Mouse.GetState().LeftButton == ButtonState.Pressed)

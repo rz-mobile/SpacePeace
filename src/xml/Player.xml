@@ -2,7 +2,7 @@
 <Player xmlns = "http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/gameObjects"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/gameObjects //src/xsd/GameObjects.xsd">
-    <speed>6</speed>
-    <jumpForce>7.5</jumpForce>
+    <speed>4</speed>
+    <jumpForce>5</jumpForce>
     <ptVie>10</ptVie>
 </Player>

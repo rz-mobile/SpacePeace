@@ -1,6 +1,6 @@
 namespace SpacePeace;
 
-//Enumératopn
+//Enumeration des messages de fin de jeu
 public enum Felicitations
 {
     Bravo,

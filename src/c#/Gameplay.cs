@@ -27,7 +27,7 @@ public class Gameplay
     private UI _menu;
 
     
-    //Constructeur
+    //Constructeur vide
     public Gameplay()
     {
         _menu = new UI();
@@ -37,8 +37,8 @@ public class Gameplay
         _credits = new Credits();
     }
 
-    //Fontion Update prend un GameTime en entrée et renvoi rien.
-    //Cette fonction permet de m'être à jour le GamePlay.
+    //Fontion Update prend un GameTime en entrée et ne renvoie rien.
+    //Cette fonction permet de mettre à jour le GamePlay.
     public void Update(GameTime gameTime)
     {
 
@@ -76,7 +76,7 @@ public class Gameplay
 
     }
 
-    //méthode Draw qui prend un SpriteBatch en entrée et qui renvoi rien.
+    //méthode Draw qui prend un SpriteBatch en entrée et qui ne renvoie rien.
     //Cette méthode permet de dessiner le Gameplay.
     public void Draw(SpriteBatch spriteBatch)
     {
@@ -92,7 +92,7 @@ public class Gameplay
         }
     }
 
-    //méthode nextLevel qui prend rien en entrée et qui renvoi rien.
+    //méthode nextLevel qui ne prend rien en entrée et qui ne renvoie rien.
     //Cette méthode permet de charger le niveau suivant.
     public void nextLevel()
     {
@@ -108,7 +108,7 @@ public class Gameplay
         
     }
 
-    //méthode RestartLevel qui prend rien en entrée et qui renvoi rien.
+    //méthode RestartLevel qui ne prend rien en entrée et qui ne renvoie rien.
     //Cette méthode permet de recommencer le niveau.
     public void RestartLevel()
     {

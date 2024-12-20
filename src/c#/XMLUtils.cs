@@ -13,9 +13,8 @@ namespace SpacePeace;
 public class XMLUtils
 {
     
-    // Fonction récupérer du Poly de Cours de XML avec quelques arrangements pour satisphère à notre problématique.
    
-    //Fonction qui charge la validation de nos schémas xml
+    //Fonction qui prends 3 chaine de caracteres et ne renvoie rien,charge la validation de nos schémas xml
     public static async Task ValidateXmlFileAsync(string schemaNamespace , string xsdFilePath , string xmlFilePath ) {
         var settings = new XmlReaderSettings();
         settings.Schemas.Add(schemaNamespace , xsdFilePath);
@@ -39,7 +38,7 @@ public class XMLUtils
         }
     }   
     
-    //Fonction pour transformer les fichiers xslt en HTML en fonction d'un fichier XML
+    //Fonction qui prends 3 chaine de caracteres et ne renvoie rien,transforme les fichiers XML en HTML en fonction d'un fichier Xslt
     public static void XslTransform( string xmlFilePath , string xsltFilePath , string htmlFilePath)
     {
         if(!File.Exists(xmlFilePath))

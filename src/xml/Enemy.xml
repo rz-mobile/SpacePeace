@@ -3,6 +3,6 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/gameObjects //src/xsd/GameObjects.xsd">
     <Pv>1</Pv>
-    <degats>3</degats>
+    <degats>1</degats>
     <speed>0.5</speed>
 </Enemy>

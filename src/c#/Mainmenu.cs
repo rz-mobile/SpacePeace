@@ -39,7 +39,7 @@ public class Mainmenu
     private Sprite _arrow2;
     
     
-    //Constructeur
+    //Constructeur Vide
     public Mainmenu(){
         _main = new UI();
         _graphicsDevice  = Utils._graphics.GraphicsDevice;
@@ -70,8 +70,8 @@ public class Mainmenu
         
     }
 
-    //Fontion Update prend un GameTime en entrée et renvoi rien.
-    //Cette fonction permet de m'être à jour le menu.
+    //Fontion Update prend un GameTime en entrée et ne renvoie rien.
+    //Cette fonction permet de mettre à jour le menu.
     public void Update(GameTime gameTime){
         _playButton.Update(gameTime);
         _tutoButton.Update(gameTime);
@@ -109,8 +109,8 @@ public class Mainmenu
 
     }
 
-    //méthode Draw qui prend un SpriteBatch en entrée et qui renvoi rien.
-    //Cette méthode permet de dessiner le level.
+    //méthode Draw qui prend un SpriteBatch en entrée et qui ne renvoie rien.
+    //Cette méthode permet de dessiner le menu
     public void Draw(SpriteBatch spriteBatch){
         _fond.Draw(spriteBatch);
         _window.Draw(spriteBatch);

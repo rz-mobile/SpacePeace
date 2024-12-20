@@ -9,18 +9,15 @@ namespace SpacePeace;
 
 public class CollisionMap
 {
-    public Vector2 _offset;
-    private Texture2D _rectangleTexture;
     private List<string[]> _map;
-    public bool done = false;
     private int _size;
     
 
     private List<Rectangle> _rectangles;
     private GraphicsDevice _graphics;
 
-    //Constructeur
-    public CollisionMap(string _mmap,Texture2D rectangleTexture,GraphicsDevice graphicsDevice,int size)
+    //Constructeur prenant une chaine de caracteres, un GrapgicsDevice et un entier
+    public CollisionMap(string _mmap,GraphicsDevice graphicsDevice,int size)
     {
         _size = size;
         _graphics = graphicsDevice;
@@ -42,11 +39,10 @@ public class CollisionMap
                 }
             }
         }
-        done = true;
     }
     
-    //méthode setOffset qui prend un Vector2 en entrée et qui renvoi rien
-    //Cette méthode permet d'avoir un setteur de offset
+    //méthode setOffset qui prend un Vector2 en entrée et qui ne renvoie rien
+    //Cette méthode permet d'affecter le decalage de la camera au Collisions
     public void setOffset(Vector2 offset)
     {
         for (int i = 0; i < _rectangles.Count;i++)
@@ -71,8 +67,8 @@ public class CollisionMap
         }
         return collision;
     }
-    //méthode Draw qui prend un SpriteBatch en entrée et qui renvoi rien
-    //Cette méthode permet de dessiner les rectangles de la map
+    //méthode Draw qui prend un SpriteBatch en entrée et qui ne renvoie rien
+    //Cette méthode permet d'afficher les collisions de la map (fontion de debug)
     public void Draw(SpriteBatch spriteBatch)
     {
         foreach (Rectangle r in _rectangles)

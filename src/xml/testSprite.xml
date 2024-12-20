@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Sprite xmlns="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/animatedSprites"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/animatedSprites //src/xsd/Sprite.xsd">
-    <texture>ship2</texture>
-    <size>25</size>
-</Sprite>
