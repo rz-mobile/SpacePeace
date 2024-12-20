@@ -78,17 +78,18 @@ public class Player : GameObject
         _gravity = 0.1f;
     }
     
-
+    //Prends un float et ne renvoie rien, affecte la valeur de _gravity
     public void setGravity(float gravity)
     {
         _gravity = gravity;
     }
+    //Ne prends rien et ne renvoie rien, applique la réaction du sol
     public void groundReaction()
     {
         _surSol = true;
         _move = new Vector2(_move.X, 0.0f);
     }
-
+    //Prends un Vecteur2 et ne renvoie rien, applique le decalage de la camera aux projecttiles de tirList
     public void shootOffset(Vector2 offset)
     {
         foreach (Shoot tir in tirList)
@@ -211,7 +212,7 @@ public class Player : GameObject
             }
         }
     }
-
+    //Ne prends rien et ne renvoie rien, fait sauter le joueur
     public void Jump()
     {
         if (_surSol)
@@ -220,7 +221,7 @@ public class Player : GameObject
 
         }
     }
-
+    //prends un entier et ne renvoie rien, applique des degats au joueurs et le rends temporairement invulnerable
     public void damage(int degats)
     {
         if (!_unvulnerable)
@@ -230,13 +231,14 @@ public class Player : GameObject
             _unvulnerable = true;
         }
     }
+    //ne prends rien et retourne un booleen, vrai si le joueur est tombe en dessous de l'ecran
     public bool tomber()
     {
         bool result = false;
         if (_position.Y >1000) { result = true; }
         return result;
     }
-
+    //?------------------------------------------------
     public void tire()
     {
         temps = new System.Timers.Timer(300);

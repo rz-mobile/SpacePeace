@@ -37,7 +37,7 @@ public class Tilemap
             }
         }
     }
-
+    //Prends un Vecteur2 et ne renvoie rien, applique le decalage de la camera aux tiles de la liste
     public void setOffset(Vector2 offset)
     {
         foreach (Tile tile in _tiles)

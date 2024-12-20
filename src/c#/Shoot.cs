@@ -36,7 +36,7 @@ public class Shoot : GameObject
         _position = new Vector2(_position.X + 10, _position.Y);
         
     }
-
+    //ne prends rien et ne retourne rien, affecte Detruit a vrai
     public void touche()
     {
         Detruit = true;

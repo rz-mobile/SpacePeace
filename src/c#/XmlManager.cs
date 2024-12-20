@@ -6,6 +6,7 @@ namespace SpacePeace;
 
 public class XmlManager<T>
 {
+    //prends une chaine de caractere et renvoie un T, deserialise un T a partir du fichier xml designe par le chemin
     public T Load(string path)
     {
         T _instance;
@@ -17,7 +18,7 @@ public class XmlManager<T>
 
         return _instance;
     }
-
+    //prends une chaine de caractere et un objet et ne renvoie rien, serialise un objet dans le fichier xml designe par le chemin    
     public void Save(string path, object obj)
     {
         using (TextWriter writer = new StreamWriter(path))
@@ -26,7 +27,7 @@ public class XmlManager<T>
             xml.Serialize(writer,obj);
         }
     }
-    
+    //prends une chaine de caractere ,un objet et un XmlSerializeNamespaces et ne renvoie rien, serialise un objet dans le fichier xml designe par le chemin selon son namespace  
     public void Save(string path, object obj,XmlSerializerNamespaces ns)
     {
         Console.WriteLine(path);

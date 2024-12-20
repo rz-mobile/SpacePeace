@@ -3,7 +3,7 @@
                 xmlns:go="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/GameOne"
                 xmlns:pl="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/gameObjects"
                 xmlns:en="http://www.univ-grenoble-alpes.fr/Enemy"
-                xmlns:sp="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/animatedSprites">
+                xmlns:sp="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/Sprites">
     <xsl:output method="html" indent="yes" encoding="UTF-8"/>
 
     <!-- Template pour la structure HTML complète -->
@@ -24,6 +24,7 @@
                             <th>Image du Projectile</th>
                             <th>Puissance du saut</th>
                             <th>Points de vie</th>
+                            <th>Speed</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,6 +78,7 @@
             </td>
             <td><xsl:value-of select="pl:jumpForce"/></td>
             <td><xsl:value-of select="pl:ptVie"/></td>
+            <td><xsl:value-of select="pl:speed"/></td>
         </tr>
     </xsl:template>
 
@@ -94,7 +96,7 @@
         <tr>
             <td><xsl:value-of select="sp:texture"/></td>
             <td><xsl:value-of select="sp:height"/></td>
-            <td><xsl:value-of select="sp:wigth"/></td>
+            <td><xsl:value-of select="sp:width"/></td>
         </tr>
     </xsl:template>
 
