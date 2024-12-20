@@ -9,6 +9,7 @@ public class Gameplay
 {
     private BackGround _backGround;
     private int _lvId = 0;
+    
     private bool _paused
     {
         get
@@ -25,6 +26,8 @@ public class Gameplay
     Level _currentLevel;
     private UI _menu;
 
+    
+    //Constructeur
     public Gameplay()
     {
         _menu = new UI();
@@ -34,6 +37,8 @@ public class Gameplay
         _credits = new Credits();
     }
 
+    //Fontion Update prend un GameTime en entrée et renvoi rien.
+    //Cette fonction permet de m'être à jour le GamePlay.
     public void Update(GameTime gameTime)
     {
 
@@ -71,6 +76,8 @@ public class Gameplay
 
     }
 
+    //méthode Draw qui prend un SpriteBatch en entrée et qui renvoi rien.
+    //Cette méthode permet de dessiner le Gameplay.
     public void Draw(SpriteBatch spriteBatch)
     {
         _backGround.Draw(spriteBatch);
@@ -85,6 +92,8 @@ public class Gameplay
         }
     }
 
+    //méthode nextLevel qui prend rien en entrée et qui renvoi rien.
+    //Cette méthode permet de charger le niveau suivant.
     public void nextLevel()
     {
         _lvId = (_lvId + 1);
@@ -99,6 +108,8 @@ public class Gameplay
         
     }
 
+    //méthode RestartLevel qui prend rien en entrée et qui renvoi rien.
+    //Cette méthode permet de recommencer le niveau.
     public void RestartLevel()
     {
         _currentLevel = new Level("../../../src/xml/Level" + (_lvId+1)+".xml",Utils._graphics.GraphicsDevice);

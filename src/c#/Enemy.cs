@@ -17,10 +17,12 @@ public class Enemy : GameObject
     public Rectangle _topHitbox{get => new Rectangle((int)_position.X-(Width/2)+6, (int)_position.Y-(Height/2), Width-12, 4);}
     public Rectangle _leftHitbox{get => new Rectangle((int)_position.X - (Width/2), (int)_position.Y-(Height/2)+3, 4, Height-6);}
 
+    //Sérialization
     [XmlElement("degats")] public int _degats { init; get; }
     [XmlElement("Pv")] public int _ptVie;
     [XmlElement("speed")]public float _speed;
     
+    //Constructeur
     public Enemy(string texture, Vector2 position, int size,int degats) : base(texture, position, size, 0, 2)
     {
         _degats = degats;
@@ -40,40 +42,54 @@ public class Enemy : GameObject
         _gravity = 0.1f;
     }
     
-    
-    
+    //Fontion spawn prend un Vector2 en entrée et renvoi rien 
+    //Cette fonction permet de retenir sa position et qu'il n'est pas mort.
     public void spawn(Vector2 position)
     {
         _dead = false;
         _position = position;
     }
 
+    //Fontion die prend rien en entrée et renvoi rien 
+    //Cette fonction permet de m'être l'attribut _dead à vrai.
     public void die()
     {
         _dead = true;
     }
+    
+    //Fontion Update prend rien en entrée et renvoi rien 
+    //Cette fonction permet de créer un nouveau _move avec des attributs différents.
     public void groundReaction()
     {
         _move = new Vector2(_move.X,  - _gravity);
     }
 
-    
+    //Fontion setGravity prend un float en entrée et renvoi rien 
+    //Cette fonction permet d'avoir un getteur de la gravité.
     public void setGravity(float gravity)
     {
         _gravity = gravity;
     }
 
+    //Fontion checkTopCollision prend un Rectangle en entrée et renvoie un booléen 
+    //Cette fonction permet si il y a une colision sur le dessus.
     public bool checkTopCollision(Rectangle rect)
     {
         return _topHitbox.Intersects(rect);
     }
 
+    //Fontion checkleftCollision prend un Rectangle en entrée et renvoie un booléen 
+    //Cette fonction permet si il y a une colision à gauche.
     public bool checkleftCollision(Rectangle rect)
     {
         return _leftHitbox.Intersects(rect);
     }
+    
     public void Initilize(){}
 
+    
+    //Fontion Update prend un GameTime en entrée et renvoi rien.
+    //Cette fonction permet de m'être à jour les Enemys.
     public new void Update(GameTime gameTime)
     {
         base.Update(gameTime, 0,2 );
@@ -84,6 +100,8 @@ public class Enemy : GameObject
 
     }
 
+    //méthode Draw qui prend un SpriteBatch en entrée et qui renvoi rien.
+    //Cette méthode permet de dessiner les Enemys.
     public void Draw(SpriteBatch spriteBatch)
     {
         base.Draw(spriteBatch, SpriteEffects.FlipHorizontally, Color.Red);

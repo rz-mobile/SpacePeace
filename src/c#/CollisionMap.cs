@@ -19,6 +19,7 @@ public class CollisionMap
     private List<Rectangle> _rectangles;
     private GraphicsDevice _graphics;
 
+    //Constructeur
     public CollisionMap(string _mmap,Texture2D rectangleTexture,GraphicsDevice graphicsDevice,int size)
     {
         _size = size;
@@ -43,6 +44,9 @@ public class CollisionMap
         }
         done = true;
     }
+    
+    //méthode setOffset qui prend un Vector2 en entrée et qui renvoi rien
+    //Cette méthode permet d'avoir un setteur de offset
     public void setOffset(Vector2 offset)
     {
         for (int i = 0; i < _rectangles.Count;i++)
@@ -56,7 +60,8 @@ public class CollisionMap
         
     }
     
-
+    //méthode checkCollision qui prend un Rectangle en entrée et qui renvoie un booléan
+    //Cette méthode permet de détecter une collision 
     public bool CheckCollision(Rectangle r)
     {
         bool collision = false;
@@ -66,6 +71,8 @@ public class CollisionMap
         }
         return collision;
     }
+    //méthode Draw qui prend un SpriteBatch en entrée et qui renvoi rien
+    //Cette méthode permet de dessiner les rectangles de la map
     public void Draw(SpriteBatch spriteBatch)
     {
         foreach (Rectangle r in _rectangles)

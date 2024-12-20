@@ -10,6 +10,7 @@ public class Item:GameObject
 {
     public int _points;
 
+        //Constructeur 
     public Item(string texture, Vector2 position, int size,int points) : base(texture, position, size)
     {
         _points = points;

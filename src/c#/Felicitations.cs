@@ -1,5 +1,6 @@
 namespace SpacePeace;
 
+//Enumératopn
 public enum Felicitations
 {
     Bravo,

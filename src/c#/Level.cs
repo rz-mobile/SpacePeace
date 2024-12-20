@@ -35,6 +35,8 @@ public class Level
     private List<string[]> _map;
 
     private List<Tile> _tiles;
+    
+    //Constructeur
     public Level(String path ,GraphicsDevice graphicsDevice)
     {
         Utils._gameOver = false;
@@ -73,7 +75,10 @@ public class Level
         
         
     }
-
+    
+    
+    //Fontion Update prend un GameTime en entrée et renvoi rien.
+    //Cette fonction permet de m'être à jour le Level.
     public void Update(GameTime gameTime)
     {
         Vector2 offset = _camera.moveCamera(_player._move);
@@ -162,11 +167,11 @@ public class Level
 
         
     }
+    
+    //méthode Draw qui prend un SpriteBatch en entrée et qui renvoi rien.
+    //Cette méthode permet de dessiner le level.
     public void Draw(SpriteBatch spriteBatch)
     {
-        
-        
-        
         _arrierePlan.Draw(spriteBatch);
         _end.DrawTrouNoir(spriteBatch);
         foreach (Enemy e in _enemies)
@@ -184,6 +189,8 @@ public class Level
     }
 
     
+    //méthode xmlMap qui prend un String en entrée et qui renvoi String.
+    //Cette méthode permet de récupérer le niveau dans le fichier xml.
     public String xmlMap(string name)
     {
         String map = "";
@@ -199,7 +206,10 @@ public class Level
        }
        return map;
     }
-
+    
+    
+    //méthode xmlMap qui prend rient en entrée et qui renvoi une liste de Vector2.
+    //Cette méthode permet de récupérer le positionnement des Enemys dans le fichier xml.
     public List<Vector2> positionEnnemis()
     {
         _doc.Load(_path);
@@ -212,6 +222,8 @@ public class Level
         return positions;
     }
     
+    //méthode xmlMap qui prend rient en entrée et qui renvoi une liste de Vector2.
+    //Cette méthode permet de récupérer la fin du niveau dans le fichier xml.
     public Vector2 positionFinDeNiveau()
     {
         _doc.Load(_path);
@@ -220,6 +232,8 @@ public class Level
         return value;
     }
 
+    //Fontion getGravity prend un float en entrée et renvoi rien 
+    //Cette fonction permet d'avoir un getteur de la gravité récuperer dans le xml.
     public float getGravity()
     {
         _doc.Load(_path);
@@ -227,12 +241,18 @@ public class Level
         return float.Parse(g.Attributes["value"].Value,CultureInfo.InvariantCulture);
     }
 
+    
+    //Fontion levelWidthCoef prend un float en entrée et renvoi rien 
+    //Cette fonction permet d'avoir la longueur du level récuperer dans le xml.
     public float levelWidthCoef()
     {
         _doc.Load(_path);
         XmlNode w = _doc.DocumentElement.SelectSingleNode("//map");
         return (((float.Parse(w.Attributes["width"].Value)*_levelSize)/Utils.screenWidth)/4);
     }
+    
+    //Fontion levelHeightCoef prend un float en entrée et renvoi rien 
+    //Cette fonction permet d'avoir la hauteur du level récuperer dans le xml.
     public float levelHeightCoef()
     {
         _doc.Load(_path);

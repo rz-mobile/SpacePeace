@@ -15,6 +15,7 @@ public class BackGround
     private Sprite _meteorFond6;
     private Sprite _meteorFond7;
 
+    //Constructeur 
     public BackGround()
     {
         _fond = new Sprite("fond", new Vector2(400,400), 1000, 1000);
@@ -28,6 +29,8 @@ public class BackGround
         _meteorFond7 = new Sprite("Meteor_02", new Vector2(700,40), 30, 50);
     }
 
+    //méthode Draw qui prend un SpriteBatch en entrée et qui renvoie rien
+    //Cette méthode permet de dessiner le BackGround
     public void Draw(SpriteBatch spriteBatch)
     {
         _fond.Draw(spriteBatch);
