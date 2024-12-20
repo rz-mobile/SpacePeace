@@ -2,13 +2,11 @@
 <GameOne xmlns="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/GameOne" 
              xmlns:pl="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/gameObjects"
              xmlns:en="http://www.univ-grenoble-alpes.fr/Enemy" 
-             xmlns:sp="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/animatedSprites" 
+             xmlns:sp="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/Sprites" 
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
              xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/GameOne //xsd/GameOne.xsd">
     <Player>
-        <sp:texture>Ship1</sp:texture>
-        <sp:height>50</sp:height>
-        <sp:wigth>50</sp:wigth>
+        <pl:speed>6</pl:speed>
         <pl:jumpForce>5.0</pl:jumpForce>
         <pl:ptVie>10</pl:ptVie>
     </Player>
@@ -16,7 +14,7 @@
     <Enemy>
         <sp:texture>name</sp:texture>
         <sp:height>50</sp:height>
-        <sp:wigth>50</sp:wigth>
+        <sp:width>50</sp:width>
         <en:Pv>1</en:Pv>
         <en:Degats>1</en:Degats>
     </Enemy>
@@ -24,6 +22,6 @@
     <Sprite>
         <sp:texture>NameDuSprite</sp:texture>
         <sp:height>50</sp:height>
-        <sp:wigth>50</sp:wigth>
+        <sp:width>50</sp:width>
     </Sprite>
 </GameOne>

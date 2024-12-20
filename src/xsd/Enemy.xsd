@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:en="http://www.univ-grenoble-alpes.fr/Enemy"
-           xmlns:as="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/animatedSprites"
+           xmlns:as="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/Sprites"
            
            targetNamespace="http://www.univ-grenoble-alpes.fr/Enemy"
            elementFormDefault="qualified">

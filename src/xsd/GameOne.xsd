@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-        xmlns:sp="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/animatedSprites"
+        xmlns:sp="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/Sprites"
         xmlns:en="http://www.univ-grenoble-alpes.fr/Enemy"
         xmlns:pl="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/gameObjects"
         xmlns:go="http://www.univ-grenoble-alpes.fr/l3miage/spacePeace/GameOne"

@@ -15,7 +15,7 @@ public class Saves
     {
         saves = new List<SaveInstance>();
     }
-    
+    //Prends une chaine de caractères, deux entiers et une date, ajoute une sauvegarde à la liste saves
     public void addSave(string playerName, int score,int level,DateTime date)
     {
         saves.Add(new SaveInstance(playerName, score,level,date));

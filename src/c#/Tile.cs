@@ -29,10 +29,11 @@ public class Tile
         _sprite = new Sprite("MapSpace",_position,size);
         
     }
+    //A POTENTIELLEMENT SUPPRIMER
     public void Initialize() {
         
     }
-
+    //Prends un Vecteur2 et ne renvoie rien, applique le decalage de la camera a la tile
     public void setOffset(Vector2 offset)
     {
         _position += offset;
