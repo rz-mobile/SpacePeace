@@ -66,7 +66,7 @@ public class Player : GameObject
 
     }
 
-    public Player()
+    public Player() // a suppr
     {
         _textureName = "player";
         _position = new Vector2(Utils.screenWidth/2,Utils.screenWidth/8);

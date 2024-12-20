@@ -12,12 +12,15 @@ namespace SpacePeace;
 public class AnimatedSprite : Sprite
 {
     private int _heightA , _widthA; //taille du sprite sur le png
-    private int _activeFrame, _counter , _nbFrames , _nbAnimation ;
-    private static int _maxAnimation , _maxFrames ;
-    private Color _color = Color.White;
+    private int _activeFrame, _counter , _nbFrames , _nbAnimation ; //paramètres pour la frame actuelle 
+    private static int _maxAnimation , _maxFrames ; //parametres sur le png actuel
+    private Color _color = Color.White; // a modif ligne 95
     
     private Rectangle Rectsrc { get => new Rectangle(_activeFrame*_widthA,_nbAnimation*_heightA,_widthA, _heightA); }
-
+    // rectangle définissant la frame actuelle 
+    
+    //String, Vecor2, int, int, int
+    //contructeur prenant un carré comme Rectsrc 
     public AnimatedSprite(string spritesheet, Vector2 position, int size,int maxAnimation, int maxFrame ) : base(spritesheet, position, size)
     {
         _heightA = 16;
@@ -31,6 +34,7 @@ public class AnimatedSprite : Sprite
 
     }
     
+    //a suppr
     public AnimatedSprite(string spritesheet, Vector2 position, int height , int width, int maxAnimation, int maxFrame ) :base(spritesheet, position, height, width)
     {
         _activeFrame = 0;
@@ -41,6 +45,7 @@ public class AnimatedSprite : Sprite
         _counter = 0;
     }
 
+    // constructeur sans paramètre utilisé pour player
     public AnimatedSprite() : base()
     {
         _heightA = 16;
@@ -54,9 +59,11 @@ public class AnimatedSprite : Sprite
 
     }
 
-    public AnimatedSprite(string spritesheet, Vector2 position, int size) : base(spritesheet, position, size){} //pour les objets sans animation
-    
+    //pour les objets sans animation
+    public AnimatedSprite(string spritesheet, Vector2 position, int size) : base(spritesheet, position, size){} 
     public AnimatedSprite(string spritesheet, Vector2 position, int height, int width) : base(spritesheet, position, height, width){}
+    
+    //Permet de passer d'une frame a l'autre
     public void Update(GameTime gameTime, int nbAnimation, int nbFrames)
     {
         if (nbAnimation != _nbAnimation)
@@ -77,7 +84,7 @@ public class AnimatedSprite : Sprite
         }
     }
     
-    public void Update(GameTime gameTime)
+    public void Update(GameTime gameTime) //a suppr
     {
             _counter++;
             if(_counter > 10)
@@ -90,6 +97,8 @@ public class AnimatedSprite : Sprite
                 }
             }
     }
+    
+    //Méthodes déssinant le Sprite
     public new void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Draw( GetTexture(),Rect,null,_color);
@@ -102,7 +111,7 @@ public class AnimatedSprite : Sprite
     {
         base.Draw(spriteBatch, Rectsrc, flip, color);
     }
-    
+    //Méthode utilisant la rotation pour faire tourner le trou noir
     public new void DrawTrouNoir(SpriteBatch spriteBatch,float rotation, SpriteEffects effects, Color color )
     {
         base.DrawTrouNoir(spriteBatch, rotation, effects, color);
